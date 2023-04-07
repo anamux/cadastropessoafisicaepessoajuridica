@@ -1,5 +1,5 @@
 <resources>
-<!--Strings tela Login-->
+    <!--Strings tela Login-->
     <string name="app_name">Cadastro Pessoa Fisica e Pessoa Juridica</string>
     <string name="appName">App Cliente Pessoa Física e Pessoa Jurídica</string>
     <string name="email">Email</string>
@@ -16,4 +16,14 @@
     <string name="digite_seu_sobrenome">Digite seu sobrenome...</string>
     <string name="digite_seu_primeiro_nome">Digite seu primeiro nome...</string>
     <string name="novo_vip">Novo VIP</string>
+    <!--Stings tela Cadastro Pessoa Jurídica -->
+    <string name="pessoa_pj">Pessoa Jurídica</string>
+    <string name="cnpj">CNPJ</string>
+    <string name="digite_o_cnpj">Digite o CNPJ...</string>
+    <string name="raz_o_social">Razão Social</string>
+    <string name="data_de_abertura_da_empresa">Data de Abertura da Empresa</string>
+    <string name="mei">MEI</string>
+    <string name="simples_nacional">Simples Nacional</string>
+    <string name="salvarcontinuar">Salvar e Continuar</string>
+    <string name="voltar">voltar</string>
 </resources>
