@@ -1,3 +1,19 @@
 <resources>
+<!--Strings tela Login-->
     <string name="app_name">Cadastro Pessoa Fisica e Pessoa Juridica</string>
+    <string name="appName">App Cliente Pessoa Física e Pessoa Jurídica</string>
+    <string name="email">Email</string>
+    <string name="digite_o_e_mail">Digite o e-mail cadastrado...</string>
+    <string name="recuperar_senha">Recuperar Senha</string>
+    <string name="lembrar">Lembrar</string>
+    <string name="politicaetermos"><![CDATA[Ler Política de Privacidade & Termos de Uso]]></string>
+    <!--Strings tela Cadastro VIP-->
+    <string name="primeiro_nome">Primeiro Nome</string>
+    <string name="sobrenome">Sobrenome</string>
+    <string name="salvar_e_continuar">SALVAR E CONTINUAR</string>
+    <string name="cancelar">CANCELAR</string>
+    <string name="pessoa_f_sica">Pessoa Física</string>
+    <string name="digite_seu_sobrenome">Digite seu sobrenome...</string>
+    <string name="digite_seu_primeiro_nome">Digite seu primeiro nome...</string>
+    <string name="novo_vip">Novo VIP</string>
 </resources>
