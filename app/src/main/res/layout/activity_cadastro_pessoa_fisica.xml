@@ -7,70 +7,69 @@
     tools:context=".PessoaJuridica">
 
 
-
     <TextView
-        android:id="@+id/TxtPJ"
+        android:id="@+id/TxtPF"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:gravity="center_horizontal"
-        android:text="@string/pessoa_pj"
+        android:text="@string/pessoa_fisica"
         android:textColor="@color/blue"
         android:textSize="26dp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/txtCnpj"
+        android:id="@+id/txtNomeCompleto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="@string/cnpj"
+        android:text="@string/nome_completo"
         android:textColor="@color/green"
         android:textSize="20dp"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/EditCnpj"
+        android:id="@+id/EditNomeCompleto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:ems="10"
-        android:hint="@string/digite_o_cnpj"
+        android:hint="@string/nome_completo"
         android:inputType="number" />
 
     <TextView
-        android:id="@+id/txtRazaoSocial"
+        android:id="@+id/txtCPF"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="@string/raz_o_social"
+        android:text="@string/CPF"
         android:textColor="@color/green"
         android:textSize="20dp"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/editSenha"
+        android:id="@+id/editCpf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:ems="10"
-        android:hint="Razão Social igual ao CNPJ"
-        android:inputType="text"/>
+        android:hint="Digite o CPF..."
+        android:inputType="number"/>
 
     <TextView
-        android:id="@+id/txtDataAbertura"
+        android:id="@+id/txtDataNascimento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="@string/data_de_abertura_da_empresa"
+        android:text="@string/data_nascimento"
         android:textColor="@color/green"
         android:textSize="20dp"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/editAbertura"
+        android:id="@+id/editDataNascimento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -78,28 +77,6 @@
         android:ems="10"
         android:hint="dd/mm/aaaa"
         android:inputType="date"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <CheckBox
-            android:id="@+id/ckSimplesNacional"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="16dp"
-            android:text="@string/simples_nacional" />
-
-        <CheckBox
-            android:id="@+id/ckMei"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="16dp"
-            android:text="@string/mei" />
-    </LinearLayout>
 
     <Button
         android:id="@+id/btnSalvarEContinuar"
