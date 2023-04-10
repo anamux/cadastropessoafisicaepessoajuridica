@@ -24,6 +24,7 @@ private ActivityLoginBinding binding;
             public void onClick(View view) {
                 Intent intent = new Intent(Login.this, CadastroNovoCliente.class);
                         startActivity(intent);
+                        finish();
             }
         });
 
