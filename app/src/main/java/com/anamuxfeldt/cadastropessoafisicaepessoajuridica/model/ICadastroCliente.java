@@ -1,4 +1,4 @@
-package com.anamuxfeldt.cadastropessoafisicaepessoajuridica;
+package com.anamuxfeldt.cadastropessoafisicaepessoajuridica.model;
 
 import android.content.Context;
 import android.content.Intent;

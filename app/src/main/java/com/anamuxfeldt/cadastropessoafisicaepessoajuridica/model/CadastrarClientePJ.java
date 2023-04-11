@@ -1,7 +1,9 @@
-package com.anamuxfeldt.cadastropessoafisicaepessoajuridica;
+package com.anamuxfeldt.cadastropessoafisicaepessoajuridica.model;
 
 import android.content.Context;
 import android.content.Intent;
+
+import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.view.PessoaJuridica;
 
 public class CadastrarClientePJ implements ICadastroCliente{
     @Override

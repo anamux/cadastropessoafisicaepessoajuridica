@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".CadastroNovoCliente">
+    tools:context=".view.CadastroNovoCliente">
 
 
     <TextView
@@ -49,7 +49,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/editSenha"
+        android:id="@+id/editSobrenome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -58,12 +58,64 @@
         android:hint="@string/digite_seu_sobrenome"
         android:inputType="textPersonName" />
 
+    <TextView
+        android:id="@+id/txtCadastrarSenha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Senha"
+        android:textColor="@color/green"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editSenha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:hint="@string/digite_senha"
+        android:inputType="numberPassword" />
+
+    <TextView
+        android:id="@+id/txtConfirmaSenha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/confirme_sua_senha"
+        android:textColor="@color/green"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editConfirmaSenha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:hint="@string/digite_senha"
+        android:inputType="numberPassword" />
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginRight="16dp">
         <CheckBox
             android:id="@+id/ckPessoaFisica"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:text="@string/pessoa_f_sica" />
+
+    <CheckBox
+        android:id="@+id/ckPoliticaEPrivacidade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:text="@string/politica_termos" />
+</androidx.appcompat.widget.LinearLayoutCompat>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -75,16 +127,15 @@
             android:id="@+id/btnSalvarEContinuar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_margin="8dp"
             android:text="@string/salvar_e_continuar" />
 
         <Button
             android:id="@+id/btnCancelar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_margin="8dp"
             android:text="@string/cancelar" />
     </LinearLayout>
-
 
 </LinearLayout>

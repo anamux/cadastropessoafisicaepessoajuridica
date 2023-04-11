@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PessoaJuridica">
+    tools:context=".view.PessoaJuridica">
 
 
 
@@ -30,7 +30,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/EditCnpj"
+        android:id="@+id/editCnpj"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -50,7 +50,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/editSenha"
+        android:id="@+id/editRazaoSocial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"

@@ -1,10 +1,11 @@
-package com.anamuxfeldt.cadastropessoafisicaepessoajuridica;
+package com.anamuxfeldt.cadastropessoafisicaepessoajuridica.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.databinding.ActivityCadastroClientePjBinding;
 
@@ -17,6 +18,9 @@ private ActivityCadastroClientePjBinding binding;
         View view = binding.getRoot();
         setContentView(view);
 
+        binding.editCnpj.getText().toString();
+        binding.editRazaoSocial.getText().toString();
+        binding.editAbertura.getText().toString();
         binding.btnSalvarEContinuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -29,6 +33,8 @@ private ActivityCadastroClientePjBinding binding;
         binding.btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(PessoaJuridica.this, Login.class);
+                startActivity(intent);
                 finish();
             }
         });
@@ -36,8 +42,7 @@ private ActivityCadastroClientePjBinding binding;
         binding.btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PessoaJuridica.this, Login.class);
-                startActivity(intent);
+                Toast.makeText(PessoaJuridica.this, "Obrigado pelo acesso...", Toast.LENGTH_SHORT).show();
                 finish();
 
             }

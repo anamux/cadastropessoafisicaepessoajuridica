@@ -1,4 +1,4 @@
-package com.anamuxfeldt.cadastropessoafisicaepessoajuridica;
+package com.anamuxfeldt.cadastropessoafisicaepessoajuridica.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +17,10 @@ private ActivityCadastroPessoaFisicaBinding binding;
         View view = binding.getRoot();
         setContentView(view);
 
+        binding.editNomeCompleto.getText().toString();
+        binding.editCpf.getText().toString();
+        binding.editDataNascimento.getText().toString();
+
         binding.btnSalvarEContinuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -29,6 +33,8 @@ private ActivityCadastroPessoaFisicaBinding binding;
         binding.btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(PessoaFisica.this, Login.class);
+                startActivity(intent);
                 finish();
             }
         });
@@ -36,9 +42,7 @@ private ActivityCadastroPessoaFisicaBinding binding;
         binding.btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PessoaFisica.this, Login.class);
-                startActivity(intent);
-                finish();
+                              finish();
 
             }
         });

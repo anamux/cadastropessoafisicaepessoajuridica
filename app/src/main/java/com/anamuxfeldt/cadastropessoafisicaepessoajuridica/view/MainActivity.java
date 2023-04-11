@@ -1,8 +1,10 @@
-package com.anamuxfeldt.cadastropessoafisicaepessoajuridica;
+package com.anamuxfeldt.cadastropessoafisicaepessoajuridica.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.R;
 
 public class MainActivity extends AppCompatActivity {
 
