@@ -28,46 +28,20 @@ public class CadastroNovoCliente extends AppCompatActivity {
         binding.btnSalvarEContinuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                isDadosOk = true;
-                if (TextUtils.isEmpty(binding.editPrimeiroNome.getText().toString())) {
-                    binding.editPrimeiroNome.setError("*");
-                    binding.editPrimeiroNome.requestFocus();
-                    isDadosOk = false;
-                }
-                if (TextUtils.isEmpty(binding.editSobrenome.getText().toString())) {
-                    binding.editSobrenome.setError("*");
-                    binding.editSobrenome.requestFocus();
-                    isDadosOk = false;
-                }
-                if (TextUtils.isEmpty((binding.editSenha.getText().toString()))) {
-                    binding.editSenha.setError("*");
-                    binding.editSenha.requestFocus();
-                    isDadosOk = false;
-                }
-                if (TextUtils.isEmpty((binding.editConfirmaSenha.getText().toString()))) {
-                    binding.editConfirmaSenha.setError("*");
-                    binding.editConfirmaSenha.requestFocus();
-                    isDadosOk = false;
-                }
-                if (!binding.ckPoliticaEPrivacidade.isChecked()) {
-                    binding.ckPoliticaEPrivacidade.setError("Obrigatório");
-                    isDadosOk = false;
-                }
-
-                if (isDadosOk) {
+                if (validarDados()) {
                     if (!validarSenha()) {
                         Toast.makeText(getApplicationContext(), "As senhas digitadas não conferem...",
                                 Toast.LENGTH_LONG).show();
+                    } else {
+                        if (binding.ckPessoaFisica.isChecked()) {
+                            cadastroCliente = new CadastrarClientePF();
+                        } else if (validarSenha()) {
+                            cadastroCliente = new CadastrarClientePJ();
+                        }
+                        Intent intent = cadastroCliente.cadastrar(CadastroNovoCliente.this);
+                        startActivity(intent);
+                        finish();
                     }
-                } else {
-                    if (binding.ckPessoaFisica.isChecked() && validarSenha()) {
-                        cadastroCliente = new CadastrarClientePF();
-                    } else if (validarSenha()){
-                        cadastroCliente = new CadastrarClientePJ();
-                    }
-                    Intent intent = cadastroCliente.cadastrar(CadastroNovoCliente.this);
-                    startActivity(intent);
-                    finish();
                 }
             }
         });
@@ -80,6 +54,35 @@ public class CadastroNovoCliente extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private boolean validarDados() {
+        boolean retorno = true;
+        if (TextUtils.isEmpty(binding.editPrimeiroNome.getText().toString())) {
+            binding.editPrimeiroNome.setError("*");
+            binding.editPrimeiroNome.requestFocus();
+            retorno = false;
+        }
+        if (TextUtils.isEmpty(binding.editSobrenome.getText().toString())) {
+            binding.editSobrenome.setError("*");
+            binding.editSobrenome.requestFocus();
+            retorno = false;
+        }
+        if (TextUtils.isEmpty((binding.editSenha.getText().toString()))) {
+            binding.editSenha.setError("*");
+            binding.editSenha.requestFocus();
+            retorno = false;
+        }
+        if (TextUtils.isEmpty((binding.editConfirmaSenha.getText().toString()))) {
+            binding.editConfirmaSenha.setError("*");
+            binding.editConfirmaSenha.requestFocus();
+            retorno = false;
+        }
+        if (!binding.ckPoliticaEPrivacidade.isChecked()) {
+            binding.ckPoliticaEPrivacidade.setError("Obrigatório");
+            retorno = false;
+        }
+        return retorno;
     }
 
     private boolean validarSenha() {
