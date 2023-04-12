@@ -3,6 +3,7 @@ package com.anamuxfeldt.cadastropessoafisicaepessoajuridica.view;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,9 +15,8 @@ import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.model.Cliente;
 
 public class Login extends AppCompatActivity {
     private ActivityLoginBinding binding;
-    boolean isDadosOk, isLembrarSenha;
-
-    @Override
+    boolean isLembrarSenha;
+        @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
@@ -43,13 +43,13 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 boolean isDadosOk = validarFormulario();
-                if(isDadosOk){
-                    if (validarDadosUsuario()){
+                if (isDadosOk) {
+                    if (validarDadosUsuario()) {
                         Intent intent = new Intent(Login.this, CadastroNovoCliente.class);
                         startActivity(intent);
                         finish();
                     }
-                }else {
+                } else {
                     Toast.makeText(getApplicationContext(), "Verifique os dados...",
                             Toast.LENGTH_SHORT).show();
                 }
@@ -58,18 +58,18 @@ public class Login extends AppCompatActivity {
         });
         binding.btnAcessar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {// TODO: 12/04/2023 verificar DB
+            public void onClick(View view) {
                 boolean isDadosOk = validarFormulario();
-              if(isDadosOk){
-                  if (validarDadosUsuario()){
-                      Intent intent = new Intent(Login.this, CadastroNovoCliente.class);
-                      startActivity(intent);
-                      finish();
-                  }
-              }else {
-                  Toast.makeText(getApplicationContext(), "Verifique os dados...",
-                          Toast.LENGTH_SHORT).show();
-              }
+                if (isDadosOk) {
+                    if (validarDadosUsuario()) {
+                        Intent intent = new Intent(Login.this, CadastroNovoCliente.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "Verifique os dados...",
+                            Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
@@ -78,6 +78,7 @@ public class Login extends AppCompatActivity {
     private boolean validarDadosUsuario() {
         return ClienteController.validarDadosDoCliente();
     }
+
     private boolean validarFormulario() {
         boolean isDadosOk = true;
 
@@ -101,10 +102,12 @@ public class Login extends AppCompatActivity {
         return isDadosOk;
     }
 
-        private boolean validarSenha() {
+    private boolean validarSenha() {
         return true;
     }
-    public void lembrarSenha(View view){
+
+    public void lembrarSenha(View view) {
         isLembrarSenha = binding.ckLembrar.isChecked();
     }
+
 }
