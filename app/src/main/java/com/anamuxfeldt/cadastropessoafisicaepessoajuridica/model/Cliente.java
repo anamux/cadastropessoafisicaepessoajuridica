@@ -1,6 +1,8 @@
 package com.anamuxfeldt.cadastropessoafisicaepessoajuridica.model;
 
-public class Cliente {
+import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.controller.ClienteController;
+
+public class Cliente extends ClienteController {
     private int id;
     private String primeiroNome;
     private String sobrenome;

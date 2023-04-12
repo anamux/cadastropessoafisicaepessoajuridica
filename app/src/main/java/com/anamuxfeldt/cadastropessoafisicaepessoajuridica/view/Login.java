@@ -15,13 +15,18 @@ import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.model.Cliente;
 
 public class Login extends AppCompatActivity {
     private ActivityLoginBinding binding;
+    private SharedPreferences preferences;
     boolean isLembrarSenha;
+    Cliente cliente;
         @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        cliente = ClienteController.getClienteFake();
+        salvarSharedPreferences();
+
 
         binding.txtPoliticaETermos.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +67,7 @@ public class Login extends AppCompatActivity {
                 boolean isDadosOk = validarFormulario();
                 if (isDadosOk) {
                     if (validarDadosUsuario()) {
+                        salvarSharedPreferences();
                         Intent intent = new Intent(Login.this, CadastroNovoCliente.class);
                         startActivity(intent);
                         finish();
@@ -76,11 +82,14 @@ public class Login extends AppCompatActivity {
     }
 
     private boolean validarDadosUsuario() {
-        return ClienteController.validarDadosDoCliente();
+        return ClienteController.validarDadosDoCliente(cliente,
+                binding.editEmail.getText().toString(),
+                binding.editSenha.getText().toString());
     }
 
     private boolean validarFormulario() {
         boolean isDadosOk = true;
+        salvarSharedPreferences();
 
         if (TextUtils.isEmpty(binding.editEmail.getText().toString())) {
             binding.editEmail.setError("*");
@@ -108,6 +117,22 @@ public class Login extends AppCompatActivity {
 
     public void lembrarSenha(View view) {
         isLembrarSenha = binding.ckLembrar.isChecked();
+        salvarSharedPreferences();
+    }
+    private void salvarSharedPreferences() {
+        preferences = getSharedPreferences(ClienteController.PREF_APP, MODE_PRIVATE);
+        SharedPreferences.Editor dados = preferences.edit();
+
+        dados.putBoolean("Login automático", isLembrarSenha);
+        dados.putString("Login automático", binding.editEmail.getText().toString());
+        dados.apply();
+
     }
 
+    private void restaurarSharedPreferences() {
+        preferences = getSharedPreferences(ClienteController.PREF_APP, MODE_PRIVATE);
+        isLembrarSenha = preferences.getBoolean("Login automático", false);
+        int teste = 0;
+
+    }
 }

@@ -23,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
         binding = ActivitySplashBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        //salvarSharedPreferences();
+        salvarSharedPreferences();
         restaurarSharedPreferences();
 
 
@@ -51,7 +51,7 @@ public class SplashActivity extends AppCompatActivity {
     private void salvarSharedPreferences() {
         preferences = getSharedPreferences(ClienteController.PREF_APP, MODE_PRIVATE);
         SharedPreferences.Editor dados = preferences.edit();
-        dados.putBoolean("Login automático", true);
+        dados.putBoolean("Login automático", false);
         dados.apply();
 
     }
