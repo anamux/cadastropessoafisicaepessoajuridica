@@ -4,7 +4,7 @@ public class ClienteController {
 
     public static boolean validarDadosDoCliente(){
 
-        boolean retorno = false;
+        boolean retorno = true;
         return retorno;
     }
 }

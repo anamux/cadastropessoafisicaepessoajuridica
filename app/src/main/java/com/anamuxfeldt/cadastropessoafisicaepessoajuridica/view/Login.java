@@ -42,14 +42,23 @@ public class Login extends AppCompatActivity {
         binding.btnSejaVip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Login.this, CadastroNovoCliente.class);
-                startActivity(intent);
-                finish();
+                boolean isDadosOk = validarFormulario();
+                if(isDadosOk){
+                    if (validarDadosUsuario()){
+                        Intent intent = new Intent(Login.this, CadastroNovoCliente.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }else {
+                    Toast.makeText(getApplicationContext(), "Verifique os dados...",
+                            Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
         binding.btnAcessar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) {// TODO: 12/04/2023 verificar DB
                 boolean isDadosOk = validarFormulario();
               if(isDadosOk){
                   if (validarDadosUsuario()){
