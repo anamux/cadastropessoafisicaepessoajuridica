@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.controller.ClienteController;
 import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.databinding.ActivityLoginBinding;
 import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.model.Cliente;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.tabs.TabLayout;
 
 public class Login extends AppCompatActivity {
@@ -28,15 +30,32 @@ public class Login extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        cliente = ClienteController.getClienteFake();
+       // cliente = ClienteController.getClienteFake();
         restaurarSharedPreferences();
 
 
         binding.txtPoliticaETermos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Política e Termos de uso",
-                        Toast.LENGTH_LONG).show();
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Login.this)
+                        .setTitle("Política de Privacidade e Termos de uso")
+                        .setMessage("Texto sobre Política de Privacidade e Termos de uso")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(Login.this, "Positive Button Clicked", Toast.LENGTH_SHORT).show();
+                                dialogInterface.dismiss();
+                            }
+                        })
+                        .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(Login.this, "Negative Button Clicked", Toast.LENGTH_SHORT).show();
+                                dialogInterface.dismiss();
+                            }
+                        });
+                builder.create();
+                builder.show();
             }
 
         });

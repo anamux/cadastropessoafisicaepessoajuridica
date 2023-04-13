@@ -10,7 +10,7 @@ public class ClienteController {// TODO: 12/04/2023 verificar DB
         boolean retorno = ((cliente.getEmail()).equals(email) && (cliente.getSenha().equals(senha)));
         return retorno;
     }
-    public static Cliente getClienteFake(){
+   /* public static Cliente getClienteFake(){
         Cliente fake = new Cliente();
         fake.setPrimeiroNome("Ana");
         fake.setSobrenome("mux");
@@ -18,5 +18,5 @@ public class ClienteController {// TODO: 12/04/2023 verificar DB
         fake.setSenha("123");
         fake.setPessoaFisica(true);
         return fake;
-    }
+    }*/
 }
