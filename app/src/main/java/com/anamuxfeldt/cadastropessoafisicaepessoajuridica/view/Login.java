@@ -1,17 +1,21 @@
 package com.anamuxfeldt.cadastropessoafisicaepessoajuridica.view;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.controller.ClienteController;
 import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.databinding.ActivityLoginBinding;
 import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.model.Cliente;
+import com.google.android.material.tabs.TabLayout;
 
 public class Login extends AppCompatActivity {
     private ActivityLoginBinding binding;
@@ -106,6 +110,7 @@ public class Login extends AppCompatActivity {
         if (isDadosOk) {
             if (!validarSenha()) {
                 binding.editSenha.setError(("*"));
+                binding.editSenha.requestFocus();
             }
         }
         return isDadosOk;
@@ -121,10 +126,11 @@ public class Login extends AppCompatActivity {
     }
     private void salvarSharedPreferences() {
         preferences = getSharedPreferences(ClienteController.PREF_APP, MODE_PRIVATE);
+        Log.d(TAG, "salvarSharedPreferences: Pasta criada");
         SharedPreferences.Editor dados = preferences.edit();
 
         dados.putBoolean("Login automático", isLembrarSenha);
-        dados.putString("Login automático", binding.editEmail.getText().toString());
+        dados.putString("emailCliente", binding.editEmail.getText().toString());
         dados.apply();
 
     }
@@ -132,7 +138,7 @@ public class Login extends AppCompatActivity {
     private void restaurarSharedPreferences() {
         preferences = getSharedPreferences(ClienteController.PREF_APP, MODE_PRIVATE);
         isLembrarSenha = preferences.getBoolean("Login automático", false);
-        int teste = 0;
+
 
     }
 }

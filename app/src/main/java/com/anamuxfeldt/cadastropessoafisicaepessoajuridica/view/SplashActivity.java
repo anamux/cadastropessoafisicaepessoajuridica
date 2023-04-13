@@ -1,11 +1,14 @@
 package com.anamuxfeldt.cadastropessoafisicaepessoajuridica.view;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 
 import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.controller.ClienteController;
@@ -58,5 +61,7 @@ public class SplashActivity extends AppCompatActivity {
     private void restaurarSharedPreferences() {
         preferences = getSharedPreferences(ClienteController.PREF_APP, MODE_PRIVATE);
         isLembrarSenha = preferences.getBoolean("Login automático", isLembrarSenha);
+        Log.d(TAG, "restaurarSharedPreferences: Recuperar dados....");
+        Log.d(TAG, "restaurarSharedPreferences: "+ preferences.getBoolean(String.valueOf(isLembrarSenha), false));
             }
 }

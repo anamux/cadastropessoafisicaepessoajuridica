@@ -14,7 +14,7 @@ public class ClienteController {// TODO: 12/04/2023 verificar DB
         Cliente fake = new Cliente();
         fake.setPrimeiroNome("Ana");
         fake.setSobrenome("mux");
-        fake.setEmail("ana_mux@teste");
+        fake.setEmail("ana@teste");
         fake.setSenha("123");
         fake.setPessoaFisica(true);
         return fake;
