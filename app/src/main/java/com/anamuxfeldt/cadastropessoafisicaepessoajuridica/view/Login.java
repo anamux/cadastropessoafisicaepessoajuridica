@@ -25,7 +25,7 @@ public class Login extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
         cliente = ClienteController.getClienteFake();
-        salvarSharedPreferences();
+        restaurarSharedPreferences();
 
 
         binding.txtPoliticaETermos.setOnClickListener(new View.OnClickListener() {

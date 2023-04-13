@@ -35,6 +35,7 @@ public class SplashActivity extends AppCompatActivity {
             Intent intent;
 
             @Override
+            
             public void run() {
                 if (isLembrarSenha) {
                     intent = new Intent(SplashActivity.this, MainActivity.class);
@@ -51,15 +52,11 @@ public class SplashActivity extends AppCompatActivity {
     private void salvarSharedPreferences() {
         preferences = getSharedPreferences(ClienteController.PREF_APP, MODE_PRIVATE);
         SharedPreferences.Editor dados = preferences.edit();
-        dados.putBoolean("Login automático", false);
-        dados.apply();
 
     }
 
     private void restaurarSharedPreferences() {
         preferences = getSharedPreferences(ClienteController.PREF_APP, MODE_PRIVATE);
-        isLembrarSenha = preferences.getBoolean("Login automático", false);
-        int teste = 0;
-
-    }
+        isLembrarSenha = preferences.getBoolean("Login automático", isLembrarSenha);
+            }
 }
