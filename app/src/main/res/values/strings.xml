@@ -16,7 +16,7 @@
     <string name="pessoa_f_sica">Pessoa Física</string>
     <string name="digite_seu_sobrenome">Digite seu sobrenome...</string>
     <string name="digite_seu_primeiro_nome">Digite seu primeiro nome...</string>
-    <string name="novo_vip">Novo VIP</string>
+    <string name="cadastro_cliente">Cadastro</string>
     <!--Stings tela Cadastro Pessoa Jurídica -->
     <string name="pessoa_pj">Pessoa Jurídica</string>
     <string name="cnpj">CNPJ</string>
@@ -33,6 +33,9 @@
     <string name="CPF">CPF</string>
     <string name="data_nascimento">Data de Nascimento</string>
     <string name="politica_termos">Li e concordo com os termos de uso e política de privacidade</string>
+    <string name="cadastar">CADASTRAR</string>
+    <string name="credenciais_de_acesso">Credenciais de Acesso</string>
+    <string name="senha">Senha</string>
 
 
 </resources>

@@ -17,20 +17,20 @@ import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.controller.ClienteCon
 import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.databinding.ActivityLoginBinding;
 import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.model.Cliente;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.tabs.TabLayout;
 
 public class Login extends AppCompatActivity {
     private ActivityLoginBinding binding;
     private SharedPreferences preferences;
     boolean isLembrarSenha;
     Cliente cliente;
-        @Override
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-       // cliente = ClienteController.getClienteFake();
+        cliente = new Cliente();
         restaurarSharedPreferences();
 
 
@@ -62,26 +62,34 @@ public class Login extends AppCompatActivity {
         binding.txtRecuperarSenha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Carregando recuperação de senha",
-                        Toast.LENGTH_LONG).show();
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Login.this)
+                        .setTitle("Recuperar senha")
+                        .setMessage("Uma nova senha de acesso será enviada para o seu email.")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(Login.this, "Positive Button Clicked", Toast.LENGTH_SHORT).show();
+                                dialogInterface.dismiss();
+                            }
+                        })
+                        .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(Login.this, "Negative Button Clicked", Toast.LENGTH_SHORT).show();
+                                dialogInterface.dismiss();
+                            }
+                        });
+                builder.create();
+                builder.show();
             }
 
         });
-        binding.btnSejaVip.setOnClickListener(new View.OnClickListener() {
+        binding.btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean isDadosOk = validarFormulario();
-                if (isDadosOk) {
-                    if (validarDadosUsuario()) {
-                        Intent intent = new Intent(Login.this, CadastroNovoCliente.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                } else {
-                    Toast.makeText(getApplicationContext(), "Verifique os dados...",
-                            Toast.LENGTH_SHORT).show();
-                }
-
+                Intent intent = new Intent(Login.this, CadastroNovoCliente.class);
+                startActivity(intent);
+                finish();
             }
         });
         binding.btnAcessar.setOnClickListener(new View.OnClickListener() {
@@ -89,19 +97,19 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 boolean isDadosOk = validarFormulario();
                 if (isDadosOk) {
+                    restaurarSharedPreferences();
                     if (validarDadosUsuario()) {
-                        salvarSharedPreferences();
-                        Intent intent = new Intent(Login.this, CadastroNovoCliente.class);
+                        Intent intent = new Intent(Login.this, MainActivity.class);
                         startActivity(intent);
                         finish();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Verifique os dados...",
+                                Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    Toast.makeText(getApplicationContext(), "Verifique os dados...",
-                            Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
+
     }
 
     private boolean validarDadosUsuario() {
@@ -143,6 +151,7 @@ public class Login extends AppCompatActivity {
         isLembrarSenha = binding.ckLembrar.isChecked();
         salvarSharedPreferences();
     }
+
     private void salvarSharedPreferences() {
         preferences = getSharedPreferences(ClienteController.PREF_APP, MODE_PRIVATE);
         Log.d(TAG, "salvarSharedPreferences: Pasta criada");
@@ -156,7 +165,11 @@ public class Login extends AppCompatActivity {
 
     private void restaurarSharedPreferences() {
         preferences = getSharedPreferences(ClienteController.PREF_APP, MODE_PRIVATE);
+
+        cliente.setEmail(preferences.getString("emailCliente","teste@teste.com"));
+        cliente.setSenha(preferences.getString("Senha","12345"));
         isLembrarSenha = preferences.getBoolean("Login automático", false);
+
 
 
     }

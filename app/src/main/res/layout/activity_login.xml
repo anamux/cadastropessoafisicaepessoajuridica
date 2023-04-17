@@ -108,11 +108,11 @@
             android:text="ACESSAR" />
 
         <Button
-            android:id="@+id/btnSejaVip"
+            android:id="@+id/btnCadastrar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="SEJA VIP" />
+            android:text="@string/cadastar" />
     </LinearLayout>
 
     <TextView

@@ -1,22 +1,29 @@
 package com.anamuxfeldt.cadastropessoafisicaepessoajuridica.view;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.controller.ClienteController;
 import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.model.CadastrarClientePF;
 import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.model.CadastrarClientePJ;
 import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.model.ICadastroCliente;
 import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.databinding.ActivityCadastroNovoClienteBinding;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class CadastroNovoCliente extends AppCompatActivity {
     private ActivityCadastroNovoClienteBinding binding;
-    boolean isDadosOk;
     ICadastroCliente cadastroCliente;
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,13 +36,10 @@ public class CadastroNovoCliente extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (validarDados()) {
-                    if (!validarSenha()) {
-                        Toast.makeText(getApplicationContext(), "As senhas digitadas não conferem...",
-                                Toast.LENGTH_LONG).show();
-                    } else {
+                        salvarSharedPreferences();
                         if (binding.ckPessoaFisica.isChecked()) {
                             cadastroCliente = new CadastrarClientePF();
-                        } else if (validarSenha()) {
+                        } else{
                             cadastroCliente = new CadastrarClientePJ();
                         }
                         Intent intent = cadastroCliente.cadastrar(CadastroNovoCliente.this);
@@ -43,15 +47,30 @@ public class CadastroNovoCliente extends AppCompatActivity {
                         finish();
                     }
                 }
-            }
         });
 
         binding.btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CadastroNovoCliente.this, Login.class);
-                startActivity(intent);
-                finish();
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(CadastroNovoCliente.this)
+                        .setTitle("LIMPAR")
+                        .setMessage("Tem certeza que deseja limpar o formulário?")
+                        .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(CadastroNovoCliente.this, "Formulário limpo", Toast.LENGTH_SHORT).show();
+                                dialogInterface.dismiss();
+                            }
+                        })
+                        .setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(CadastroNovoCliente.this, "Continuar preenchendo o formulário", Toast.LENGTH_SHORT).show();
+                                dialogInterface.dismiss();
+                            }
+                        });
+                builder.create();
+                builder.show();
             }
         });
     }
@@ -68,16 +87,7 @@ public class CadastroNovoCliente extends AppCompatActivity {
             binding.editSobrenome.requestFocus();
             retorno = false;
         }
-        if (TextUtils.isEmpty((binding.editSenha.getText().toString()))) {
-            binding.editSenha.setError("*");
-            binding.editSenha.requestFocus();
-            retorno = false;
-        }
-        if (TextUtils.isEmpty((binding.editConfirmaSenha.getText().toString()))) {
-            binding.editConfirmaSenha.setError("*");
-            binding.editConfirmaSenha.requestFocus();
-            retorno = false;
-        }
+
         if (!binding.ckPoliticaEPrivacidade.isChecked()) {
             binding.ckPoliticaEPrivacidade.setError("Obrigatório");
             retorno = false;
@@ -85,16 +95,15 @@ public class CadastroNovoCliente extends AppCompatActivity {
         return retorno;
     }
 
-    private boolean validarSenha() {
-        boolean retorno = false;
-        int senhaA, senhaB;
+    private void salvarSharedPreferences() {
+        preferences = getSharedPreferences(ClienteController.PREF_APP, MODE_PRIVATE);
+        Log.d(TAG, "salvarSharedPreferences: Pasta criada");
+        SharedPreferences.Editor dados = preferences.edit();
 
-        senhaA = Integer.parseInt(binding.editSenha.getText().toString());
-        senhaB = Integer.parseInt(binding.editConfirmaSenha.getText().toString());
-
-        retorno = (senhaA == senhaB);
-
-        return retorno;
+        dados.putBoolean("Pessoa Fisica", binding.ckPessoaFisica.isChecked());
+        dados.putString("Primeiro Nome", binding.editPrimeiroNome.getText().toString());
+        dados.putString("Sobrenome", binding.editSobrenome.getText().toString());
+        dados.apply();
     }
 
 }

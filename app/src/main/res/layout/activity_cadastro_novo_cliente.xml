@@ -13,9 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:gravity="center_horizontal"
-        android:text="@string/novo_vip"
+        android:text="@string/cadastro_cliente"
         android:textColor="@color/blue"
-        android:textSize="26dp"
+        android:textSize="26sp"
         android:textStyle="bold" />
 
     <TextView
@@ -25,7 +25,7 @@
         android:layout_margin="16dp"
         android:text="@string/primeiro_nome"
         android:textColor="@color/green"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <EditText
@@ -45,7 +45,7 @@
         android:layout_margin="16dp"
         android:text="@string/sobrenome"
         android:textColor="@color/green"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <EditText
@@ -58,45 +58,6 @@
         android:hint="@string/digite_seu_sobrenome"
         android:inputType="textPersonName" />
 
-    <TextView
-        android:id="@+id/txtCadastrarSenha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="Senha"
-        android:textColor="@color/green"
-        android:textSize="20dp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/editSenha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:ems="10"
-        android:hint="@string/digite_senha"
-        android:inputType="numberPassword" />
-
-    <TextView
-        android:id="@+id/txtConfirmaSenha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/confirme_sua_senha"
-        android:textColor="@color/green"
-        android:textSize="20dp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/editConfirmaSenha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:ems="10"
-        android:hint="@string/digite_senha"
-        android:inputType="numberPassword" />
 <androidx.appcompat.widget.LinearLayoutCompat
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"

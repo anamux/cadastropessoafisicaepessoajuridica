@@ -6,10 +6,7 @@
     android:orientation="vertical"
     tools:context=".view.PessoaJuridica">
 
-
-
-    <TextView
-        android:id="@+id/TxtPJ"
+    <TextView android:id="@+id/TxtPJ"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -19,8 +16,7 @@
         android:textSize="26dp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/txtCnpj"
+    <TextView android:id="@+id/txtCnpj"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -29,8 +25,7 @@
         android:textSize="20dp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/editCnpj"
+    <EditText android:id="@+id/editCnpj"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -39,8 +34,7 @@
         android:hint="@string/digite_o_cnpj"
         android:inputType="number" />
 
-    <TextView
-        android:id="@+id/txtRazaoSocial"
+    <TextView android:id="@+id/txtRazaoSocial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -49,8 +43,7 @@
         android:textSize="20dp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/editRazaoSocial"
+    <EditText android:id="@+id/editRazaoSocial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -59,8 +52,7 @@
         android:hint="Razão Social igual ao CNPJ"
         android:inputType="text"/>
 
-    <TextView
-        android:id="@+id/txtDataAbertura"
+    <TextView android:id="@+id/txtDataAbertura"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -69,8 +61,7 @@
         android:textSize="20dp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/editAbertura"
+    <EditText android:id="@+id/editAbertura"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -78,31 +69,70 @@
         android:ems="10"
         android:hint="dd/mm/aaaa"
         android:inputType="date"/>
+    <TextView
+        android:id="@+id/txtCadastrarSenha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/senha"
+        android:textColor="@color/green"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editSenha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:hint="@string/digite_senha"
+        android:inputType="numberPassword" />
+
+    <TextView
+        android:id="@+id/txtConfirmaSenha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/confirme_sua_senha"
+        android:textColor="@color/green"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editConfirmaSenha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:hint="@string/digite_senha"
+        android:inputType="numberPassword" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <CheckBox
-            android:id="@+id/ckSimplesNacional"
+        <CheckBox android:id="@+id/ckSimplesNacional"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="16dp"
+            android:onClick="simplesNacional"
             android:text="@string/simples_nacional" />
 
-        <CheckBox
-            android:id="@+id/ckMei"
+        <CheckBox android:id="@+id/ckMei"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:onClick="mei"
             android:layout_marginLeft="16dp"
             android:text="@string/mei" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnSalvarEContinuar"
+    <Button android:id="@+id/btnSalvarEContinuar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -114,15 +144,13 @@
         android:layout_gravity="center_horizontal"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnVoltar"
+        <Button android:id="@+id/btnVoltar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="@string/voltar" />
 
-        <Button
-            android:id="@+id/btnCancelar"
+        <Button android:id="@+id/btnCancelar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
