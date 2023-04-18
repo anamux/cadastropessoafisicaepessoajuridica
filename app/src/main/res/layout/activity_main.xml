@@ -5,16 +5,70 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center_vertical"
+    android:orientation="vertical"
     tools:context=".view.MainActivity">
 
 
     <TextView
+        android:id="@+id/txtTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:gravity="center"
-        android:layout_marginTop="106dp"
-        android:text="Tela Principal do App">
+        android:text="@string/app_name"
+        android:textSize="24sp" />
 
-    </TextView>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/bemVindo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="TEXT VIEW"
+        android:textSize="24sp"
+        android:textColor="@color/blue"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnMeusDados"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/meus_dados"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btnAtualizarDados"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="@string/atualizar_meus_dados"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btnExcluirconta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="@string/excluir_conta"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btnConsultarClientes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="@string/consultar_clientes"
+        android:textSize="20sp"/>
+    <Button
+        android:id="@+id/btnSair"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="@string/sair"
+        android:textSize="20sp"/>
+
+   </LinearLayout>

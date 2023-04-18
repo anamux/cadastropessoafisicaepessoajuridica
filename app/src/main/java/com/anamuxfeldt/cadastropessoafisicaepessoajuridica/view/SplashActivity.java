@@ -56,6 +56,9 @@ public class SplashActivity extends AppCompatActivity {
         preferences = getSharedPreferences(ClienteController.PREF_APP, MODE_PRIVATE);
         SharedPreferences.Editor dados = preferences.edit();
 
+        dados.putBoolean("loginAutomático",true);
+        dados.apply();
+
     }
 
     private void restaurarSharedPreferences() {

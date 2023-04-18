@@ -36,6 +36,12 @@
     <string name="cadastar">CADASTRAR</string>
     <string name="credenciais_de_acesso">Credenciais de Acesso</string>
     <string name="senha">Senha</string>
+    <!--Tela Main -->
+    <string name="meus_dados">Meus Dados</string>
+    <string name="atualizar_meus_dados">Atualizar Meus Dados</string>
+    <string name="excluir_conta">Excluir Conta</string>
+    <string name="consultar_clientes">Consultar Clientes</string>
+    <string name="sair">Sair</string>
 
 
 </resources>

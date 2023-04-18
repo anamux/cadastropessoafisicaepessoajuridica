@@ -131,10 +131,10 @@ public class PessoaFisica extends AppCompatActivity {
         Log.d(TAG, "salvarSharedPreferences: Pasta criada");
         SharedPreferences.Editor dados = preferences.edit();
 
-        dados.putString("Nome Completo", binding.editNomeCompleto.getText().toString());
-        dados.putString("CPF Cliente", binding.editCpf.getText().toString());
-        dados.putString("Data Nascimento", binding.editDataNascimento.getText().toString());
-        dados.putString("Senha", binding.editSenha.getText().toString());
+        dados.putString("nomeCompleto", binding.editNomeCompleto.getText().toString());
+        dados.putString("cpfCliente", binding.editCpf.getText().toString());
+        dados.putString("dataNascimento", binding.editDataNascimento.getText().toString());
+        dados.putString("senha", binding.editSenha.getText().toString());
         dados.apply();
 
     }

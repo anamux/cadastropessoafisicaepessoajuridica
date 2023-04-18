@@ -168,7 +168,7 @@ public class Login extends AppCompatActivity {
 
         cliente.setEmail(preferences.getString("emailCliente","teste@teste.com"));
         cliente.setSenha(preferences.getString("Senha","12345"));
-        isLembrarSenha = preferences.getBoolean("Login automático", false);
+        isLembrarSenha = preferences.getBoolean("loginAutomático", false);
 
 
 

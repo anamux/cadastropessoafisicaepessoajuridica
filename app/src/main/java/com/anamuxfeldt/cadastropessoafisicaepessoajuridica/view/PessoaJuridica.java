@@ -37,11 +37,12 @@ private ActivityCadastroClientePjBinding binding;
             @Override
             public void onClick(View view) {
                 boolean isDadosOk = validarFormulario();
+                intent = new Intent();
 
                 if (isDadosOk) {
                     if (validarFormulario()) {
                         salvarSharedPreferences();
-                        Intent intent = new Intent(PessoaJuridica.this, MainActivity.class);
+                        intent = new Intent(PessoaJuridica.this, MainActivity.class);
                     } else {
                     Toast.makeText(getApplicationContext(), "Verifique os dados...",
                             Toast.LENGTH_SHORT).show();
@@ -106,34 +107,19 @@ private ActivityCadastroClientePjBinding binding;
             binding.editAbertura.requestFocus();
             isDadosOk = false;
         }
-          if (!validarSenha()) {
-              Toast.makeText(getApplicationContext(), "As senhas digitadas não conferem...",
-                      Toast.LENGTH_LONG).show();
-          }
+
         return isDadosOk;
-    }
-    private boolean validarSenha() {
-        boolean retorno = false;
-        int senhaA, senhaB;
-
-        senhaA = Integer.parseInt(binding.editSenha.getText().toString());
-        senhaB = Integer.parseInt(binding.editConfirmaSenha.getText().toString());
-
-        retorno = (senhaA == senhaB);
-
-        return retorno;
     }
     private void salvarSharedPreferences() {
         preferences = getSharedPreferences(ClienteController.PREF_APP, MODE_PRIVATE);
         Log.d(TAG, "salvarSharedPreferences: Pasta criada");
         SharedPreferences.Editor dados = preferences.edit();
 
-        dados.putString("CNPJ", binding.editCnpj.getText().toString());
-        dados.putString("Razão Social", binding.editRazaoSocial.getText().toString());
-        dados.putString("Data de Abertura", binding.editAbertura.getText().toString());
-        dados.putString("Senha", binding.editSenha.getText().toString());
-        dados.putBoolean("Simples Nacional", isSimplesNacional);
-        dados.putBoolean("MEI", isMei);
+        dados.putString("cnpj", binding.editCnpj.getText().toString());
+        dados.putString("razãoSocial", binding.editRazaoSocial.getText().toString());
+        dados.putString("dataDeAbertura", binding.editAbertura.getText().toString());
+        dados.putBoolean("simplesNacional", isSimplesNacional);
+        dados.putBoolean("mei", isMei);
         dados.apply();
 
     }
