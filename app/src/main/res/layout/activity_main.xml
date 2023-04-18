@@ -38,6 +38,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:text="@string/meus_dados"
+        android:onClick="meusDados"
         android:textSize="20sp"/>
 
     <Button
@@ -46,6 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:text="@string/atualizar_meus_dados"
+        android:onClick="atualizarMeusDados"
         android:textSize="20sp"/>
 
     <Button
@@ -54,6 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:text="@string/excluir_conta"
+        android:onClick="excluirMinhaConta"
         android:textSize="20sp"/>
 
     <Button
@@ -62,6 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:text="@string/consultar_clientes"
+        android:onClick="consultarClientes"
         android:textSize="20sp"/>
     <Button
         android:id="@+id/btnSair"
@@ -69,6 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:text="@string/sair"
+        android:onClick="sairDoAplicativo"
         android:textSize="20sp"/>
 
    </LinearLayout>

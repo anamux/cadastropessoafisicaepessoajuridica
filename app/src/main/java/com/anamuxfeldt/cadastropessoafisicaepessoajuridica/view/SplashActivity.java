@@ -27,9 +27,6 @@ public class SplashActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
         salvarSharedPreferences();
-        restaurarSharedPreferences();
-
-
         trocarTela();
     }
 
@@ -40,11 +37,12 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             
             public void run() {
-                if (isLembrarSenha) {
-                    intent = new Intent(SplashActivity.this, MainActivity.class);
+                restaurarSharedPreferences();
+                if (!isLembrarSenha) {
+                    intent = new Intent(SplashActivity.this, Login.class);
 
                                    } else {
-                    intent = new Intent(SplashActivity.this, Login.class);
+                    intent = new Intent(SplashActivity.this, MainActivity.class);
                 }
                 startActivity(intent);
                 finish();
@@ -56,7 +54,7 @@ public class SplashActivity extends AppCompatActivity {
         preferences = getSharedPreferences(ClienteController.PREF_APP, MODE_PRIVATE);
         SharedPreferences.Editor dados = preferences.edit();
 
-        dados.putBoolean("loginAutomático",true);
+        dados.putBoolean("loginAutomático",false);
         dados.apply();
 
     }

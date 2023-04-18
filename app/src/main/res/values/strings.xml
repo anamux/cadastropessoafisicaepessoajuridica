@@ -42,6 +42,7 @@
     <string name="excluir_conta">Excluir Conta</string>
     <string name="consultar_clientes">Consultar Clientes</string>
     <string name="sair">Sair</string>
+    <string name="cliente">Cliente</string>
 
 
 </resources>

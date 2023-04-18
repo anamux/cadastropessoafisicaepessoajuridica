@@ -8,11 +8,20 @@ public class Cliente extends ClienteController {
     private String sobrenome;
     private String email;
     private String senha;
+    private String dataNascimento;
     private boolean pessoaFisica;
 
 
     public int getId() {
         return id;
+    }
+
+    public String getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 
     public void setId(int id) {
