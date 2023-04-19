@@ -5,12 +5,14 @@ import static android.content.ContentValues.TAG;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.ConsultarClientes;
 import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.controller.ClienteController;
 import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.databinding.ActivityMainBinding;
 import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.model.Cliente;
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         clientePJ = new ClientePJ();
 
         restaurarSharedPreferences();
-        buscarListadeClientes();
+       // buscarListadeClientes();
 
         binding.bemVindo.setText("Olá "+cliente.getPrimeiroNome());
        /* private void salvarSharedPreferences() {
@@ -58,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void buscarListadeClientes() {
+   /* private void buscarListadeClientes() {
         clientes = new ArrayList<>();
         clientes.add(cliente);
 
@@ -79,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
             Log.i(LOG_APP, "Obj: "+obj.getPrimeiroNome());
 
         }
-    }
+    }*/
 
     private void restaurarSharedPreferences() {
         preferences = getSharedPreferences(ClienteController.PREF_APP, MODE_PRIVATE);
@@ -173,6 +175,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void consultarClientes(View view) {
+        binding.btnConsultarClientes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(MainActivity.this, ConsultarClientes.class);
+                startActivity(intent);
+
+            }
+        });
+
+
     }
 
     public void sairDoAplicativo(View view) {
