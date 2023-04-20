@@ -12,7 +12,7 @@
         android:theme="@style/Theme.CadastroPessoaFisicaEPessoaJuridica"
         tools:targetApi="31">
         <activity
-            android:name=".ConsultarClientes"
+            android:name=".view.ConsultarClientes"
             android:exported="false" />
         <activity
             android:name=".view.Login"

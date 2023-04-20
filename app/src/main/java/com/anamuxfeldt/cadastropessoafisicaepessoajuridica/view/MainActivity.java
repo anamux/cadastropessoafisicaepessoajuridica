@@ -1,7 +1,5 @@
 package com.anamuxfeldt.cadastropessoafisicaepessoajuridica.view;
 
-import static android.content.ContentValues.TAG;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
@@ -12,7 +10,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.ConsultarClientes;
 import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.controller.ClienteController;
 import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.databinding.ActivityMainBinding;
 import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.model.Cliente;
@@ -20,7 +17,6 @@ import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.model.ClientePF;
 import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.model.ClientePJ;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
