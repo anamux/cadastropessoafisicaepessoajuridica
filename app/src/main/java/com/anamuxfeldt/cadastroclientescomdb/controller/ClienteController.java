@@ -1,6 +1,6 @@
-package com.anamuxfeldt.cadastropessoafisicaepessoajuridica.controller;
+package com.anamuxfeldt.cadastroclientescomdb.controller;
 
-import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.model.Cliente;
+import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
 
 public class ClienteController {// TODO: 12/04/2023 verificar DB
     public static final String PREF_APP = "App_Cadastro_Cliente";

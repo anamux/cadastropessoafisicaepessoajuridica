@@ -1,4 +1,4 @@
-package com.anamuxfeldt.cadastropessoafisicaepessoajuridica.view;
+package com.anamuxfeldt.cadastroclientescomdb.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 
-import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.controller.ClienteAdapter;
+import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteAdapter;
+import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
 import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.databinding.ActivityConsultarClientesBinding;
-import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.model.Cliente;
 
 import java.util.ArrayList;
 import java.util.List;

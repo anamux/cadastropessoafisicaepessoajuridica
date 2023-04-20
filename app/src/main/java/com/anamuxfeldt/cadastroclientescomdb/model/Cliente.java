@@ -1,6 +1,6 @@
-package com.anamuxfeldt.cadastropessoafisicaepessoajuridica.model;
+package com.anamuxfeldt.cadastroclientescomdb.model;
 
-import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.controller.ClienteController;
+import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
 
 public class Cliente extends ClienteController {
     private int id;

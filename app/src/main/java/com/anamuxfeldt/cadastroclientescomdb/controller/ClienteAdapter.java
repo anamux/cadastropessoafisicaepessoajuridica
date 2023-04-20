@@ -1,4 +1,4 @@
-package com.anamuxfeldt.cadastropessoafisicaepessoajuridica.controller;
+package com.anamuxfeldt.cadastroclientescomdb.controller;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,8 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
 import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.databinding.LinhaDetalheClienteBinding;
-import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.model.Cliente;
 
 import java.util.List;
 

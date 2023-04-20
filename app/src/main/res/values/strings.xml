@@ -1,6 +1,6 @@
 <resources>
     <!--Strings tela Login-->
-    <string name="app_name">Cadastro PFisica e PJuridica</string>
+    <string name="app_name">Cadastro Clientes com DB</string>
     <string name="email">Email</string>
     <string name="digite_senha">Digite a senha de acesso...</string>
     <string name="digite_o_e_mail">Digite o e-mail cadastrado...</string>

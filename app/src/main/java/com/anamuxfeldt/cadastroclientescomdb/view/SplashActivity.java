@@ -1,4 +1,4 @@
-package com.anamuxfeldt.cadastropessoafisicaepessoajuridica.view;
+package com.anamuxfeldt.cadastroclientescomdb.view;
 
 import static android.content.ContentValues.TAG;
 
@@ -11,7 +11,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 
-import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.controller.ClienteController;
+import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
 import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.databinding.ActivitySplashBinding;
 
 public class SplashActivity extends AppCompatActivity {

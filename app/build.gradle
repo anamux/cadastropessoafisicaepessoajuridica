@@ -7,7 +7,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.anamuxfeldt.cadastropessoafisicaepessoajuridica"
+        applicationId "com.anamuxfeldt.cadastroclientescomdb"
         minSdk 24
         targetSdk 33
         versionCode 1

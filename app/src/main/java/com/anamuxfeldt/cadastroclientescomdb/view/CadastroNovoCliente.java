@@ -1,4 +1,4 @@
-package com.anamuxfeldt.cadastropessoafisicaepessoajuridica.view;
+package com.anamuxfeldt.cadastroclientescomdb.view;
 
 import static android.content.ContentValues.TAG;
 
@@ -13,10 +13,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.controller.ClienteController;
-import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.model.CadastrarClientePF;
-import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.model.CadastrarClientePJ;
-import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.model.ICadastroCliente;
+import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
+import com.anamuxfeldt.cadastroclientescomdb.model.CadastrarClientePF;
+import com.anamuxfeldt.cadastroclientescomdb.model.CadastrarClientePJ;
+import com.anamuxfeldt.cadastroclientescomdb.model.ICadastroCliente;
 import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.databinding.ActivityCadastroNovoClienteBinding;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 

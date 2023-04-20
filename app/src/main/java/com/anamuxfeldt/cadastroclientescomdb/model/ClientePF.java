@@ -1,4 +1,4 @@
-package com.anamuxfeldt.cadastropessoafisicaepessoajuridica.model;
+package com.anamuxfeldt.cadastroclientescomdb.model;
 
 public class ClientePF extends Cliente{
     private String cpf;

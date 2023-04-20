@@ -1,4 +1,4 @@
-package com.anamuxfeldt.cadastropessoafisicaepessoajuridica.view;
+package com.anamuxfeldt.cadastroclientescomdb.view;
 
 import static android.content.ContentValues.TAG;
 
@@ -13,9 +13,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.controller.ClienteController;
+import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
+import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
 import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.databinding.ActivityCadastroClientePjBinding;
-import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.model.Cliente;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class PessoaJuridica extends AppCompatActivity {
