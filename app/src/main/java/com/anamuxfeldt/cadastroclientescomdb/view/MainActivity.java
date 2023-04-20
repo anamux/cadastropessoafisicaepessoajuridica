@@ -11,10 +11,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
+import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityMainBinding;
 import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
 import com.anamuxfeldt.cadastroclientescomdb.model.ClientePF;
 import com.anamuxfeldt.cadastroclientescomdb.model.ClientePJ;
-import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.databinding.ActivityMainBinding;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.List;

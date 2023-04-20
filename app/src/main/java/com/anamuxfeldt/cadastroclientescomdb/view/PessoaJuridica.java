@@ -14,8 +14,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
+import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityCadastroClientePjBinding;
 import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
-import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.databinding.ActivityCadastroClientePjBinding;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class PessoaJuridica extends AppCompatActivity {

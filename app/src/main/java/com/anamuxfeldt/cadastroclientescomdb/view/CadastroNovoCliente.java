@@ -14,10 +14,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
+import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityCadastroNovoClienteBinding;
 import com.anamuxfeldt.cadastroclientescomdb.model.CadastrarClientePF;
 import com.anamuxfeldt.cadastroclientescomdb.model.CadastrarClientePJ;
 import com.anamuxfeldt.cadastroclientescomdb.model.ICadastroCliente;
-import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.databinding.ActivityCadastroNovoClienteBinding;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class CadastroNovoCliente extends AppCompatActivity {

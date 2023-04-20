@@ -8,8 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteAdapter;
+import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityConsultarClientesBinding;
 import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
-import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.databinding.ActivityConsultarClientesBinding;
 
 import java.util.ArrayList;
 import java.util.List;

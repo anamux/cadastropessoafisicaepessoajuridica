@@ -14,8 +14,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;;
+import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityLoginBinding;
 import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
-import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.databinding.ActivityLoginBinding;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class Login extends AppCompatActivity {

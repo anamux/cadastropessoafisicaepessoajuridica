@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace 'com.anamuxfeldt.cadastropessoafisicaepessoajuridica'
+    namespace 'com.anamuxfeldt.cadastroclientescomdb'
     compileSdk 33
 
     defaultConfig {

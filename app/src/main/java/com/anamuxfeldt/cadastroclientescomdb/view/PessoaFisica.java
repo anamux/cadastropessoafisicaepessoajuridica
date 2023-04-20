@@ -14,7 +14,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
-import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.databinding.ActivityCadastroPessoaFisicaBinding;
+import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityCadastroPessoaFisicaBinding;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class PessoaFisica extends AppCompatActivity {

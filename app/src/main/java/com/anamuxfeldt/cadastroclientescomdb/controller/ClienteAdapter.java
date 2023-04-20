@@ -12,8 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.anamuxfeldt.cadastroclientescomdb.databinding.LinhaDetalheClienteBinding;
 import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
-import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.databinding.LinhaDetalheClienteBinding;
 
 import java.util.List;
 

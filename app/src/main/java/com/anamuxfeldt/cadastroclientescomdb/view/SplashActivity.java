@@ -12,13 +12,16 @@ import android.util.Log;
 import android.view.View;
 
 import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
-import com.anamuxfeldt.cadastropessoafisicaepessoajuridica.databinding.ActivitySplashBinding;
+import com.anamuxfeldt.cadastroclientescomdb.database.AppDataBase;
+import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivitySplashBinding;
 
 public class SplashActivity extends AppCompatActivity {
     private ActivitySplashBinding binding;
     public static final int TIME_OUT_SPLASH = 3000;
     boolean isLembrarSenha = false;
     private SharedPreferences preferences;
+
+    AppDataBase dataBase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(view);
         salvarSharedPreferences();
         trocarTela();
+        dataBase = new AppDataBase(getApplicationContext());
     }
 
     private void trocarTela() {
