@@ -19,7 +19,6 @@ public class ConsultarClientes extends AppCompatActivity {
     List<Cliente> clientes;
     ClienteAdapter adapter;
     Cliente obj;
-    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

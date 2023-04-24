@@ -1,6 +1,6 @@
 package com.anamuxfeldt.cadastroclientescomdb.model;
 
-public class ClientePJ extends Cliente{
+public class ClientePJ extends ClientePF{
     private String cnpj;
     private String razaoSocial;
     private String dataAbertura;
