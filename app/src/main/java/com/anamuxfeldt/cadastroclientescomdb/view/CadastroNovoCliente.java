@@ -96,14 +96,6 @@ public class CadastroNovoCliente extends AppCompatActivity {
     }
 
     private void salvarSharedPreferences() {
-        preferences = getSharedPreferences(ClienteController.PREF_APP, MODE_PRIVATE);
-        Log.d(TAG, "salvarSharedPreferences: Pasta criada");
-        SharedPreferences.Editor dados = preferences.edit();
-
-        dados.putBoolean("pessoaFisica", binding.ckPessoaFisica.isChecked());
-        dados.putString("primeiroNome", binding.editPrimeiroNome.getText().toString());
-        dados.putString("sobrenome", binding.editSobrenome.getText().toString());
-        dados.apply();
     }
 
 }

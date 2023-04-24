@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,6 +24,7 @@ public class Login extends AppCompatActivity {
     private SharedPreferences preferences;
     boolean isLembrarSenha;
     Cliente cliente;
+    ClienteController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,8 @@ public class Login extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
         cliente = new Cliente();
-        restaurarSharedPreferences();
+        controller = new ClienteController(getApplicationContext());
+
 
 
         binding.txtPoliticaETermos.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +100,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 boolean isDadosOk = validarFormulario();
                 if (isDadosOk) {
-                    restaurarSharedPreferences();
+                  //  restaurarSharedPreferences();
                     if (validarDadosUsuario()) {
                         Intent intent = new Intent(Login.this, MainActivity.class);
                         startActivity(intent);
@@ -113,14 +116,12 @@ public class Login extends AppCompatActivity {
     }
 
     private boolean validarDadosUsuario() {
-        return ClienteController.validarDadosDoCliente(cliente,
-                binding.editEmail.getText().toString(),
-                binding.editSenha.getText().toString());
+        return true;
     }
 
     private boolean validarFormulario() {
         boolean isDadosOk = true;
-        salvarSharedPreferences();
+     //   salvarSharedPreferences();
 
         if (TextUtils.isEmpty(binding.editEmail.getText().toString())) {
             binding.editEmail.setError("*");
@@ -149,28 +150,7 @@ public class Login extends AppCompatActivity {
 
     public void lembrarSenha(View view) {
         isLembrarSenha = binding.ckLembrar.isChecked();
-        salvarSharedPreferences();
+       // salvarSharedPreferences();
     }
 
-    private void salvarSharedPreferences() {
-        preferences = getSharedPreferences(ClienteController.PREF_APP, MODE_PRIVATE);
-        Log.d(TAG, "salvarSharedPreferences: Pasta criada");
-        SharedPreferences.Editor dados = preferences.edit();
-
-        dados.putBoolean("Login automático", isLembrarSenha);
-        dados.putString("emailCliente", binding.editEmail.getText().toString());
-        dados.apply();
-
-    }
-
-    private void restaurarSharedPreferences() {
-        preferences = getSharedPreferences(ClienteController.PREF_APP, MODE_PRIVATE);
-
-        cliente.setEmail(preferences.getString("emailCliente","teste@teste.com"));
-        cliente.setSenha(preferences.getString("Senha","12345"));
-        isLembrarSenha = preferences.getBoolean("loginAutomático", true);
-
-
-
-    }
 }

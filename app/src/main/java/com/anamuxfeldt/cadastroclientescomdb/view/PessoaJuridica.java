@@ -111,7 +111,7 @@ private ActivityCadastroClientePjBinding binding;
         return isDadosOk;
     }
     private void salvarSharedPreferences() {
-        preferences = getSharedPreferences(ClienteController.PREF_APP, MODE_PRIVATE);
+
         Log.d(TAG, "salvarSharedPreferences: Pasta criada");
         SharedPreferences.Editor dados = preferences.edit();
 

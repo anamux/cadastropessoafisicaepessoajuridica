@@ -43,44 +43,12 @@ public class MainActivity extends AppCompatActivity {
        // buscarListadeClientes();
 
         binding.bemVindo.setText("Olá "+cliente.getPrimeiroNome());
-       /* private void salvarSharedPreferences() {
-            preferences = getSharedPreferences(ClienteController.PREF_APP, MODE_PRIVATE);
-            Log.d(TAG, "salvarSharedPreferences: Pasta criada");
-            SharedPreferences.Editor dados = preferences.edit();
 
-            dados.putBoolean("Login automático", isLembrarSenha);
-            dados.putString("emailCliente", binding.editEmail.getText().toString());
-            dados.apply();
-
-        }*/
 
     }
 
-   /* private void buscarListadeClientes() {
-        clientes = new ArrayList<>();
-        clientes.add(cliente);
-
-        Cliente novoCliente1 = new Cliente();
-        novoCliente1.setPrimeiroNome("Novo Cliente 01");
-        clientes.add(novoCliente1);
-
-        Cliente novoCliente2 = new Cliente();
-        novoCliente2.setPrimeiroNome("Novo Cliente 02");
-        clientes.add(novoCliente2);
-
-        Cliente novoCliente3 = new Cliente();
-        novoCliente3.setPrimeiroNome("Novo Cliente 03");
-        clientes.add(novoCliente3);
-
-
-        for (Cliente obj: clientes) {
-            Log.i(LOG_APP, "Obj: "+obj.getPrimeiroNome());
-
-        }
-    }*/
 
     private void restaurarSharedPreferences() {
-        preferences = getSharedPreferences(ClienteController.PREF_APP, MODE_PRIVATE);
 
         cliente.setPrimeiroNome(preferences.getString("primeiroNome", "Nulo"));
         cliente.setSobrenome(preferences.getString("sobrenome", "Nulo"));

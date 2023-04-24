@@ -2,13 +2,13 @@ package com.anamuxfeldt.cadastroclientescomdb.database;
 
 public class ClienteDataModel {
 
-    private static final String TABELA = "cliente";
-    private static final String ID = "id";
-    private static final String PRIMEIRO_NOME = "primeiroNome";
-    private static final String SOBRENOME = "sobrenome";
-    private static final String EMAIL = "email";
-    private static final String SENHA = "senha";
-    private static final String PESSOAFISICA = "pessoaFisica";
+    public static final String TABELA = "cliente";
+    public static final String ID = "id";
+    public static final String PRIMEIRO_NOME = "primeiroNome";
+    public static final String SOBRENOME = "sobrenome";
+    public static final String EMAIL = "email";
+    public static final String SENHA = "senha";
+    public static final String PESSOAFISICA = "pessoaFisica";
     private static final String DATA_INC = "dataInclusao";
     private static final String DATA_ALT = "dataAlteracao";
 

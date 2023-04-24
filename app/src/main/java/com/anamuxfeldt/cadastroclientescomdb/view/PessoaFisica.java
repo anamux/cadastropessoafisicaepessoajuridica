@@ -127,8 +127,7 @@ public class PessoaFisica extends AppCompatActivity {
     }
 
     private void salvarSharedPreferences() {
-        preferences = getSharedPreferences(ClienteController.PREF_APP, MODE_PRIVATE);
-        Log.d(TAG, "salvarSharedPreferences: Pasta criada");
+
         SharedPreferences.Editor dados = preferences.edit();
 
         dados.putString("nomeCompleto", binding.editNomeCompleto.getText().toString());

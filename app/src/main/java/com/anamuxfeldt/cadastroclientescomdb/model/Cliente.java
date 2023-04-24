@@ -2,7 +2,7 @@ package com.anamuxfeldt.cadastroclientescomdb.model;
 
 import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
 
-public class Cliente extends ClienteController {
+public class Cliente {
     private int id;
     private String primeiroNome;
     private String sobrenome;

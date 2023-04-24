@@ -11,17 +11,12 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 
-import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
-import com.anamuxfeldt.cadastroclientescomdb.database.AppDataBase;
 import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivitySplashBinding;
 
 public class SplashActivity extends AppCompatActivity {
     private ActivitySplashBinding binding;
     public static final int TIME_OUT_SPLASH = 3000;
     boolean isLembrarSenha = false;
-    private SharedPreferences preferences;
-
-    AppDataBase dataBase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +27,6 @@ public class SplashActivity extends AppCompatActivity {
         salvarSharedPreferences();
         trocarTela();
 
-        dataBase = new AppDataBase(getApplicationContext());
     }
 
     private void trocarTela() {
@@ -56,18 +50,12 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void salvarSharedPreferences() {
-        preferences = getSharedPreferences(ClienteController.PREF_APP, MODE_PRIVATE);
-        SharedPreferences.Editor dados = preferences.edit();
 
-        dados.putBoolean("loginAutomático",false);
-        dados.apply();
+
 
     }
 
     private void restaurarSharedPreferences() {
-        preferences = getSharedPreferences(ClienteController.PREF_APP, MODE_PRIVATE);
-        isLembrarSenha = preferences.getBoolean("Login automático", isLembrarSenha);
-        Log.d(TAG, "restaurarSharedPreferences: Recuperar dados....");
-        Log.d(TAG, "restaurarSharedPreferences: "+ preferences.getBoolean(String.valueOf(isLembrarSenha), false));
+
             }
 }
