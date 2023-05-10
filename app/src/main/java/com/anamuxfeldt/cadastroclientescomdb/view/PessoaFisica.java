@@ -81,9 +81,9 @@ public class PessoaFisica extends AppCompatActivity {
     private boolean validarFormulario() {
         boolean isDadosOk = true;
 
-        if (TextUtils.isEmpty(binding.editNomeCompleto.getText().toString())) {
-            binding.editNomeCompleto.setError("*");
-            binding.editNomeCompleto.requestFocus();
+        if (TextUtils.isEmpty(binding.editEmail.getText().toString())) {
+            binding.editEmail.setError("*");
+            binding.editEmail.requestFocus();
             isDadosOk = false;
         }
         if (TextUtils.isEmpty((binding.editCpf.getText().toString()))) {
@@ -128,9 +128,10 @@ public class PessoaFisica extends AppCompatActivity {
 
     private void salvarSharedPreferences() {
 
+        preferences = getSharedPreferences(SplashActivity.PREF_APP, MODE_PRIVATE);
         SharedPreferences.Editor dados = preferences.edit();
 
-        dados.putString("nomeCompleto", binding.editNomeCompleto.getText().toString());
+        dados.putString("email", binding.editEmail.getText().toString());
         dados.putString("cpfCliente", binding.editCpf.getText().toString());
         dados.putString("dataNascimento", binding.editDataNascimento.getText().toString());
         dados.putString("senha", binding.editSenha.getText().toString());

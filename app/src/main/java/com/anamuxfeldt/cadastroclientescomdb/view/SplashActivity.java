@@ -16,7 +16,9 @@ import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivitySplashBinding;
 public class SplashActivity extends AppCompatActivity {
     private ActivitySplashBinding binding;
     public static final int TIME_OUT_SPLASH = 3000;
+    public static final String PREF_APP = "app_cliente_vip_pref";
     boolean isLembrarSenha = false;
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +26,9 @@ public class SplashActivity extends AppCompatActivity {
         binding = ActivitySplashBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
         salvarSharedPreferences();
+        restaurarSharedPreferences();
         trocarTela();
 
     }
@@ -36,7 +40,6 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             
             public void run() {
-                restaurarSharedPreferences();
                 if (!isLembrarSenha) {
                     intent = new Intent(SplashActivity.this, Login.class);
 
@@ -50,12 +53,15 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void salvarSharedPreferences() {
-
+        preferences = getSharedPreferences(PREF_APP, MODE_PRIVATE);
+        SharedPreferences.Editor dados = preferences.edit();
 
 
     }
 
     private void restaurarSharedPreferences() {
+        preferences = getSharedPreferences(PREF_APP, MODE_PRIVATE);
+        isLembrarSenha = preferences.getBoolean("loginAutomatico", false);
 
             }
 }

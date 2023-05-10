@@ -17,12 +17,14 @@ import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
 import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityCadastroNovoClienteBinding;
 import com.anamuxfeldt.cadastroclientescomdb.model.CadastrarClientePF;
 import com.anamuxfeldt.cadastroclientescomdb.model.CadastrarClientePJ;
+import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
 import com.anamuxfeldt.cadastroclientescomdb.model.ICadastroCliente;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class CadastroNovoCliente extends AppCompatActivity {
     private ActivityCadastroNovoClienteBinding binding;
     ICadastroCliente cadastroCliente;
+    Cliente cliente;
     private SharedPreferences preferences;
 
     @Override
@@ -36,17 +38,18 @@ public class CadastroNovoCliente extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (validarDados()) {
-                        salvarSharedPreferences();
-                        if (binding.ckPessoaFisica.isChecked()) {
-                            cadastroCliente = new CadastrarClientePF();
-                        } else{
-                            cadastroCliente = new CadastrarClientePJ();
-                        }
-                        Intent intent = cadastroCliente.cadastrar(CadastroNovoCliente.this);
-                        startActivity(intent);
-                        finish();
+
+                    if (binding.ckPessoaFisica.isChecked()) {
+                        cadastroCliente = new CadastrarClientePF();
+                    } else {
+                        cadastroCliente = new CadastrarClientePJ();
                     }
+                    salvarSharedPreferences();
+                    Intent intent = cadastroCliente.cadastrar(CadastroNovoCliente.this);
+                    startActivity(intent);
+                    finish();
                 }
+            }
         });
 
         binding.btnCancelar.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +99,13 @@ public class CadastroNovoCliente extends AppCompatActivity {
     }
 
     private void salvarSharedPreferences() {
+        preferences = getSharedPreferences(SplashActivity.PREF_APP, MODE_PRIVATE);
+        SharedPreferences.Editor dados = preferences.edit();
+
+        dados.putString("primeiroNome", binding.editPrimeiroNome.getText().toString());
+        dados.putString("sobreNome", binding.editSobrenome.getText().toString());
+        dados.putBoolean("pessoaFisica", binding.ckPessoaFisica.isChecked());
+        dados.apply();
     }
 
 }

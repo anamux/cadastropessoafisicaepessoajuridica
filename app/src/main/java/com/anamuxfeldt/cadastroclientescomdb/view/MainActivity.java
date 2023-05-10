@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void restaurarSharedPreferences() {
+        preferences = getSharedPreferences(SplashActivity.PREF_APP, MODE_PRIVATE);
 
         cliente.setPrimeiroNome(preferences.getString("primeiroNome", "Nulo"));
         cliente.setSobrenome(preferences.getString("sobrenome", "Nulo"));
@@ -136,6 +137,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void salvarSharedPreferences() {
+        preferences = getSharedPreferences(SplashActivity.PREF_APP, MODE_PRIVATE);
+        SharedPreferences.Editor dados = preferences.edit();
     }
 
     public void consultarClientes(View view) {

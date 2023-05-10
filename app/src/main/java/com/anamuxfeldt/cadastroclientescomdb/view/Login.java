@@ -1,16 +1,12 @@
 package com.anamuxfeldt.cadastroclientescomdb.view;
 
-import static android.content.ContentValues.TAG;
-
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -22,7 +18,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 public class Login extends AppCompatActivity {
     private ActivityLoginBinding binding;
     private SharedPreferences preferences;
-    boolean isLembrarSenha;
+    boolean isLembrarSenha, isDadosOk;
     Cliente cliente;
     ClienteController controller;
 
@@ -32,9 +28,20 @@ public class Login extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        cliente = new Cliente();
-        controller = new ClienteController(getApplicationContext());
+       // cliente = new Cliente();
+        //controller = new ClienteController(getApplicationContext());
+        //for (int i = 0; i <30; i++) {
 
+
+        /*cliente.setPrimeiroNome("Nome "+i);
+        cliente.setSobrenome("Sobrenome "+i);
+        cliente.setEmail(i+"@teste");
+        cliente.setDataNascimento("16/12/1990");
+        cliente.setSenha(i+"_4321");
+        controller.incluir(cliente);
+            cliente.setId(10);
+            controller.deletar(cliente);*/
+       // }
 
 
         binding.txtPoliticaETermos.setOnClickListener(new View.OnClickListener() {
@@ -98,13 +105,14 @@ public class Login extends AppCompatActivity {
         binding.btnAcessar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean isDadosOk = validarFormulario();
-                if (isDadosOk) {
-                  //  restaurarSharedPreferences();
+                if (isDadosOk= validarFormulario()) {
+
                     if (validarDadosUsuario()) {
+                        salvarSharedPreferences();
                         Intent intent = new Intent(Login.this, MainActivity.class);
                         startActivity(intent);
                         finish();
+                        return;
                     } else {
                         Toast.makeText(getApplicationContext(), "Verifique os dados...",
                                 Toast.LENGTH_SHORT).show();
@@ -115,14 +123,22 @@ public class Login extends AppCompatActivity {
 
     }
 
+    private void salvarSharedPreferences() {
+        preferences = getSharedPreferences(SplashActivity.PREF_APP, MODE_PRIVATE);
+        SharedPreferences.Editor dados = preferences.edit();
+
+        dados.putBoolean("loginAutomatico", isLembrarSenha);
+        dados.putString("emailCliente", binding.editEmail.getText().toString());
+        dados.apply();
+    }
+
     private boolean validarDadosUsuario() {
+
         return true;
     }
 
     private boolean validarFormulario() {
         boolean isDadosOk = true;
-     //   salvarSharedPreferences();
-
         if (TextUtils.isEmpty(binding.editEmail.getText().toString())) {
             binding.editEmail.setError("*");
             binding.editEmail.requestFocus();
@@ -132,25 +148,13 @@ public class Login extends AppCompatActivity {
             binding.editSenha.setError("*");
             binding.editSenha.requestFocus();
             isDadosOk = false;
-
-        }
-
-        if (isDadosOk) {
-            if (!validarSenha()) {
-                binding.editSenha.setError(("*"));
-                binding.editSenha.requestFocus();
-            }
         }
         return isDadosOk;
     }
 
-    private boolean validarSenha() {
-        return true;
-    }
-
     public void lembrarSenha(View view) {
         isLembrarSenha = binding.ckLembrar.isChecked();
-       // salvarSharedPreferences();
+       salvarSharedPreferences();
     }
 
 }

@@ -73,9 +73,9 @@ public class AppDataBase extends SQLiteOpenHelper {
         boolean sucesso = true;
         try {
             sucesso = db.insert(tabela, null, dados) > 0;
-            Log.e(MainActivity.LOG_APP, tabela + "inserido com sucesso ");
+            Log.e(MainActivity.LOG_APP, tabela + " inserido com sucesso ");
         } catch (SQLException e) {
-            Log.e(MainActivity.LOG_APP, tabela + "falha ao inserir " + e.getMessage());
+            Log.e(MainActivity.LOG_APP, tabela + " falha ao inserir " + e.getMessage());
         }
         return sucesso;
     }
@@ -89,9 +89,9 @@ public class AppDataBase extends SQLiteOpenHelper {
         boolean sucesso = true;
         try {
             sucesso = db.delete(tabela, "id=?", new String[]{Integer.toString(id)}) > 0;
-            Log.e(MainActivity.LOG_APP, tabela + "deletado com sucesso ");
+            Log.e(MainActivity.LOG_APP, tabela + " deletado com sucesso ");
         } catch (SQLException e) {
-            Log.e(MainActivity.LOG_APP, tabela + "falha ao deletar " + e.getMessage());
+            Log.e(MainActivity.LOG_APP, tabela + " falha ao deletar " + e.getMessage());
         }
         return sucesso;
     }
@@ -130,12 +130,12 @@ public class AppDataBase extends SQLiteOpenHelper {
 
                     cliente = new Cliente();
 
-                    cliente.setId(cursor.getInt(cursor.getColumnIndex(ClienteDataModel.ID)));
-                    cliente.setPrimeiroNome(cursor.getString(cursor.getColumnIndex(ClienteDataModel.PRIMEIRO_NOME)));
-                    cliente.setSobrenome(cursor.getString(cursor.getColumnIndex(ClienteDataModel.SOBRENOME)));
-                    cliente.setEmail(cursor.getString(cursor.getColumnIndex(ClienteDataModel.EMAIL)));
-                    cliente.setSenha(cursor.getString(cursor.getColumnIndex(ClienteDataModel.SENHA)));
-                    cliente.setPessoaFisica(cursor.getInt(cursor.getColumnIndex(ClienteDataModel.PESSOAFISICA)) == 1);
+                    cliente.setId(cursor.getInt(cursor.getColumnIndexOrThrow(ClienteDataModel.ID)));
+                    cliente.setPrimeiroNome(cursor.getString(cursor.getColumnIndexOrThrow(ClienteDataModel.PRIMEIRO_NOME)));
+                    cliente.setSobrenome(cursor.getString(cursor.getColumnIndexOrThrow(ClienteDataModel.SOBRENOME)));
+                    cliente.setEmail(cursor.getString(cursor.getColumnIndexOrThrow(ClienteDataModel.EMAIL)));
+                    cliente.setSenha(cursor.getString(cursor.getColumnIndexOrThrow(ClienteDataModel.SENHA)));
+                    cliente.setPessoaFisica(cursor.getInt(cursor.getColumnIndexOrThrow(ClienteDataModel.PESSOAFISICA)) == 1);
 
                     list.add(cliente);
                 } while (cursor.moveToNext());

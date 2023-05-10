@@ -19,14 +19,14 @@ import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class PessoaJuridica extends AppCompatActivity {
-private ActivityCadastroClientePjBinding binding;
+    private ActivityCadastroClientePjBinding binding;
     Cliente cliente;
     private SharedPreferences preferences;
     private boolean isSimplesNacional;
     private boolean isMei;
 
     @Override
-    protected void onCreate (Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityCadastroClientePjBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
@@ -34,6 +34,7 @@ private ActivityCadastroClientePjBinding binding;
 
         binding.btnSalvarEContinuar.setOnClickListener(new View.OnClickListener() {
             Intent intent;
+
             @Override
             public void onClick(View view) {
                 boolean isDadosOk = validarFormulario();
@@ -42,14 +43,14 @@ private ActivityCadastroClientePjBinding binding;
                 if (isDadosOk) {
                     if (validarFormulario()) {
                         salvarSharedPreferences();
-                        intent = new Intent(PessoaJuridica.this, MainActivity.class);
+                        intent = new Intent(PessoaJuridica.this, PessoaFisica.class);
                     } else {
-                    Toast.makeText(getApplicationContext(), "Verifique os dados...",
-                            Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Verifique os dados...",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                    startActivity(intent);
+                    finish();
                 }
-                startActivity(intent);
-                finish();
-            }
             }
         });
 
@@ -88,7 +89,8 @@ private ActivityCadastroClientePjBinding binding;
             }
         });
     }
-      private boolean validarFormulario() {
+
+    private boolean validarFormulario() {
         boolean isDadosOk = true;
         salvarSharedPreferences();
 
@@ -110,8 +112,9 @@ private ActivityCadastroClientePjBinding binding;
 
         return isDadosOk;
     }
-    private void salvarSharedPreferences() {
 
+    private void salvarSharedPreferences() {
+        preferences = getSharedPreferences(SplashActivity.PREF_APP, MODE_PRIVATE);
         Log.d(TAG, "salvarSharedPreferences: Pasta criada");
         SharedPreferences.Editor dados = preferences.edit();
 
@@ -123,10 +126,12 @@ private ActivityCadastroClientePjBinding binding;
         dados.apply();
 
     }
-    public void simplesNacional(View view){
-       isSimplesNacional = binding.ckSimplesNacional.isChecked();
-       salvarSharedPreferences();
+
+    public void simplesNacional(View view) {
+        isSimplesNacional = binding.ckSimplesNacional.isChecked();
+        salvarSharedPreferences();
     }
+
     public void mei(View view) {
         isMei = binding.ckMei.isChecked();
         salvarSharedPreferences();
