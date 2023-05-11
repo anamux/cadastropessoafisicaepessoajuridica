@@ -121,7 +121,7 @@ public class AppDataBase extends SQLiteOpenHelper {
     public List<Cliente> list(String tabela) {
         List<Cliente> list = new ArrayList<>();
         Cliente cliente;
-        String sql = "SELECT * FROM" + tabela;
+        String sql = "SELECT * FROM " + tabela;
         try {
 
             cursor = db.rawQuery(sql, null);

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteAdapter;
+import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
 import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityConsultarClientesBinding;
 import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
 
@@ -19,6 +20,7 @@ public class ConsultarClientes extends AppCompatActivity {
     List<Cliente> clientes;
     ClienteAdapter adapter;
     Cliente obj;
+    ClienteController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,18 +28,17 @@ public class ConsultarClientes extends AppCompatActivity {
         binding = ActivityConsultarClientesBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        controller = new ClienteController(getApplicationContext());
 
-
-
-        clientes = new ArrayList<>();
-        for (int i = 0; i <50 ; i++) {
+        clientes = controller.listar();
+       /* for (int i = 0; i <50 ; i++) {
             obj = new Cliente();
             obj.setPrimeiroNome("Cliente "+i);
             obj.setPessoaFisica(i %2 == 0);
 
             clientes.add(obj);
 
-        }
+        }*/
 
         adapter = new ClienteAdapter(clientes, getApplicationContext());
 

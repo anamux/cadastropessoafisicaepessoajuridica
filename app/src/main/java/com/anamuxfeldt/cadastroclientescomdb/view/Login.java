@@ -28,20 +28,21 @@ public class Login extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-       // cliente = new Cliente();
-        //controller = new ClienteController(getApplicationContext());
-        //for (int i = 0; i <30; i++) {
+        cliente = new Cliente();
+        controller = new ClienteController(getApplicationContext());
+
+        /*for (int i = 0; i <30; i++) {
 
 
-        /*cliente.setPrimeiroNome("Nome "+i);
+        cliente.setPrimeiroNome("Nome "+i);
         cliente.setSobrenome("Sobrenome "+i);
         cliente.setEmail(i+"@teste");
         cliente.setDataNascimento("16/12/1990");
-        cliente.setSenha(i+"_4321");
-        controller.incluir(cliente);
-            cliente.setId(10);
-            controller.deletar(cliente);*/
-       // }
+        cliente.setSenha(i+"0123");
+        controller.incluir(cliente);*/
+           // cliente.setId(10);
+            //controller.deletar(cliente);
+        // }
 
 
         binding.txtPoliticaETermos.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +106,7 @@ public class Login extends AppCompatActivity {
         binding.btnAcessar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isDadosOk= validarFormulario()) {
+                if (isDadosOk = validarFormulario()) {
 
                     if (validarDadosUsuario()) {
                         salvarSharedPreferences();
@@ -154,7 +155,7 @@ public class Login extends AppCompatActivity {
 
     public void lembrarSenha(View view) {
         isLembrarSenha = binding.ckLembrar.isChecked();
-       salvarSharedPreferences();
+        salvarSharedPreferences();
     }
 
 }

@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
         cliente.setPessoaFisica(preferences.getBoolean("pessoaFisica", true));
 
         clientePF.setCpf(preferences.getString("cpfCliente", "nulo"));
-        clientePF.setNomeCompleto(preferences.getString("nomeCompleto", "nulo"));
 
         clientePJ.setCnpj(preferences.getString("cnpj", "nulo"));
         clientePJ.setRazaoSocial(preferences.getString("razãoSocial", "nulo"));
@@ -83,8 +82,6 @@ public class MainActivity extends AppCompatActivity {
         if(cliente.isPessoaFisica()){
             cliente.setPrimeiroNome("Ana");
             cliente.setSobrenome("Muxfeldt");
-            clientePF.setNomeCompleto("Ana Muxfeldt");
-
             //salvarSharedPreferences();
 
             Log.i(LOG_APP, "atualizarMeusDados: ***Alterando dados***");
