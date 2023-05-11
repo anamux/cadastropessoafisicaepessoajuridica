@@ -43,6 +43,9 @@
     <string name="consultar_clientes">Consultar Clientes</string>
     <string name="sair">Sair</string>
     <string name="cliente">Cliente</string>
+    <string name="acessar">ACESSAR</string>
+    <string name="versao">Versão</string>
+    <string name="voc_novo_por_aqui">Você é novo por aqui?</string>
 
 
 </resources>
