@@ -10,10 +10,12 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
-import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;;
+import com.anamuxfeldt.cadastroclientescomdb.R;
+import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
 import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityLoginBinding;
 import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.squareup.picasso.Picasso;
 
 public class Login extends AppCompatActivity {
     private ActivityLoginBinding binding;
@@ -21,6 +23,8 @@ public class Login extends AppCompatActivity {
     boolean isLembrarSenha, isDadosOk;
     Cliente cliente;
     ClienteController controller;
+    public static final String URL_IMG_BACKGROUND = "https://www.marcomaddo.com.br/aluno/daazi/img/app-cliente-vip-login-bg.jpg";
+    public static final String URL_IMG_LOGO = "https://www.marcomaddo.com.br/aluno/daazi/img/app-cliente-vip-logo.png";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,8 @@ public class Login extends AppCompatActivity {
             //controller.deletar(cliente);
         // }
 
+
+        loadImagens();
 
         binding.txtPoliticaETermos.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +128,11 @@ public class Login extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void loadImagens() {
+    Picasso.get().load(URL_IMG_BACKGROUND).placeholder(R.drawable.carregando_img).into(binding.imgBackground);
+    Picasso.get().load(URL_IMG_LOGO).placeholder(R.drawable.carregando_animacao).into(binding.imgLogo);
     }
 
     private void salvarSharedPreferences() {

@@ -92,7 +92,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/txtRecurarSenha"
+                android:id="@+id/txtRecuperarSenha"
                 style="@style/TextAppearance.AppCompat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -165,7 +165,7 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/txtLerPolitica"
+            android:id="@+id/txtPoliticaETermos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
