@@ -1,8 +1,15 @@
 package com.anamuxfeldt.cadastroclientescomdb.model;
 
 public class ClientePF extends Cliente{
+    private int fk;
     private String cpf;
-    private String nomeCompleto;
+    public int getFk() {
+        return fk;
+    }
+
+    public void setFk(int fk) {
+        this.fk = fk;
+    }
 
     public String getCpf() {
         return cpf;
@@ -12,11 +19,4 @@ public class ClientePF extends Cliente{
         this.cpf = cpf;
     }
 
-    public String getNomeCompleto() {
-        return nomeCompleto;
-    }
-
-    public void setNomeCompleto(String nomeCompleto) {
-        this.nomeCompleto = nomeCompleto;
-    }
 }

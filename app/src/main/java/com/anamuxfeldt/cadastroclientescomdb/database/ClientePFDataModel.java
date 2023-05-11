@@ -7,7 +7,6 @@ public class ClientePFDataModel {
     private static final String ID = "id";
     private static final String FK = "clienteID";
     private static final String CPF = "cpf";
-    private static final String NOME_COMPLETO = "nomeCompleto";
     private static final String DATA_INC = "datainc";
     private static final String DATA_ALT = "dataalt";
 
@@ -19,7 +18,6 @@ public class ClientePFDataModel {
         query += ID+" INTEGER PRIMARY KEY AUTOINCREMENT, ";
         query += FK+" INTEGER, ";
         query += CPF+" TEXT, ";
-        query += NOME_COMPLETO+" TEXT, ";
         query += DATA_INC+" TEXT, ";
         query += DATA_ALT+" TEXT, ";
         query += "FOREIGN KEY("+FK+") REFERENCES cliente(id) ";

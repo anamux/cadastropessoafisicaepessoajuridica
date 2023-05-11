@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 
+import com.anamuxfeldt.cadastroclientescomdb.database.AppDataBase;
 import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivitySplashBinding;
 
 public class SplashActivity extends AppCompatActivity {
@@ -19,6 +20,7 @@ public class SplashActivity extends AppCompatActivity {
     public static final String PREF_APP = "app_cliente_vip_pref";
     boolean isLembrarSenha = false;
     private SharedPreferences preferences;
+    AppDataBase dataBase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class SplashActivity extends AppCompatActivity {
 
         salvarSharedPreferences();
         restaurarSharedPreferences();
+        dataBase = new AppDataBase(getApplicationContext());
         trocarTela();
 
     }
