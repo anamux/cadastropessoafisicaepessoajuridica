@@ -1,6 +1,5 @@
 package com.anamuxfeldt.cadastroclientescomdb.view;
 
-import static android.content.ContentValues.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,12 +8,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
-import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityCadastroNovoClienteBinding;
+
+import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityCadastroNovoClienteCardBinding;
 import com.anamuxfeldt.cadastroclientescomdb.model.CadastrarClientePF;
 import com.anamuxfeldt.cadastroclientescomdb.model.CadastrarClientePJ;
 import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
@@ -22,7 +20,7 @@ import com.anamuxfeldt.cadastroclientescomdb.model.ICadastroCliente;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class CadastroNovoCliente extends AppCompatActivity {
-    private ActivityCadastroNovoClienteBinding binding;
+    private ActivityCadastroNovoClienteCardBinding binding;
     ICadastroCliente cadastroCliente;
     Cliente cliente;
     private SharedPreferences preferences;
@@ -30,7 +28,7 @@ public class CadastroNovoCliente extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityCadastroNovoClienteBinding.inflate(getLayoutInflater());
+        binding = ActivityCadastroNovoClienteCardBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 
