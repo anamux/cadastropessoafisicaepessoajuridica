@@ -12,7 +12,7 @@
     <string name="primeiro_nome">Primeiro Nome</string>
     <string name="sobrenome">Sobrenome</string>
     <string name="salvar_e_continuar">SALVAR E CONTINUAR</string>
-    <string name="cancelar">CANCELAR</string>
+    <string name="cancelar">Cancelar</string>
     <string name="pessoa_f_sica">Pessoa Física</string>
     <string name="digite_seu_sobrenome">Digite seu sobrenome...</string>
     <string name="digite_seu_primeiro_nome">Digite seu primeiro nome...</string>
@@ -26,7 +26,7 @@
     <string name="mei">MEI</string>
     <string name="simples_nacional">Simples Nacional</string>
     <string name="salvarcontinuar">Salvar e Continuar</string>
-    <string name="voltar">voltar</string>
+    <string name="voltar">Voltar</string>
     <!-- String tela Cadastro Pessoa Física-->
     <string name="pessoa_fisica">Pessoa Física</string>
     <string name="nome_completo">Digite o Nome Completo...</string>

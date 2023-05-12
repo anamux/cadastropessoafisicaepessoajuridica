@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.CadastroNovoCliente">
+    tools:context=".view.PessoaJuridica">
+
 
     <!-- Cabeçalho -->
     <androidx.cardview.widget.CardView
@@ -26,42 +27,26 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:src="@mipmap/ic_launcher_round" />
-
-                <androidx.appcompat.widget.LinearLayoutCompat
+                <TextView
+                    android:id="@+id/TxtPJ"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/txtNovoVip"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="16dp"
-                        android:gravity="center_horizontal"
-                        android:text="@string/cadastro_cliente"
-                        android:textAppearance="@android:style/TextAppearance.Holo.Large"
-                        android:textColor="@color/CustomColor1"
-                        android:textSize="26sp"
-                        android:textStyle="bold" />
-
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
+                    android:layout_margin="16dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/pessoa_pj"
+                    android:textAppearance="@android:style/TextAppearance.Holo.Large"
+                    android:textColor="@color/CustomColor1"
+                    android:textSize="26dp"
+                    android:textStyle="bold" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
+
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.cardview.widget.CardView>
 
     <!-- Formulário -->
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -76,69 +61,93 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtPrimeiroNome"
+                android:id="@+id/txtCnpj"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="@string/primeiro_nome"
+                android:text="@string/cnpj"
                 android:textAppearance="@android:style/TextAppearance.Holo.Large"
                 android:textColor="@color/CustomColor1"
-                android:textSize="20sp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editPrimeiroNome"
+                android:id="@+id/editCnpj"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:ems="10"
-                android:hint="@string/digite_seu_primeiro_nome"
-                android:inputType="textPersonName" />
+                android:hint="@string/digite_o_cnpj"
+                android:inputType="number" />
 
             <TextView
-                android:id="@+id/txtSobremone"
+                android:id="@+id/txtRazaoSocial"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="@string/sobrenome"
+                android:text="@string/raz_o_social"
                 android:textAppearance="@android:style/TextAppearance.Holo.Large"
                 android:textColor="@color/CustomColor1"
-                android:textSize="20sp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editSobrenome"
+                android:id="@+id/editRazaoSocial"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:ems="10"
-                android:hint="@string/digite_seu_sobrenome"
-                android:inputType="textPersonName" />
+                android:hint="Razão Social igual ao CNPJ"
+                android:inputType="text" />
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/txtDataAbertura"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@string/data_de_abertura_da_empresa"
+                android:textAppearance="@android:style/TextAppearance.Holo.Large"
+                android:textColor="@color/CustomColor1"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editAbertura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:orientation="vertical">
+                android:ems="10"
+                android:hint="dd/mm/aaaa"
+                android:inputType="date" />
+
+
 
                 <CheckBox
-                    android:id="@+id/ckPessoaFisica"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/ckSimplesNacional"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginLeft="16dp"
-                    android:text="@string/pessoa_f_sica" />
+                    android:textAppearance="@android:style/TextAppearance.Holo.Large"
+                    android:textColor="@color/CustomColor1"
+                    android:onClick="simplesNacional"
+                    android:text="@string/simples_nacional" />
 
                 <CheckBox
-                    android:id="@+id/ckPoliticaEPrivacidade"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/ckMei"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginLeft="16dp"
-                    android:text="@string/politica_termos" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                    android:textAppearance="@android:style/TextAppearance.Holo.Large"
+                    android:textColor="@color/CustomColor1"
+                    android:onClick="mei"
+                    android:text="@string/mei" />
+
         </androidx.appcompat.widget.LinearLayoutCompat>
-
     </androidx.cardview.widget.CardView>
 
     <!-- Botões -->
@@ -159,19 +168,34 @@
                 android:id="@+id/btnSalvarEContinuar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="16dp"
                 android:textAppearance="@android:style/TextAppearance.Holo.Large"
                 android:text="@string/salvarcontinuar" />
 
-            <Button
-                android:id="@+id/btnCancelar"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:textAppearance="@android:style/TextAppearance.Holo.Large"
-                android:text="@string/cancelar" />
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
 
+                <Button
+                    android:id="@+id/btnVoltar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:textAppearance="@android:style/TextAppearance.Holo.Large"
+                    android:text="@string/voltar" />
+
+                <Button
+                    android:id="@+id/btnCancelar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:textAppearance="@android:style/TextAppearance.Holo.Large"
+                    android:text="@string/cancelar" />
+            </LinearLayout>
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.cardview.widget.CardView>
 </LinearLayout>
+
 

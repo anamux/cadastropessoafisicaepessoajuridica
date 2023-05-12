@@ -15,11 +15,12 @@ import android.widget.Toast;
 
 import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
 import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityCadastroClientePjBinding;
+import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityCadastroClientePjCardBinding;
 import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class PessoaJuridica extends AppCompatActivity {
-    private ActivityCadastroClientePjBinding binding;
+    private ActivityCadastroClientePjCardBinding binding;
     Cliente cliente;
     private SharedPreferences preferences;
     private boolean isSimplesNacional;
@@ -28,7 +29,7 @@ public class PessoaJuridica extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityCadastroClientePjBinding.inflate(getLayoutInflater());
+        binding = ActivityCadastroClientePjCardBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 

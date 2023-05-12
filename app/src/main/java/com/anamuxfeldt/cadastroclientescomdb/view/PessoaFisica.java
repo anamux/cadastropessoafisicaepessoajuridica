@@ -15,16 +15,17 @@ import android.widget.Toast;
 
 import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
 import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityCadastroPessoaFisicaBinding;
+import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityCadastroPessoaFisicaCardBinding;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class PessoaFisica extends AppCompatActivity {
-    private ActivityCadastroPessoaFisicaBinding binding;
+    private ActivityCadastroPessoaFisicaCardBinding binding;
     private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityCadastroPessoaFisicaBinding.inflate(getLayoutInflater());
+        binding = ActivityCadastroPessoaFisicaCardBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 
