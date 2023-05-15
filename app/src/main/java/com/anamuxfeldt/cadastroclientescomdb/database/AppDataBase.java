@@ -72,8 +72,9 @@ public class AppDataBase extends SQLiteOpenHelper {
     public boolean insert(String tabela, ContentValues dados) {
         boolean sucesso = true;
         try {
-            sucesso = db.insert(tabela, null, dados) > 0;
+
             Log.e(MainActivity.LOG_APP, tabela + " inserido com sucesso ");
+            sucesso = db.insert(tabela, null, dados) > 0;
         } catch (SQLException e) {
             Log.e(MainActivity.LOG_APP, tabela + " falha ao inserir " + e.getMessage());
         }
@@ -147,5 +148,30 @@ public class AppDataBase extends SQLiteOpenHelper {
             Log.e(MainActivity.LOG_APP, "Erro: " + e.getMessage());
         }
         return list;
+    }
+    public int getLastPK (String tabela) {
+
+
+        //SELECT seq FROM sqlite_sequence WHERE name="cliente"
+
+
+        String sql = "SELECT seq FROM sqlite_sequence WHERE name= '" + tabela + "'";
+        try {
+
+            Log.e(MainActivity.LOG_APP, "SQL Raw: " + sql);
+            cursor = db.rawQuery(sql, null);
+            if (cursor.moveToFirst()) {
+                do {
+
+                    return cursor.getInt(cursor.getColumnIndexOrThrow("seq"));
+
+                } while (cursor.moveToNext());
+            }
+
+        } catch (SQLException e) {
+            Log.e(MainActivity.LOG_APP, "Erro ao recuperando ultimo PK " + tabela);
+            Log.e(MainActivity.LOG_APP, "Erro: " + e.getMessage());
+        }
+        return -1;
     }
 }

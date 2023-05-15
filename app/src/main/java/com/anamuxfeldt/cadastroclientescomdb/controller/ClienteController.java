@@ -56,4 +56,8 @@ public class ClienteController extends AppDataBase {
 
         return list(TABELA);
     }
+
+    public int getUltimoID(){
+        return  getLastPK(TABELA);
+    }
 }

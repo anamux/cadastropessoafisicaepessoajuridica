@@ -26,6 +26,7 @@ public class CadastroNovoCliente extends AppCompatActivity {
     ClienteController clienteController;
     Cliente cliente;
     private SharedPreferences preferences;
+    int ultimoID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +47,13 @@ public class CadastroNovoCliente extends AppCompatActivity {
                     } else {
                         cadastroCliente = new CadastrarClientePJ();
                     }
-                    salvarSharedPreferences();
+                    cliente.setPrimeiroNome(binding.editPrimeiroNome.getText().toString());
+                    cliente.setSobrenome(binding.editSobrenome.getText().toString());
+                    cliente.setPessoaFisica(cliente.isPessoaFisica());
                     clienteController.incluir(cliente);
+                    ultimoID = clienteController.getUltimoID();
+                    salvarSharedPreferences();
+
                     Intent intent = cadastroCliente.cadastrar(CadastroNovoCliente.this);
                     startActivity(intent);
                     finish();
@@ -108,6 +114,7 @@ public class CadastroNovoCliente extends AppCompatActivity {
         dados.putString("primeiroNome", binding.editPrimeiroNome.getText().toString());
         dados.putString("sobreNome", binding.editSobrenome.getText().toString());
         dados.putBoolean("pessoaFisica", binding.ckPessoaFisica.isChecked());
+        dados.putInt("ultimoID", ultimoID);
         dados.apply();
     }
 

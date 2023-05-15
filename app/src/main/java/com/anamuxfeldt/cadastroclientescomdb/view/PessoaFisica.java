@@ -17,6 +17,7 @@ import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
 import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityCadastroPessoaFisicaBinding;
 import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityCadastroPessoaFisicaCardBinding;
 import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
+import com.anamuxfeldt.cadastroclientescomdb.model.ClientePF;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class PessoaFisica extends AppCompatActivity {
@@ -24,6 +25,7 @@ public class PessoaFisica extends AppCompatActivity {
     private SharedPreferences preferences;
     ClienteController controller;
     Cliente cliente;
+    ClientePF clientePF;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,14 +33,20 @@ public class PessoaFisica extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        clientePF = new ClientePF();
         cliente = new Cliente();
         controller = new ClienteController(this);
         binding.btnSalvarEContinuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (validarFormulario()) {
+                    clientePF.setEmail(binding.editEmail.getText().toString());
+                    clientePF.setCpf(binding.editCpf.getText().toString());
+                    clientePF.setDataNascimento(binding.editDataNascimento.getText().toString());
+                    clientePF.setSenha(binding.editSenha.getText().toString());
+
                     salvarSharedPreferences();
-                    controller.incluir(cliente);
+                    controller.incluir(clientePF);
                     Intent intent = new Intent(PessoaFisica.this, MainActivity.class);
                     startActivity(intent);
                     finish();
