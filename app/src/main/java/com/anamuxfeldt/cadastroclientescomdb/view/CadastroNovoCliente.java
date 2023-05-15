@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Toast;
 
 
+import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
 import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityCadastroNovoClienteCardBinding;
 import com.anamuxfeldt.cadastroclientescomdb.model.CadastrarClientePF;
 import com.anamuxfeldt.cadastroclientescomdb.model.CadastrarClientePJ;
@@ -22,6 +23,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 public class CadastroNovoCliente extends AppCompatActivity {
     private ActivityCadastroNovoClienteCardBinding binding;
     ICadastroCliente cadastroCliente;
+    ClienteController clienteController;
     Cliente cliente;
     private SharedPreferences preferences;
 
@@ -32,6 +34,8 @@ public class CadastroNovoCliente extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        cliente = new Cliente();
+        clienteController = new ClienteController(this);
         binding.btnSalvarEContinuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,6 +47,7 @@ public class CadastroNovoCliente extends AppCompatActivity {
                         cadastroCliente = new CadastrarClientePJ();
                     }
                     salvarSharedPreferences();
+                    clienteController.incluir(cliente);
                     Intent intent = cadastroCliente.cadastrar(CadastroNovoCliente.this);
                     startActivity(intent);
                     finish();

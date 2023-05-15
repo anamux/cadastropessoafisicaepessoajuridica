@@ -16,12 +16,14 @@ import android.widget.Toast;
 import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
 import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityCadastroPessoaFisicaBinding;
 import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityCadastroPessoaFisicaCardBinding;
+import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class PessoaFisica extends AppCompatActivity {
     private ActivityCadastroPessoaFisicaCardBinding binding;
     private SharedPreferences preferences;
-
+    ClienteController controller;
+    Cliente cliente;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,11 +31,14 @@ public class PessoaFisica extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        cliente = new Cliente();
+        controller = new ClienteController(this);
         binding.btnSalvarEContinuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (validarFormulario()) {
                     salvarSharedPreferences();
+                    controller.incluir(cliente);
                     Intent intent = new Intent(PessoaFisica.this, MainActivity.class);
                     startActivity(intent);
                     finish();

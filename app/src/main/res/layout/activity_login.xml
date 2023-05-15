@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_margin="15dp"
-        android:background="@color/white"
+        android:background="@color/md_theme_light_primaryContainer"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -49,7 +49,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/email"
-                android:textColor="@color/green"
+                android:textAppearance="@android:style/TextAppearance.Holo.Large"
+                android:textColor="@color/CustomColor1"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -68,7 +69,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/senha"
-                android:textColor="@color/green"
+                android:textAppearance="@android:style/TextAppearance.Holo.Large"
+                android:textColor="@color/CustomColor1"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -88,6 +90,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
+                android:textAppearance="@android:style/TextAppearance.Holo.Large"
+                android:textColor="@color/CustomColor1"
                 android:text="@string/lembrar"
                 android:textStyle="bold" />
 
@@ -99,7 +103,8 @@
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
                 android:text="@string/recuperar_senha"
-                android:textColor="@color/blue"
+                android:textAppearance="@android:style/TextAppearance.Holo.Large"
+                android:textColor="@color/md_theme_light_onPrimaryContainer"
                 android:textStyle="bold" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -141,7 +146,7 @@
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:text="@string/cadastar"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/md_theme_light_tertiaryContainer"
             android:textSize="14sp"
             android:textStyle="bold" />
 
