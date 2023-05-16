@@ -79,7 +79,9 @@
                 android:id="@+id/txtPrimeiroNome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:text="@string/primeiro_nome"
                 android:textAppearance="@android:style/TextAppearance.Holo.Large"
                 android:textColor="@color/CustomColor1"
@@ -100,7 +102,9 @@
                 android:id="@+id/txtSobremone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:text="@string/sobrenome"
                 android:textAppearance="@android:style/TextAppearance.Holo.Large"
                 android:textColor="@color/CustomColor1"
@@ -111,11 +115,76 @@
                 android:id="@+id/editSobrenome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:ems="10"
                 android:hint="@string/digite_seu_sobrenome"
                 android:inputType="textPersonName" />
+            <TextView
+                android:id="@+id/txtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/email"
+                android:textAppearance="@android:style/TextAppearance.Holo.Large"
+                android:textColor="@color/CustomColor1"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:ems="10"
+                android:hint="@string/digite_o_e_mail"
+                android:inputType="textPersonName" />
+            <TextView
+                android:id="@+id/txtCadastrarSenha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/senha"
+                android:textAppearance="@android:style/TextAppearance.Holo.Large"
+                android:textColor="@color/CustomColor1"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editSenha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:ems="10"
+                android:hint="@string/digite_senha"
+                android:inputType="numberPassword" />
+
+            <TextView
+                android:id="@+id/txtConfirmaSenha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/confirme_sua_senha"
+                android:textAppearance="@android:style/TextAppearance.Holo.Large"
+                android:textColor="@color/CustomColor1"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editConfirmaSenha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:ems="10"
+                android:hint="@string/digite_senha"
+                android:inputType="numberPassword" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
@@ -127,6 +196,7 @@
                     android:id="@+id/ckPessoaFisica"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="pessoaFisica"
                     android:layout_marginLeft="16dp"
                     android:text="@string/pessoa_f_sica" />
 

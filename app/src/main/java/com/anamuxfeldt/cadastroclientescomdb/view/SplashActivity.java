@@ -14,7 +14,7 @@ import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivitySplashBinding;
 
 public class SplashActivity extends AppCompatActivity {
     private ActivitySplashBinding binding;
-    public static final int TIME_OUT_SPLASH = 3000;
+    public static final int TIME_OUT_SPLASH = 1000;
     public static final String PREF_APP = "app_cliente_vip_pref";
     boolean isLembrarSenha = false;
     private SharedPreferences preferences;

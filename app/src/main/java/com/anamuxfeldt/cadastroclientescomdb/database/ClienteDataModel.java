@@ -6,9 +6,9 @@ public class ClienteDataModel {
     public static final String ID = "id";
     public static final String PRIMEIRO_NOME = "primeiroNome";
     public static final String SOBRENOME = "sobrenome";
+    public static final String PESSOAFISICA = "pessoaFisica";
     public static final String EMAIL = "email";
     public static final String SENHA = "senha";
-    public static final String PESSOAFISICA = "pessoaFisica";
     private static final String DATA_INC = "dataInclusao";
     private static final String DATA_ALT = "dataAlteracao";
 

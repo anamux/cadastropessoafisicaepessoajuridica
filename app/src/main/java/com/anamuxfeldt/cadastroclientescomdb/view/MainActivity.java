@@ -53,11 +53,11 @@ public class MainActivity extends AppCompatActivity {
 
         cliente.setPrimeiroNome(preferences.getString("primeiroNome", "Nulo"));
         cliente.setSobrenome(preferences.getString("sobrenome", "Nulo"));
-        cliente.setEmail(preferences.getString("emailCliente", "Nulo"));
-        cliente.setSenha(preferences.getString("senha", "Nulo"));
-        cliente.setDataNascimento(preferences.getString("dataNascimento", "Nulo"));
         cliente.setPessoaFisica(preferences.getBoolean("pessoaFisica", true));
 
+        clientePF.setEmail(preferences.getString("emailCliente", "Nulo"));
+        clientePF.setSenha(preferences.getString("senha", "Nulo"));
+        clientePF.setDataNascimento(preferences.getString("dataNascimento", "Nulo"));
         clientePF.setCpf(preferences.getString("cpfCliente", "nulo"));
 
         clientePJ.setCnpj(preferences.getString("cnpj", "nulo"));
@@ -73,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
         Log.i(LOG_APP, "meusDados:**DADOS CLIENTE** ");
         Log.i(LOG_APP, "meusDados:Primeiro Nome:  "+cliente.getPrimeiroNome());
         Log.i(LOG_APP, "meusDados:Sobrenome:  "+cliente.getSobrenome());
-        Log.i(LOG_APP, "meusDados:Email:  "+cliente.getEmail());
-        Log.i(LOG_APP, "meusDados:Data Nascimento:  "+cliente.getDataNascimento());
+        Log.i(LOG_APP, "meusDados:Email:  "+clientePF.getEmail());
+        Log.i(LOG_APP, "meusDados:Data Nascimento:  "+clientePF.getDataNascimento());
 
     }
 

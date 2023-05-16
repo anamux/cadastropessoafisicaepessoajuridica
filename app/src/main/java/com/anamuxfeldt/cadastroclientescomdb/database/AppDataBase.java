@@ -1,6 +1,5 @@
 package com.anamuxfeldt.cadastroclientescomdb.database;
 
-import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -12,6 +11,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
+import com.anamuxfeldt.cadastroclientescomdb.model.ClientePF;
 import com.anamuxfeldt.cadastroclientescomdb.view.MainActivity;
 
 import java.util.ArrayList;
@@ -72,9 +72,9 @@ public class AppDataBase extends SQLiteOpenHelper {
     public boolean insert(String tabela, ContentValues dados) {
         boolean sucesso = true;
         try {
-
-            Log.e(MainActivity.LOG_APP, tabela + " inserido com sucesso ");
             sucesso = db.insert(tabela, null, dados) > 0;
+            Log.i(MainActivity.LOG_APP, tabela + " inserido com sucesso ");
+
         } catch (SQLException e) {
             Log.e(MainActivity.LOG_APP, tabela + " falha ao inserir " + e.getMessage());
         }
@@ -119,7 +119,7 @@ public class AppDataBase extends SQLiteOpenHelper {
      *
      * @return
      */
-    public List<Cliente> list(String tabela) {
+    public List<Cliente> listClientes(String tabela) {
         List<Cliente> list = new ArrayList<>();
         Cliente cliente;
         String sql = "SELECT * FROM " + tabela;
@@ -139,6 +139,34 @@ public class AppDataBase extends SQLiteOpenHelper {
                     cliente.setPessoaFisica(cursor.getInt(cursor.getColumnIndexOrThrow(ClienteDataModel.PESSOAFISICA)) == 1);
 
                     list.add(cliente);
+                } while (cursor.moveToNext());
+                Log.e(MainActivity.LOG_APP, tabela + " lista gerada");
+            }
+
+        } catch (SQLException e) {
+            Log.e(MainActivity.LOG_APP, "Erro ao listar dados " + tabela);
+            Log.e(MainActivity.LOG_APP, "Erro: " + e.getMessage());
+        }
+        return list;
+    }
+    public List<ClientePF> listClientesPF(String tabela) {
+        List<ClientePF> list = new ArrayList<>();
+        ClientePF clientePF;
+        String sql = "SELECT * FROM " + tabela;
+        try {
+
+            cursor = db.rawQuery(sql, null);
+            if (cursor.moveToFirst()) {
+                do {
+
+                    clientePF = new ClientePF();
+
+                    clientePF.setId(cursor.getInt(cursor.getColumnIndexOrThrow(ClientePFDataModel.ID)));
+                    clientePF.setClienteID(cursor.getInt(cursor.getColumnIndexOrThrow(ClientePFDataModel.FK)));
+
+                    clientePF.setCpf(cursor.getString(cursor.getColumnIndexOrThrow(ClientePFDataModel.CPF)));
+
+                    list.add(clientePF);
                 } while (cursor.moveToNext());
                 Log.e(MainActivity.LOG_APP, tabela + " lista gerada");
             }

@@ -1,14 +1,27 @@
 package com.anamuxfeldt.cadastroclientescomdb.model;
 
-public class ClientePF extends Cliente{
-    private int fk;
+public class ClientePF extends Cliente {
+    private int id;
+    private int clienteID; //fk
     private String cpf;
-    public int getFk() {
-        return fk;
+    private String dataNascimento;
+
+    @Override
+    public int getId() {
+        return id;
     }
 
-    public void setFk(int fk) {
-        this.fk = fk;
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getClienteID() {
+        return clienteID;
+    }
+
+    public void setClienteID(int clienteID) {
+        this.clienteID = clienteID;
     }
 
     public String getCpf() {
@@ -19,4 +32,11 @@ public class ClientePF extends Cliente{
         this.cpf = cpf;
     }
 
+    public String getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
 }

@@ -1,7 +1,5 @@
 package com.anamuxfeldt.cadastroclientescomdb.view;
 
-import static android.content.ContentValues.TAG;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
@@ -9,12 +7,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
-import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityCadastroPessoaFisicaBinding;
+import com.anamuxfeldt.cadastroclientescomdb.controller.ClientePFController;
 import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityCadastroPessoaFisicaCardBinding;
 import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
 import com.anamuxfeldt.cadastroclientescomdb.model.ClientePF;
@@ -23,9 +19,11 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 public class PessoaFisica extends AppCompatActivity {
     private ActivityCadastroPessoaFisicaCardBinding binding;
     private SharedPreferences preferences;
-    ClienteController controller;
-    Cliente cliente;
+    ClientePFController controller;
     ClientePF clientePF;
+    boolean isPessoaFisica;
+    int clienteID, ultimoIDPF;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,22 +32,30 @@ public class PessoaFisica extends AppCompatActivity {
         setContentView(view);
 
         clientePF = new ClientePF();
-        cliente = new Cliente();
-        controller = new ClienteController(this);
+        controller = new ClientePFController(this);
+        restaurarSharedPreferences();
         binding.btnSalvarEContinuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (validarFormulario()) {
-                    clientePF.setEmail(binding.editEmail.getText().toString());
+                    clientePF.setClienteID(clienteID);
                     clientePF.setCpf(binding.editCpf.getText().toString());
                     clientePF.setDataNascimento(binding.editDataNascimento.getText().toString());
-                    clientePF.setSenha(binding.editSenha.getText().toString());
 
-                    salvarSharedPreferences();
+
                     controller.incluir(clientePF);
-                    Intent intent = new Intent(PessoaFisica.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    ultimoIDPF = controller.getUltimoID();
+                    salvarSharedPreferences();
+                    Intent intent;
+                    if (isPessoaFisica) {
+                        intent = new Intent(PessoaFisica.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        intent = new Intent(PessoaFisica.this, PessoaFisica.class);
+                        startActivity(intent);
+                        finish();
+                    }
 
                 }
             }
@@ -95,11 +101,7 @@ public class PessoaFisica extends AppCompatActivity {
     private boolean validarFormulario() {
         boolean isDadosOk = true;
 
-        if (TextUtils.isEmpty(binding.editEmail.getText().toString())) {
-            binding.editEmail.setError("*");
-            binding.editEmail.requestFocus();
-            isDadosOk = false;
-        }
+
         if (TextUtils.isEmpty((binding.editCpf.getText().toString()))) {
             binding.editCpf.setError("*");
             binding.editCpf.requestFocus();
@@ -110,46 +112,25 @@ public class PessoaFisica extends AppCompatActivity {
             binding.editDataNascimento.requestFocus();
             isDadosOk = false;
         }
-        if (TextUtils.isEmpty((binding.editSenha.getText().toString()))) {
-            binding.editSenha.setError("*");
-            binding.editSenha.requestFocus();
-            isDadosOk = false;
-        }
-        if (TextUtils.isEmpty((binding.editConfirmaSenha.getText().toString()))) {
-            binding.editConfirmaSenha.setError("*");
-            binding.editConfirmaSenha.requestFocus();
-            isDadosOk = false;
-        }
-        if (!validarSenha()) {
-            Toast.makeText(getApplicationContext(), "As senhas digitadas não conferem...",
-                    Toast.LENGTH_LONG).show();
-        }
 
         return isDadosOk;
-    }
-
-    private boolean validarSenha() {
-        boolean retorno = false;
-        int senhaA, senhaB;
-
-        senhaA = Integer.parseInt(binding.editSenha.getText().toString());
-        senhaB = Integer.parseInt(binding.editConfirmaSenha.getText().toString());
-
-        retorno = (senhaA == senhaB);
-
-        return retorno;
     }
 
     private void salvarSharedPreferences() {
 
         preferences = getSharedPreferences(SplashActivity.PREF_APP, MODE_PRIVATE);
         SharedPreferences.Editor dados = preferences.edit();
-
-        dados.putString("email", binding.editEmail.getText().toString());
+        dados.putInt("ultimoClientePF", ultimoIDPF);
         dados.putString("cpfCliente", binding.editCpf.getText().toString());
         dados.putString("dataNascimento", binding.editDataNascimento.getText().toString());
-        dados.putString("senha", binding.editSenha.getText().toString());
         dados.apply();
+
+    }
+
+    private void restaurarSharedPreferences() {
+        preferences = getSharedPreferences(SplashActivity.PREF_APP, MODE_PRIVATE);
+        isPessoaFisica = preferences.getBoolean("pessoaFisica", true);
+        clienteID = preferences.getInt("clienteID", -1);
 
     }
 

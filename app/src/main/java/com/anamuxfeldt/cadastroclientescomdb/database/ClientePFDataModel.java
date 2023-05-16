@@ -1,12 +1,15 @@
 package com.anamuxfeldt.cadastroclientescomdb.database;
 
+import android.util.Log;
+
 public class ClientePFDataModel {
 
-    private static final String TABELA = "clientePF";
+    public static final String TABELA = "clientePF";
 
-    private static final String ID = "id";
-    private static final String FK = "clienteID";
-    private static final String CPF = "cpf";
+    public static final String ID = "id";
+    public static final String FK = "clienteID";
+    public static final String CPF = "cpf";
+
     private static final String DATA_INC = "datainc";
     private static final String DATA_ALT = "dataalt";
 
@@ -18,12 +21,13 @@ public class ClientePFDataModel {
         query += ID+" INTEGER PRIMARY KEY AUTOINCREMENT, ";
         query += FK+" INTEGER, ";
         query += CPF+" TEXT, ";
+
         query += DATA_INC+" TEXT, ";
         query += DATA_ALT+" TEXT, ";
         query += "FOREIGN KEY("+FK+") REFERENCES cliente(id) ";
 
         query += ")";
-
+        Log.d("ClientePFDataModel", "gerarTabela: " +query);
         return query;
     }
 }

@@ -8,14 +8,9 @@ import androidx.annotation.Nullable;
 
 import com.anamuxfeldt.cadastroclientescomdb.database.AppDataBase;
 import com.anamuxfeldt.cadastroclientescomdb.database.ClienteDataModel;
+import com.anamuxfeldt.cadastroclientescomdb.database.ClientePFDataModel;
 import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteController extends AppDataBase {
@@ -54,7 +49,7 @@ public class ClienteController extends AppDataBase {
     }
     public List<Cliente> listar(){
 
-        return list(TABELA);
+        return listClientes(TABELA);
     }
 
     public int getUltimoID(){

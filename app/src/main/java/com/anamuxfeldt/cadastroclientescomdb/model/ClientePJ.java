@@ -8,12 +8,12 @@ public class ClientePJ extends ClientePF{
     private boolean simplesNacional;
     private boolean mei;
 
-    public int getFk() {
+    public int getClienteID() {
         return fk;
     }
 
-    public void setFk(int fk) {
-        this.fk = fk;
+    public void setClienteID(int clienteID) {
+        this.fk = clienteID;
     }
 
     public String getCnpj() {

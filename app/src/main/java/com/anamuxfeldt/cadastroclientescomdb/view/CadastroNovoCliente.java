@@ -14,19 +14,16 @@ import android.widget.Toast;
 
 import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
 import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityCadastroNovoClienteCardBinding;
-import com.anamuxfeldt.cadastroclientescomdb.model.CadastrarClientePF;
-import com.anamuxfeldt.cadastroclientescomdb.model.CadastrarClientePJ;
 import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
-import com.anamuxfeldt.cadastroclientescomdb.model.ICadastroCliente;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class CadastroNovoCliente extends AppCompatActivity {
     private ActivityCadastroNovoClienteCardBinding binding;
-    ICadastroCliente cadastroCliente;
     ClienteController clienteController;
     Cliente cliente;
     private SharedPreferences preferences;
-    int ultimoID;
+    int clienteID;
+    boolean isPessoaFisica;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,28 +32,27 @@ public class CadastroNovoCliente extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        cliente = new Cliente();
-        clienteController = new ClienteController(this);
+
         binding.btnSalvarEContinuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (validarDados()) {
 
-                    if (binding.ckPessoaFisica.isChecked()) {
-                        cadastroCliente = new CadastrarClientePF();
-                    } else {
-                        cadastroCliente = new CadastrarClientePJ();
-                    }
                     cliente.setPrimeiroNome(binding.editPrimeiroNome.getText().toString());
                     cliente.setSobrenome(binding.editSobrenome.getText().toString());
-                    cliente.setPessoaFisica(cliente.isPessoaFisica());
+                    cliente.setEmail(binding.editEmail.getText().toString());
+                    cliente.setSenha(binding.editSenha.getText().toString());
+                    cliente.setPessoaFisica(isPessoaFisica);
                     clienteController.incluir(cliente);
-                    ultimoID = clienteController.getUltimoID();
+                    clienteID = clienteController.getUltimoID();
                     salvarSharedPreferences();
 
-                    Intent intent = cadastroCliente.cadastrar(CadastroNovoCliente.this);
-                    startActivity(intent);
-                    finish();
+                    if (binding.ckPessoaFisica.isChecked()) {
+                        Intent intent = new Intent(CadastroNovoCliente.this, PessoaFisica.class);
+                        startActivity(intent);
+                        finish();
+
+                    }
                 }
             }
         });
@@ -99,23 +95,64 @@ public class CadastroNovoCliente extends AppCompatActivity {
             binding.editSobrenome.requestFocus();
             retorno = false;
         }
+        if (TextUtils.isEmpty(binding.editEmail.getText().toString())) {
+            binding.editEmail.setError("*");
+            binding.editEmail.requestFocus();
+            retorno = false;
+        }
+        if (TextUtils.isEmpty((binding.editSenha.getText().toString()))) {
+            binding.editSenha.setError("*");
+            binding.editSenha.requestFocus();
+            retorno = false;
+        }
+        if (TextUtils.isEmpty((binding.editConfirmaSenha.getText().toString()))) {
+            binding.editConfirmaSenha.setError("*");
+            binding.editConfirmaSenha.requestFocus();
+            retorno = false;
+        }
+        if (!validarSenha()) {
+            Toast.makeText(getApplicationContext(), "As senhas digitadas não conferem...",
+                    Toast.LENGTH_LONG).show();
+        }
 
         if (!binding.ckPoliticaEPrivacidade.isChecked()) {
             binding.ckPoliticaEPrivacidade.setError("Obrigatório");
             retorno = false;
         }
+        cliente = new Cliente();
+        clienteController = new ClienteController(this);
         return retorno;
     }
+
+    private boolean validarSenha() {
+        boolean retorno = false;
+        int senhaA, senhaB;
+
+        senhaA = Integer.parseInt(binding.editSenha.getText().toString());
+        senhaB = Integer.parseInt(binding.editConfirmaSenha.getText().toString());
+
+        retorno = (senhaA == senhaB);
+
+        return retorno;
+    }
+
 
     private void salvarSharedPreferences() {
         preferences = getSharedPreferences(SplashActivity.PREF_APP, MODE_PRIVATE);
         SharedPreferences.Editor dados = preferences.edit();
 
-        dados.putString("primeiroNome", binding.editPrimeiroNome.getText().toString());
-        dados.putString("sobreNome", binding.editSobrenome.getText().toString());
-        dados.putBoolean("pessoaFisica", binding.ckPessoaFisica.isChecked());
-        dados.putInt("ultimoID", ultimoID);
+        dados.putString("primeiroNome", cliente.getPrimeiroNome());
+        dados.putString("sobreNome",cliente.getSobrenome());
+        dados.putString("email", binding.editEmail.getText().toString());
+        dados.putString("senha", binding.editSenha.getText().toString());
+        dados.putBoolean("pessoaFisica", cliente.isPessoaFisica());
+        dados.putInt("clienteID", clienteID);
         dados.apply();
     }
 
+    public void pessoaFisica(View view) {
+
+        isPessoaFisica = binding.ckPessoaFisica.isChecked();
+
+    }
 }
