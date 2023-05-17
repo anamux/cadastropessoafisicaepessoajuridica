@@ -21,6 +21,7 @@ public class PessoaFisica extends AppCompatActivity {
     private SharedPreferences preferences;
     ClientePFController controller;
     ClientePF clientePF;
+    Cliente cliente;
     boolean isPessoaFisica;
     int clienteID, ultimoIDPF;
 
@@ -32,6 +33,7 @@ public class PessoaFisica extends AppCompatActivity {
         setContentView(view);
 
         clientePF = new ClientePF();
+        cliente = new Cliente();
         controller = new ClientePFController(this);
         restaurarSharedPreferences();
         binding.btnSalvarEContinuar.setOnClickListener(new View.OnClickListener() {
@@ -49,13 +51,11 @@ public class PessoaFisica extends AppCompatActivity {
                     Intent intent;
                     if (isPessoaFisica) {
                         intent = new Intent(PessoaFisica.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
                     } else {
-                        intent = new Intent(PessoaFisica.this, PessoaFisica.class);
-                        startActivity(intent);
-                        finish();
+                        intent = new Intent(PessoaFisica.this, PessoaJuridica.class);
                     }
+                    startActivity(intent);
+                    finish();
 
                 }
             }

@@ -9,7 +9,7 @@ public class ClientePFDataModel {
     public static final String ID = "id";
     public static final String FK = "clienteID";
     public static final String CPF = "cpf";
-
+    public static final String DATA_NASCIMENTO = "dataNascimento";
     private static final String DATA_INC = "datainc";
     private static final String DATA_ALT = "dataalt";
 
@@ -21,10 +21,10 @@ public class ClientePFDataModel {
         query += ID+" INTEGER PRIMARY KEY AUTOINCREMENT, ";
         query += FK+" INTEGER, ";
         query += CPF+" TEXT, ";
-
-        query += DATA_INC+" TEXT, ";
-        query += DATA_ALT+" TEXT, ";
-        query += "FOREIGN KEY("+FK+") REFERENCES cliente(id) ";
+        query += DATA_NASCIMENTO+" TEXT, ";
+        query += DATA_INC+" DATETIME DEFAULT CURRENT_TIMESTAMP, ";
+        query += DATA_ALT+" DATETIME DEFAULT CURRENT_TIMESTAMP, ";
+        query += "FOREIGN KEY("+FK+") REFERENCES cliente (id) ";
 
         query += ")";
         Log.d("ClientePFDataModel", "gerarTabela: " +query);

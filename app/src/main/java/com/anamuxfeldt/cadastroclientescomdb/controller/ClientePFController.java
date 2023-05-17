@@ -28,6 +28,7 @@ public class ClientePFController extends AppDataBase {
 
 
 
+
         return update(TABELA, dados);
     }
     public boolean deletar(ClientePF obj){
@@ -38,6 +39,7 @@ public class ClientePFController extends AppDataBase {
 
         dados.put(ClientePFDataModel.FK, obj.getClienteID());
         dados.put(ClientePFDataModel.CPF, obj.getCpf());
+        dados.put(ClientePFDataModel.DATA_NASCIMENTO, obj.getDataNascimento());
 
 
         return insert(TABELA, dados);

@@ -13,18 +13,22 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
-import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityCadastroClientePjBinding;
+
+import com.anamuxfeldt.cadastroclientescomdb.controller.ClientePJController;
 import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityCadastroClientePjCardBinding;
 import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
+import com.anamuxfeldt.cadastroclientescomdb.model.ClientePJ;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class PessoaJuridica extends AppCompatActivity {
     private ActivityCadastroClientePjCardBinding binding;
     Cliente cliente;
+    ClientePJ clientePJ;
+    ClientePJController controller;
     private SharedPreferences preferences;
     private boolean isSimplesNacional;
     private boolean isMei;
+    int ultimoIDPF;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,11 @@ public class PessoaJuridica extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        clientePJ = new ClientePJ();
+        cliente = new Cliente();
+        controller = new ClientePJController(this);
+
+        restaurarSharedPreferences();
         binding.btnSalvarEContinuar.setOnClickListener(new View.OnClickListener() {
             Intent intent;
 
@@ -42,9 +51,19 @@ public class PessoaJuridica extends AppCompatActivity {
                 intent = new Intent();
 
                 if (isDadosOk) {
+                    clientePJ.setClientePFID(ultimoIDPF);
+                    clientePJ.setCnpj(binding.editCnpj.getText().toString());
+                    clientePJ.setRazaoSocial(binding.editRazaoSocial.getText().toString());
+                    clientePJ.setDataAbertura(binding.editAbertura.getText().toString());
+                    clientePJ.setSimplesNacional(isSimplesNacional);
+                    clientePJ.setMei(isMei);
+
+
+                    controller.incluir(clientePJ);
+                    ultimoIDPF = controller.getUltimoID();
                     if (validarFormulario()) {
                         salvarSharedPreferences();
-                        intent = new Intent(PessoaJuridica.this, PessoaFisica.class);
+                        intent = new Intent(PessoaJuridica.this, MainActivity.class);
                     } else {
                         Toast.makeText(getApplicationContext(), "Verifique os dados...",
                                 Toast.LENGTH_SHORT).show();
@@ -91,6 +110,11 @@ public class PessoaJuridica extends AppCompatActivity {
         });
     }
 
+    private void restaurarSharedPreferences() {
+        preferences = getSharedPreferences(SplashActivity.PREF_APP, MODE_PRIVATE);
+        ultimoIDPF = preferences.getInt("ultimoIDClientePessoaPF", -1);
+    }
+
     private boolean validarFormulario() {
         boolean isDadosOk = true;
         salvarSharedPreferences();
@@ -124,6 +148,7 @@ public class PessoaJuridica extends AppCompatActivity {
         dados.putString("dataDeAbertura", binding.editAbertura.getText().toString());
         dados.putBoolean("simplesNacional", isSimplesNacional);
         dados.putBoolean("mei", isMei);
+        dados.putInt("ultimoClientePF", ultimoIDPF);
         dados.apply();
 
     }

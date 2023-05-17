@@ -32,6 +32,8 @@ public class CadastroNovoCliente extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        cliente = new Cliente();
+        clienteController = new ClienteController(this);
 
         binding.btnSalvarEContinuar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,16 +45,17 @@ public class CadastroNovoCliente extends AppCompatActivity {
                     cliente.setEmail(binding.editEmail.getText().toString());
                     cliente.setSenha(binding.editSenha.getText().toString());
                     cliente.setPessoaFisica(isPessoaFisica);
+
                     clienteController.incluir(cliente);
                     clienteID = clienteController.getUltimoID();
                     salvarSharedPreferences();
 
-                    if (binding.ckPessoaFisica.isChecked()) {
+
                         Intent intent = new Intent(CadastroNovoCliente.this, PessoaFisica.class);
                         startActivity(intent);
                         finish();
 
-                    }
+
                 }
             }
         });
@@ -119,8 +122,7 @@ public class CadastroNovoCliente extends AppCompatActivity {
             binding.ckPoliticaEPrivacidade.setError("Obrigatório");
             retorno = false;
         }
-        cliente = new Cliente();
-        clienteController = new ClienteController(this);
+
         return retorno;
     }
 

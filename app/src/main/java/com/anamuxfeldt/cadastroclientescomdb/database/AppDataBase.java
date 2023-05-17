@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 
 import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
 import com.anamuxfeldt.cadastroclientescomdb.model.ClientePF;
+import com.anamuxfeldt.cadastroclientescomdb.model.ClientePJ;
 import com.anamuxfeldt.cadastroclientescomdb.view.MainActivity;
 
 import java.util.ArrayList;
@@ -26,15 +27,17 @@ public class AppDataBase extends SQLiteOpenHelper {
 
     public AppDataBase(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
-        db = getWritableDatabase();
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        /**
+         * Criando o DB
+         */
         try {
 
             db.execSQL(ClienteDataModel.gerarTabela());
-            Log.i(MainActivity.LOG_APP, "tabela cliente: " + ClienteDataModel.gerarTabela());
+            Log.d(MainActivity.LOG_APP, "tabela cliente: " + ClienteDataModel.gerarTabela());
 
         } catch (SQLException e) {
             Log.e(MainActivity.LOG_APP, "Erro DB cliente:" + e.getMessage());
@@ -43,7 +46,7 @@ public class AppDataBase extends SQLiteOpenHelper {
         try {
 
             db.execSQL(ClientePFDataModel.gerarTabela());
-            Log.i(MainActivity.LOG_APP, "tabela clientePF: " + ClientePFDataModel.gerarTabela());
+            Log.d(MainActivity.LOG_APP, "tabela clientePF: " + ClientePFDataModel.gerarTabela());
 
         } catch (SQLException e) {
             Log.e(MainActivity.LOG_APP, "Erro DB cliente:" + e.getMessage());
@@ -52,7 +55,7 @@ public class AppDataBase extends SQLiteOpenHelper {
         try {
 
             db.execSQL(ClientePJDataModel.gerarTabela());
-            Log.i(MainActivity.LOG_APP, "tabela clientePJ: " + ClientePJDataModel.gerarTabela());
+            Log.d(MainActivity.LOG_APP, "tabela clientePJ: " + ClientePJDataModel.gerarTabela());
 
         } catch (SQLException e) {
             Log.e(MainActivity.LOG_APP, "Erro DB cliente:" + e.getMessage());
@@ -167,6 +170,38 @@ public class AppDataBase extends SQLiteOpenHelper {
                     clientePF.setCpf(cursor.getString(cursor.getColumnIndexOrThrow(ClientePFDataModel.CPF)));
 
                     list.add(clientePF);
+                } while (cursor.moveToNext());
+                Log.e(MainActivity.LOG_APP, tabela + " lista gerada");
+            }
+
+        } catch (SQLException e) {
+            Log.e(MainActivity.LOG_APP, "Erro ao listar dados " + tabela);
+            Log.e(MainActivity.LOG_APP, "Erro: " + e.getMessage());
+        }
+        return list;
+    }
+    public List<ClientePJ> listClientesPJ(String tabela) {
+        List<ClientePJ> list = new ArrayList<>();
+        ClientePJ clientePJ;
+        String sql = "SELECT * FROM " + tabela;
+        try {
+
+            cursor = db.rawQuery(sql, null);
+            if (cursor.moveToFirst()) {
+                do {
+
+                    clientePJ = new ClientePJ();
+
+                    clientePJ.setId(cursor.getInt(cursor.getColumnIndexOrThrow(ClientePJDataModel.ID)));
+                    clientePJ.setClientePFID(cursor.getInt(cursor.getColumnIndexOrThrow(ClientePJDataModel.FK)));
+
+                    clientePJ.setRazaoSocial(cursor.getString(cursor.getColumnIndexOrThrow(ClientePJDataModel.RAZAO_SOCIAL)));
+                    clientePJ.setRazaoSocial(cursor.getString(cursor.getColumnIndexOrThrow(ClientePJDataModel.RAZAO_SOCIAL)));
+                    clientePJ.setDataAbertura(cursor.getString(cursor.getColumnIndexOrThrow(ClientePJDataModel.DATA_ABERTURA)));
+                    clientePJ.setSimplesNacional(cursor.getInt(cursor.getColumnIndexOrThrow(ClientePJDataModel.SIMPLES_NACIONAL))==1);
+                    clientePJ.setMei(cursor.getInt(cursor.getColumnIndexOrThrow(ClientePJDataModel.MEI))==1);
+
+                    list.add(clientePJ);
                 } while (cursor.moveToNext());
                 Log.e(MainActivity.LOG_APP, tabela + " lista gerada");
             }

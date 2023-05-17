@@ -6,10 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
+import com.anamuxfeldt.cadastroclientescomdb.database.AppDataBase;
 import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivitySplashBinding;
 
 public class SplashActivity extends AppCompatActivity {
@@ -19,12 +21,16 @@ public class SplashActivity extends AppCompatActivity {
     boolean isLembrarSenha = false;
     private SharedPreferences preferences;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySplashBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        AppDataBase dataBase = new AppDataBase(this);
+        dataBase.getWritableDatabase();
 
         salvarSharedPreferences();
         restaurarSharedPreferences();

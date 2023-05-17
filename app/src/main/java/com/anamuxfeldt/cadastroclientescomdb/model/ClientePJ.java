@@ -1,19 +1,30 @@
 package com.anamuxfeldt.cadastroclientescomdb.model;
 
 public class ClientePJ extends ClientePF{
-    private int fk;
+    private int id;
+    private int clientePFID; //fk
     private String cnpj;
     private String razaoSocial;
     private String dataAbertura;
     private boolean simplesNacional;
     private boolean mei;
 
-    public int getClienteID() {
-        return fk;
+    @Override
+    public int getId() {
+        return id;
     }
 
-    public void setClienteID(int clienteID) {
-        this.fk = clienteID;
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getClientePFID() {
+        return clientePFID;
+    }
+
+    public void setClientePFID(int clientePFID) {
+        this.clientePFID = clientePFID;
     }
 
     public String getCnpj() {
