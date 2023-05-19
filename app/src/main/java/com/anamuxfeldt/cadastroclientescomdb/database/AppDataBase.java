@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
 import com.anamuxfeldt.cadastroclientescomdb.model.ClientePF;
 import com.anamuxfeldt.cadastroclientescomdb.model.ClientePJ;
+import com.anamuxfeldt.cadastroclientescomdb.model.ClienteTeste;
 import com.anamuxfeldt.cadastroclientescomdb.view.MainActivity;
 
 import java.util.ArrayList;
@@ -59,6 +60,14 @@ public class AppDataBase extends SQLiteOpenHelper {
 
         } catch (SQLException e) {
             Log.e(MainActivity.LOG_APP, "Erro DB cliente:" + e.getMessage());
+        }
+        try {
+
+            db.execSQL(TesteDataModel.gerarTabela());
+            Log.d(MainActivity.LOG_APP, "tabela TESTE: " + TesteDataModel.gerarTabela());
+
+        } catch (SQLException e) {
+            Log.e(MainActivity.LOG_APP, "Erro DB TESTE:" + e.getMessage());
         }
     }
 

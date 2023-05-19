@@ -13,14 +13,18 @@ import android.widget.Toast;
 
 
 import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
+import com.anamuxfeldt.cadastroclientescomdb.controller.TesteController;
 import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityCadastroNovoClienteCardBinding;
 import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
+import com.anamuxfeldt.cadastroclientescomdb.model.ClienteTeste;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class CadastroNovoCliente extends AppCompatActivity {
     private ActivityCadastroNovoClienteCardBinding binding;
     ClienteController clienteController;
     Cliente cliente;
+    ClienteTeste clienteTeste;
+    TesteController testeController;
     private SharedPreferences preferences;
     int clienteID;
     boolean isPessoaFisica;
@@ -33,7 +37,9 @@ public class CadastroNovoCliente extends AppCompatActivity {
         setContentView(view);
 
         cliente = new Cliente();
+        clienteTeste = new ClienteTeste();
         clienteController = new ClienteController(this);
+        testeController = new TesteController(this);
 
         binding.btnSalvarEContinuar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,7 +52,11 @@ public class CadastroNovoCliente extends AppCompatActivity {
                     cliente.setSenha(binding.editSenha.getText().toString());
                     cliente.setPessoaFisica(isPessoaFisica);
 
+                    clienteTeste.setPrimeiroNome(binding.editPrimeiroNome.getText().toString());
+
+
                     clienteController.incluir(cliente);
+               //     testeController.incluir(clienteTeste);
                     clienteID = clienteController.getUltimoID();
                     salvarSharedPreferences();
 
