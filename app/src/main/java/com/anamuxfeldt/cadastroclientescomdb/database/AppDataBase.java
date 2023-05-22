@@ -18,15 +18,23 @@ import com.anamuxfeldt.cadastroclientescomdb.view.MainActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.security.auth.login.LoginException;
+
 public class AppDataBase extends SQLiteOpenHelper {
     private static final String DB_NAME = "clienteDB.sqlite";
     private static final int DB_VERSION = 1;
     Cursor cursor;
+    Context context;
 
     SQLiteDatabase db;
 
     public AppDataBase(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
+
+
+        this.context = context;
+
+        db = getWritableDatabase();
     }
 
     @Override
@@ -236,5 +244,27 @@ public class AppDataBase extends SQLiteOpenHelper {
             Log.e(MainActivity.LOG_APP, "Erro: " + e.getMessage());
         }
         return -1;
+    }
+    public Cliente getClienteById(String tabela, Cliente obj){
+
+        Cliente cliente = new Cliente();;
+        String sql = "SELECT * FROM "+tabela+" WHERE id = "+obj.getId();
+        try{
+            cursor=db.rawQuery(sql, null);
+            if (cursor.moveToNext()){
+
+                cliente.setPrimeiroNome(cursor.getString(cursor.getColumnIndexOrThrow(ClienteDataModel.PRIMEIRO_NOME)));
+                cliente.setSobrenome(cursor.getString(cursor.getColumnIndexOrThrow(ClienteDataModel.SOBRENOME)));
+                cliente.setEmail(cursor.getString(cursor.getColumnIndexOrThrow(ClienteDataModel.EMAIL)));
+                cliente.setSenha(cursor.getString(cursor.getColumnIndexOrThrow(ClienteDataModel.SENHA)));
+                cliente.setPessoaFisica(cursor.getInt(cursor.getColumnIndexOrThrow(ClienteDataModel.PESSOAFISICA))==1);
+            }
+        }catch (SQLException e){
+
+            Log.e(MainActivity.LOG_APP, "Erro: getClienteById "+obj.getId());
+            Log.e(MainActivity.LOG_APP, "Erro: "+e.getMessage());
+        }
+
+        return cliente;
     }
 }

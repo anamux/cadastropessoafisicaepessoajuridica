@@ -70,11 +70,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void meusDados(View view) {
 
-        Log.i(LOG_APP, "meusDados:**DADOS CLIENTE** ");
-        Log.i(LOG_APP, "meusDados:Primeiro Nome:  "+cliente.getPrimeiroNome());
-        Log.i(LOG_APP, "meusDados:Sobrenome:  "+cliente.getSobrenome());
-        Log.i(LOG_APP, "meusDados:Email:  "+clientePF.getEmail());
-        Log.i(LOG_APP, "meusDados:Data Nascimento:  "+clientePF.getDataNascimento());
+       Intent intent = new Intent(MainActivity.this, MeusDados.class);
+       startActivity(intent);
 
     }
 
