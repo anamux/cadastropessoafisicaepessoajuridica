@@ -50,9 +50,6 @@ public class ClientePJController extends AppDataBase {
         dados.put(ClientePJDataModel.SIMPLES_NACIONAL, obj.isSimplesNacional());
         dados.put(ClientePJDataModel.MEI, obj.isMei());
 
-
-
-
         return insert(TABELA, dados);
     }
     public List<ClientePJ> listar(){
@@ -63,4 +60,5 @@ public class ClientePJController extends AppDataBase {
     public int getUltimoID(){
         return  getLastPK(TABELA);
     }
+
 }

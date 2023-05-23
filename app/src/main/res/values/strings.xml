@@ -20,7 +20,7 @@
     <!--Stings tela Cadastro Pessoa Jurídica -->
     <string name="pessoa_pj">Pessoa Jurídica</string>
     <string name="cnpj">CNPJ</string>
-    <string name="digite_o_cnpj">Digite o CNPJ...</string>
+    <string name="digite_o_cnpj">Digite o CNPJ, somente os números...</string>
     <string name="raz_o_social">Razão Social</string>
     <string name="data_de_abertura_da_empresa">Data de Abertura da Empresa</string>
     <string name="mei">MEI</string>
@@ -36,6 +36,7 @@
     <string name="cadastar">CADASTRAR</string>
     <string name="credenciais_de_acesso">Credenciais de Acesso</string>
     <string name="senha">Senha</string>
+    <string name="digite_o_cpf">Digite o CPF, somente os números...</string>
     <!--Tela Main -->
     <string name="meus_dados">Meus Dados</string>
     <string name="atualizar_meus_dados">Atualizar Meus Dados</string>
@@ -46,6 +47,7 @@
     <string name="acessar">ACESSAR</string>
     <string name="versao">Versão</string>
     <string name="voc_novo_por_aqui">Você é novo por aqui?</string>
+
 
 
 </resources>

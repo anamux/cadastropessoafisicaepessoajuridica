@@ -112,7 +112,7 @@ public class PessoaJuridica extends AppCompatActivity {
 
     private void restaurarSharedPreferences() {
         preferences = getSharedPreferences(SplashActivity.PREF_APP, MODE_PRIVATE);
-        ultimoIDPF = preferences.getInt("ultimoIDClientePessoaPF", -1);
+        ultimoIDPF = preferences.getInt("ultimoIDClientePessoaPF", 1);
     }
 
     private boolean validarFormulario() {
