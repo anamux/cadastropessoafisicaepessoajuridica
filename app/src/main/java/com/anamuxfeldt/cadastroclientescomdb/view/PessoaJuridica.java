@@ -119,10 +119,19 @@ public class PessoaJuridica extends AppCompatActivity {
         boolean isDadosOk = true;
         salvarSharedPreferences();
 
-        if (TextUtils.isEmpty(binding.editCnpj.getText().toString())) {
+        String cnpj = binding.editCnpj.getText().toString();
+        if (TextUtils.isEmpty(cnpj)) {
             binding.editCnpj.setError("*");
             binding.editCnpj.requestFocus();
             isDadosOk = false;
+        }
+        if (!ClientePJ.isCnpj(cnpj)){
+            binding.editCnpj.setError("*");
+            binding.editCnpj.requestFocus();
+            isDadosOk = false;
+            Toast.makeText(this, "CNPJ inválido, tente novamente", Toast.LENGTH_LONG).show();
+        }else {
+            binding.editCnpj.setText(ClientePJ.mascaraCnpj(cnpj));
         }
         if (TextUtils.isEmpty((binding.editRazaoSocial.getText().toString()))) {
             binding.editRazaoSocial.setError("*");

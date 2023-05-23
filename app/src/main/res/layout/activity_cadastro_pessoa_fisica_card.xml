@@ -83,7 +83,7 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
                         android:ems="10"
-                        android:hint="Digite o CPF..."
+                        android:hint="@string/digite_o_cpf"
                         android:inputType="number" />
 
                     <TextView

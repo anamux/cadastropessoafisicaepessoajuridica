@@ -101,11 +101,20 @@ public class PessoaFisica extends AppCompatActivity {
     private boolean validarFormulario() {
         boolean isDadosOk = true;
 
-
-        if (TextUtils.isEmpty((binding.editCpf.getText().toString()))) {
+        String cpf = binding.editCpf.getText().toString();
+        if (TextUtils.isEmpty(cpf)) {
             binding.editCpf.setError("*");
             binding.editCpf.requestFocus();
             isDadosOk = false;
+        }
+        if (!ClientePF.isCPF(cpf)){
+            binding.editCpf.setError("*");
+            binding.editCpf.requestFocus();
+            isDadosOk = false;
+            Toast.makeText(this, "CPF inválido, tente novamente", Toast.LENGTH_LONG).show();
+        }else {
+            binding.editCpf.setText(ClientePF.mascaraCPF(cpf));
+
         }
         if (TextUtils.isEmpty((binding.editDataNascimento.getText().toString()))) {
             binding.editDataNascimento.setError("*");
