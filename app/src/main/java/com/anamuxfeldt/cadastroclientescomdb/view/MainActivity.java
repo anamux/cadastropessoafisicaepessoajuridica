@@ -24,9 +24,10 @@ public class MainActivity extends AppCompatActivity {
     Cliente cliente;
     ClientePF clientePF;
     ClientePJ clientePJ;
+    ClienteController clienteController;
     private SharedPreferences preferences;
-    public static final String LOG_APP="CLIENTE_LOG";
-    List <Cliente> clientes;
+    public static final String LOG_APP = "CLIENTE_LOG";
+    List<Cliente> clientes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +41,9 @@ public class MainActivity extends AppCompatActivity {
         clientePJ = new ClientePJ();
 
         restaurarSharedPreferences();
-       // buscarListadeClientes();
+        // buscarListadeClientes();
 
-        binding.bemVindo.setText("Olá "+cliente.getPrimeiroNome());
+        binding.bemVindo.setText("Olá " + cliente.getPrimeiroNome());
 
 
     }
@@ -70,28 +71,28 @@ public class MainActivity extends AppCompatActivity {
 
     public void meusDados(View view) {
 
-       Intent intent = new Intent(MainActivity.this, MeusDados.class);
-       startActivity(intent);
+        Intent intent = new Intent(MainActivity.this, MeusDados.class);
+        startActivity(intent);
 
     }
 
     public void atualizarMeusDados(View view) {
-        if(cliente.isPessoaFisica()){
+        if (cliente.isPessoaFisica()) {
             cliente.setPrimeiroNome("Ana");
             cliente.setSobrenome("Muxfeldt");
             //salvarSharedPreferences();
 
             Log.i(LOG_APP, "atualizarMeusDados: ***Alterando dados***");
-            Log.i(LOG_APP, "Primeiro Nome: "+cliente.getPrimeiroNome());
-            Log.i(LOG_APP, "Sobrenome: "+cliente.getSobrenome());
+            Log.i(LOG_APP, "Primeiro Nome: " + cliente.getPrimeiroNome());
+            Log.i(LOG_APP, "Sobrenome: " + cliente.getSobrenome());
             Log.i(LOG_APP, "***Alterando dados PF***");
-            Log.i(LOG_APP, "Nome Completo: "+clientePF.getSobrenome());
+            Log.i(LOG_APP, "Nome Completo: " + clientePF.getSobrenome());
 
-        }else{
+        } else {
             clientePJ.setCnpj("00111222000100");
 
             Log.i(LOG_APP, "***Alterando dados PJ***");
-            Log.i(LOG_APP, "CNPJ: "+clientePJ.getCnpj());
+            Log.i(LOG_APP, "CNPJ: " + clientePJ.getCnpj());
 
         }
     }
@@ -101,20 +102,20 @@ public class MainActivity extends AppCompatActivity {
                 .setTitle("Excluir sua conta?")
                 .setMessage("Essa é uma ação definitiva. Confirma a exclusão?")
                 .setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(MainActivity.this, cliente.getPrimeiroNome(
-                        ) + " sua conta será excluída", Toast.LENGTH_SHORT).show();
-                        dialogInterface.dismiss();
-                        cliente = new Cliente();
-                        clientePF = new ClientePF();
-                        clientePJ = new ClientePJ();
-                        
-                        salvarSharedPreferences();
-                        finish();
-                    }
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(MainActivity.this, cliente.getPrimeiroNome(
+                                ) + " sua conta será excluída", Toast.LENGTH_SHORT).show();
+                                dialogInterface.dismiss();
+                                cliente = new Cliente();
+                                clientePF = new ClientePF();
+                                clientePJ = new ClientePJ();
 
-                }
+                                salvarSharedPreferences();
+                                finish();
+                            }
+
+                        }
                 )
 
                 .setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
@@ -139,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         binding.btnConsultarClientes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(MainActivity.this, ConsultarClientes.class);
+                Intent intent = new Intent(MainActivity.this, ConsultarClientes.class);
                 startActivity(intent);
 
             }

@@ -7,11 +7,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
-import com.anamuxfeldt.cadastroclientescomdb.R;
 import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
-import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityMainBinding;
 import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityMeusDadosBinding;
 import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -31,18 +28,26 @@ public class MeusDados extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+
+        restaurarSharedPreferences();
+
+
+
         cliente = new Cliente();
         cliente.setId(clienteID);
         controller=new ClienteController(this);
 
-
-        restaurarSharedPreferences();
         buscarDados();
     }
 
     private void buscarDados() {
     if (clienteID>=1){
-    cliente= controller.getClienteId(cliente);
+    cliente = controller.getClienteById(cliente);
+    binding.editPrimeiroNome.setText(cliente.getPrimeiroNome());
+    binding.editSobrenome.setText(cliente.getSobrenome());
+    binding.editEmail.setText(cliente.getEmail());
+    binding.editSenha.setText(cliente.getSenha());
+    binding.ckPessoaFisica.setChecked(cliente.isPessoaFisica());
     }else {
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(MeusDados.this)
                 .setTitle("Atenção")
@@ -68,8 +73,8 @@ public class MeusDados extends AppCompatActivity {
     private void restaurarSharedPreferences() {
         preferences = getSharedPreferences(SplashActivity.PREF_APP, MODE_PRIVATE);
         isPessoaFisica = preferences.getBoolean("pessoaFisica", true);
-        clienteID = preferences.getInt("clienteID", -1);
+        clienteID = preferences.getInt("clienteID", 0);
 
-        clienteID= -1;
+      ///  clienteID= -1;
     }
 }

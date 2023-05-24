@@ -31,8 +31,8 @@ public class SplashActivity extends AppCompatActivity {
         AppDataBase dataBase = new AppDataBase(this);
         dataBase.getWritableDatabase();
 
-        salvarSharedPreferences();
         restaurarSharedPreferences();
+        salvarSharedPreferences();
         trocarTela();
 
     }

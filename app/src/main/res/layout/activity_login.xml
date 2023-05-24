@@ -90,6 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
+                android:onClick="lembrarSenha"
                 android:textAppearance="@android:style/TextAppearance.Holo.Large"
                 android:textColor="@color/CustomColor1"
                 android:text="@string/lembrar"

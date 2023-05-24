@@ -20,7 +20,7 @@ import com.squareup.picasso.Picasso;
 public class Login extends AppCompatActivity {
     private ActivityLoginBinding binding;
     private SharedPreferences preferences;
-    boolean isLembrarSenha, isDadosOk;
+    boolean isLembrarSenha;
     Cliente cliente;
     ClienteController controller;
     public static final String URL_IMG_BACKGROUND = "https://www.marcomaddo.com.br/aluno/daazi/img/app-cliente-vip-login-bg.jpg";
@@ -47,9 +47,11 @@ public class Login extends AppCompatActivity {
            // cliente.setId(10);
             //controller.deletar(cliente);
         // }
-
+        restaurarSharedPreferences();
 
         loadImagens();
+
+
 
         binding.txtPoliticaETermos.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +114,8 @@ public class Login extends AppCompatActivity {
         binding.btnAcessar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isDadosOk = validarFormulario()) {
+
+                if (validarFormulario()) {
 
                     if (validarDadosUsuario()) {
                         salvarSharedPreferences();
@@ -133,15 +136,6 @@ public class Login extends AppCompatActivity {
     private void loadImagens() {
     Picasso.get().load(URL_IMG_BACKGROUND).placeholder(R.drawable.carregando_img).into(binding.imgBackground);
     Picasso.get().load(URL_IMG_LOGO).placeholder(R.drawable.carregando_animacao).into(binding.imgLogo);
-    }
-
-    private void salvarSharedPreferences() {
-        preferences = getSharedPreferences(SplashActivity.PREF_APP, MODE_PRIVATE);
-        SharedPreferences.Editor dados = preferences.edit();
-
-        dados.putBoolean("loginAutomatico", isLembrarSenha);
-        dados.putString("emailCliente", binding.editEmail.getText().toString());
-        dados.apply();
     }
 
     private boolean validarDadosUsuario() {
@@ -166,7 +160,25 @@ public class Login extends AppCompatActivity {
 
     public void lembrarSenha(View view) {
         isLembrarSenha = binding.ckLembrar.isChecked();
-        salvarSharedPreferences();
+
+    }
+
+    private void salvarSharedPreferences(){
+        preferences = getSharedPreferences(SplashActivity.PREF_APP, MODE_PRIVATE);
+        SharedPreferences.Editor dados = preferences.edit();
+
+        dados.putBoolean("loginAutomatico", isLembrarSenha);
+        dados.putString("emailCliente", binding.editEmail.getText().toString());
+        dados.apply();
+    }
+    private void restaurarSharedPreferences() {
+        preferences = getSharedPreferences(SplashActivity.PREF_APP, MODE_PRIVATE);
+
+        cliente.setEmail(preferences.getString("email", "teste@teste.com"));
+        cliente.setSenha(preferences.getString("senha", "12345"));
+
+        isLembrarSenha = preferences.getBoolean("loginAutomatico", false);
+
     }
 
 }
