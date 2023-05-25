@@ -34,6 +34,7 @@ public class CadastroNovoCliente extends AppCompatActivity {
 
         cliente = new Cliente();
         clienteController = new ClienteController(this);
+        restaurarSharedPreferences();
 
         binding.btnSalvarEContinuar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,6 +151,11 @@ public class CadastroNovoCliente extends AppCompatActivity {
         dados.putBoolean("pessoaFisica", cliente.isPessoaFisica());
         dados.putInt("clienteID", clienteID);
         dados.apply();
+    }
+    private void restaurarSharedPreferences() {
+
+        preferences = getSharedPreferences(SplashActivity.PREF_APP, MODE_PRIVATE);
+
     }
 
     public void pessoaFisica(View view) {

@@ -43,12 +43,9 @@ public class PessoaJuridica extends AppCompatActivity {
 
         restaurarSharedPreferences();
         binding.btnSalvarEContinuar.setOnClickListener(new View.OnClickListener() {
-            Intent intent;
-
             @Override
             public void onClick(View view) {
                 boolean isDadosOk = validarFormulario();
-                intent = new Intent();
 
                 if (isDadosOk) {
                     clientePJ.setClientePFID(ultimoIDPF);
@@ -58,19 +55,18 @@ public class PessoaJuridica extends AppCompatActivity {
                     clientePJ.setSimplesNacional(isSimplesNacional);
                     clientePJ.setMei(isMei);
 
-
                     controller.incluir(clientePJ);
                     ultimoIDPF = controller.getUltimoID();
-                    if (validarFormulario()) {
-                        salvarSharedPreferences();
-                        intent = new Intent(PessoaJuridica.this, MainActivity.class);
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Verifique os dados...",
-                                Toast.LENGTH_SHORT).show();
-                    }
+                    salvarSharedPreferences();
+
+                    Intent intent = new Intent(PessoaJuridica.this, MainActivity.class);
                     startActivity(intent);
                     finish();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Verifique os dados...",
+                            Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
 
@@ -110,10 +106,6 @@ public class PessoaJuridica extends AppCompatActivity {
         });
     }
 
-    private void restaurarSharedPreferences() {
-        preferences = getSharedPreferences(SplashActivity.PREF_APP, MODE_PRIVATE);
-        ultimoIDPF = preferences.getInt("ultimoIDClientePessoaPF", 0);
-    }
 
     private boolean validarFormulario() {
         boolean isDadosOk = true;
@@ -125,12 +117,12 @@ public class PessoaJuridica extends AppCompatActivity {
             binding.editCnpj.requestFocus();
             isDadosOk = false;
         }
-        if (!ClientePJ.isCnpj(cnpj)){
+        if (!ClientePJ.isCnpj(cnpj)) {
             binding.editCnpj.setError("*");
             binding.editCnpj.requestFocus();
             isDadosOk = false;
             Toast.makeText(this, "CNPJ inválido, tente novamente", Toast.LENGTH_LONG).show();
-        }else {
+        } else {
             binding.editCnpj.setText(ClientePJ.mascaraCnpj(cnpj));
         }
         if (TextUtils.isEmpty((binding.editRazaoSocial.getText().toString()))) {
@@ -160,6 +152,11 @@ public class PessoaJuridica extends AppCompatActivity {
         dados.putInt("ultimoClientePF", ultimoIDPF);
         dados.apply();
 
+    }
+
+    private void restaurarSharedPreferences() {
+        preferences = getSharedPreferences(SplashActivity.PREF_APP, MODE_PRIVATE);
+        ultimoIDPF = preferences.getInt("ultimoClientePF", -1);
     }
 
     public void simplesNacional(View view) {

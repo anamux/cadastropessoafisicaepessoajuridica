@@ -34,7 +34,9 @@ public class PessoaFisica extends AppCompatActivity {
 
         clientePF = new ClientePF();
         cliente = new Cliente();
+
         controller = new ClientePFController(this);
+
         restaurarSharedPreferences();
         binding.btnSalvarEContinuar.setOnClickListener(new View.OnClickListener() {
             @Override

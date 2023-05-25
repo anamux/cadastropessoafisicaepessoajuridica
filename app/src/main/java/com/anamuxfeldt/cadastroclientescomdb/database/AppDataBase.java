@@ -245,7 +245,7 @@ public class AppDataBase extends SQLiteOpenHelper {
         }
         return -1;
     }
-    public Cliente getClienteById(String tabela, Cliente obj){
+    public Cliente getClienteById(String tabela,Cliente obj ){
 
         Cliente cliente = new Cliente();;
         String sql = "SELECT * FROM "+tabela+" WHERE id = "+obj.getId();
@@ -266,5 +266,52 @@ public class AppDataBase extends SQLiteOpenHelper {
         }
 
         return cliente;
+    }
+    public ClientePF getClientePFByFK(String tabela, int idFK ){
+
+        ClientePF clientePF = new ClientePF();;
+        String sql = "SELECT * FROM " +tabela+ " WHERE "+ClientePFDataModel.FK+" = " +idFK;
+        try{
+            cursor=db.rawQuery(sql, null);
+            if (cursor.moveToNext()){
+
+                clientePF.setId(cursor.getInt(cursor.getColumnIndexOrThrow(ClientePFDataModel.ID)));
+                clientePF.setClienteID(cursor.getInt(cursor.getColumnIndexOrThrow(ClientePFDataModel.FK)));
+                clientePF.setCpf(cursor.getString(cursor.getColumnIndexOrThrow(ClientePFDataModel.CPF)));
+                clientePF.setDataNascimento(cursor.getString(cursor.getColumnIndexOrThrow(ClientePFDataModel.DATA_NASCIMENTO)));
+
+            }
+        }catch (SQLException e){
+
+            Log.e(MainActivity.LOG_APP, "Erro: getClienteByFK "+idFK);
+            Log.e(MainActivity.LOG_APP, "Erro: "+e.getMessage());
+        }
+
+        return clientePF;
+    }
+    public ClientePJ getClientePJByFK(String tabela, int idFK ){
+
+        ClientePJ clientePJ = new ClientePJ();;
+        String sql = "SELECT * FROM " +tabela+ " WHERE "+ClientePJDataModel.FK+" = " +idFK;
+        try{
+            cursor=db.rawQuery(sql, null);
+            if (cursor.moveToNext()){
+
+                clientePJ.setId(cursor.getInt(cursor.getColumnIndexOrThrow(ClientePJDataModel.ID)));
+                clientePJ.setClientePFID(cursor.getInt(cursor.getColumnIndexOrThrow(ClientePJDataModel.FK)));
+                clientePJ.setRazaoSocial(cursor.getString(cursor.getColumnIndexOrThrow(ClientePJDataModel.RAZAO_SOCIAL)));
+                clientePJ.setCnpj(cursor.getString(cursor.getColumnIndexOrThrow(ClientePJDataModel.CNPJ)));
+                clientePJ.setDataAbertura(cursor.getString(cursor.getColumnIndexOrThrow(ClientePJDataModel.DATA_ABERTURA)));
+                clientePJ.setSimplesNacional(cursor.getInt(cursor.getColumnIndexOrThrow(ClientePJDataModel.SIMPLES_NACIONAL))==1);
+                clientePJ.setMei(cursor.getInt(cursor.getColumnIndexOrThrow(ClientePJDataModel.MEI))==1);
+
+            }
+        }catch (SQLException e){
+
+            Log.e(MainActivity.LOG_APP, "Erro: getClientePJByFK "+idFK);
+            Log.e(MainActivity.LOG_APP, "Erro: "+e.getMessage());
+        }
+
+        return clientePJ;
     }
 }

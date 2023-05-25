@@ -8,7 +8,9 @@ import androidx.annotation.Nullable;
 
 import com.anamuxfeldt.cadastroclientescomdb.database.AppDataBase;
 import com.anamuxfeldt.cadastroclientescomdb.database.ClientePFDataModel;
+import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
 import com.anamuxfeldt.cadastroclientescomdb.model.ClientePF;
+import com.anamuxfeldt.cadastroclientescomdb.model.ClientePJ;
 
 import java.util.List;
 
@@ -52,4 +54,9 @@ public class ClientePFController extends AppDataBase {
     public int getUltimoID(){
         return  getLastPK(TABELA);
     }
+public ClientePF getClientePFByFK(int idFK){
+
+
+    return getClientePFByFK(ClientePFDataModel.TABELA, idFK);
+}
 }
