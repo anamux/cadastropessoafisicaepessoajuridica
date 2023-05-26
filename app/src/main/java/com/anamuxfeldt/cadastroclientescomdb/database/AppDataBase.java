@@ -14,6 +14,7 @@ import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
 import com.anamuxfeldt.cadastroclientescomdb.model.ClientePF;
 import com.anamuxfeldt.cadastroclientescomdb.model.ClientePJ;
 import com.anamuxfeldt.cadastroclientescomdb.view.MainActivity;
+import com.anamuxfeldt.cadastroclientescomdb.view.SplashActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,7 @@ public class AppDataBase extends SQLiteOpenHelper {
     Context context;
 
     SQLiteDatabase db;
+    private static AppDataBase instance;
 
     public AppDataBase(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -35,12 +37,20 @@ public class AppDataBase extends SQLiteOpenHelper {
         this.context = context;
 
         db = getWritableDatabase();
+        Log.d(MainActivity.LOG_APP, "AppDataBase: Criando DB");
+    }
+
+    public static synchronized AppDataBase getInstance(Context context) {
+        if (instance == null) {
+            instance = new AppDataBase(context.getApplicationContext());
+        }
+        return instance;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         /**
-         * Criando o DB
+         * Criando as tabelas
          */
         try {
 

@@ -47,8 +47,10 @@ public class CadastroNovoCliente extends AppCompatActivity {
                     cliente.setSenha(binding.editSenha.getText().toString());
                     cliente.setPessoaFisica(isPessoaFisica);
 
-                    clienteController.incluir(cliente);
-                    clienteID = clienteController.getUltimoID();
+                    clienteController.incluir(getApplicationContext(),cliente);
+
+                    clienteID = clienteController.getUltimoID(getApplicationContext());
+
                     salvarSharedPreferences();
 
 
