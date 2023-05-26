@@ -50,11 +50,13 @@ public class MeusDados extends AppCompatActivity {
 
     private void buscarDados() {
         if (clienteID >= 1) {
-            cliente = controller.getClienteById(cliente);
-            cliente.setClientePF(clientePFController.getClientePFByFK(clienteID));
+            cliente = controller.getClienteById(getApplicationContext(),cliente);
+            cliente.setClientePF(clientePFController.
+                    getClientePFByFK(getApplicationContext(), clienteID));
 
             if (!cliente.isPessoaFisica())
-                cliente.setClientePJ(clientePJController.getClientePJByFK(cliente.getClientePF().getId()));
+                cliente.setClientePJ(clientePJController.
+                        getClientePJByFK(getApplicationContext(),cliente.getClientePF().getId()));
 
 
             //Obj Cliente

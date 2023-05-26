@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
-import com.anamuxfeldt.cadastroclientescomdb.database.AppDataBase;
 import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivitySplashBinding;
 
 public class SplashActivity extends AppCompatActivity {
@@ -28,9 +27,6 @@ public class SplashActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        AppDataBase dataBase = new AppDataBase(this);
-        dataBase.getWritableDatabase();
-
         restaurarSharedPreferences();
         salvarSharedPreferences();
         trocarTela();
@@ -39,11 +35,12 @@ public class SplashActivity extends AppCompatActivity {
 
     private void trocarTela() {
         new Handler().postDelayed(new Runnable() {
-            Intent intent;
+
 
             @Override
             
             public void run() {
+                Intent intent;
                 if (!isLembrarSenha) {
                     intent = new Intent(SplashActivity.this, Login.class);
 
