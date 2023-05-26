@@ -32,8 +32,9 @@ public class Login extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        controller = new ClienteController(getApplicationContext());
         cliente = new Cliente();
-       // controller = new ClienteController(getApplicationContext());
+
 
         /*for (int i = 0; i <30; i++) {
 

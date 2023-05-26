@@ -30,7 +30,7 @@ public class ConsultarClientes extends AppCompatActivity {
         setContentView(view);
         controller = new ClienteController(getApplicationContext());
 
-        clientes = controller.listar();
+        clientes = controller.listar(getApplicationContext());
        /* for (int i = 0; i <50 ; i++) {
             obj = new Cliente();
             obj.setPrimeiroNome("Cliente "+i);

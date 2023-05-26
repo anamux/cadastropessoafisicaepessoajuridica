@@ -47,8 +47,8 @@ public class PessoaFisica extends AppCompatActivity {
                     clientePF.setDataNascimento(binding.editDataNascimento.getText().toString());
 
 
-                    controller.incluir(clientePF);
-                    ultimoIDPF = controller.getUltimoID();
+                    controller.incluir(getApplicationContext(),clientePF);
+                    ultimoIDPF = controller.getUltimoID(getApplicationContext());
                     salvarSharedPreferences();
                     Intent intent;
                     if (isPessoaFisica) {
@@ -131,9 +131,11 @@ public class PessoaFisica extends AppCompatActivity {
 
         preferences = getSharedPreferences(SplashActivity.PREF_APP, MODE_PRIVATE);
         SharedPreferences.Editor dados = preferences.edit();
-        dados.putInt("ultimoClientePF", ultimoIDPF);
+
+
         dados.putString("cpfCliente", binding.editCpf.getText().toString());
         dados.putString("dataNascimento", binding.editDataNascimento.getText().toString());
+        dados.putInt("ultimoClientePF", ultimoIDPF);
         dados.apply();
 
     }

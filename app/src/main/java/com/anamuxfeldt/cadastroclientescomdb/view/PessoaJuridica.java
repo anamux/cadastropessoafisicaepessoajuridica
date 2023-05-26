@@ -55,8 +55,8 @@ public class PessoaJuridica extends AppCompatActivity {
                     clientePJ.setSimplesNacional(isSimplesNacional);
                     clientePJ.setMei(isMei);
 
-                    controller.incluir(clientePJ);
-                    ultimoIDPF = controller.getUltimoID();
+                    controller.incluir(getApplicationContext(),clientePJ);
+                    ultimoIDPF = controller.getUltimoID(getApplicationContext());
                     salvarSharedPreferences();
 
                     Intent intent = new Intent(PessoaJuridica.this, MainActivity.class);

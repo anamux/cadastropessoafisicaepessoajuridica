@@ -14,15 +14,17 @@ import com.anamuxfeldt.cadastroclientescomdb.model.ClientePJ;
 
 import java.util.List;
 
-public class ClientePFController extends AppDataBase {
+public class ClientePFController{
     public static final String TABELA = ClientePFDataModel.TABELA;
     private ContentValues dados;
+    private AppDataBase db;
 
-    public ClientePFController(@Nullable Context context) {
-        super(context);
+    public ClientePFController(Context context) {
+        db = AppDataBase.getInstance(context);
     }
 
-    public boolean alterar(ClientePF obj){
+
+   /* public boolean alterar(ClientePF obj){
         dados = new ContentValues();
 
         dados.put(ClientePFDataModel.ID, obj.getId());
@@ -35,28 +37,32 @@ public class ClientePFController extends AppDataBase {
     }
     public boolean deletar(ClientePF obj){
         return delete(TABELA, obj.getId());
-    }
-    public boolean incluir(ClientePF obj){
+    }*/
+    public boolean incluir(Context context, ClientePF obj){
         dados = new ContentValues();
 
         dados.put(ClientePFDataModel.FK, obj.getClienteID());
         dados.put(ClientePFDataModel.CPF, obj.getCpf());
         dados.put(ClientePFDataModel.DATA_NASCIMENTO, obj.getDataNascimento());
 
+        AppDataBase db = AppDataBase.getInstance(context);
 
-        return insert(TABELA, dados);
+        return db.insert(TABELA, dados);
     }
-    public List<ClientePF> listar(){
+    public List<ClientePF> listar(Context context){
 
-        return listClientesPF(TABELA);
+        AppDataBase db = AppDataBase.getInstance(context);
+        return db.listClientesPF(TABELA);
     }
 
-    public int getUltimoID(){
-        return  getLastPK(TABELA);
+    public int getUltimoID(Context context){
+        AppDataBase db = AppDataBase.getInstance(context);
+        return  db.getLastPK(TABELA);
     }
-public ClientePF getClientePFByFK(int idFK){
+public ClientePF getClientePFByFK(Context context,int idFK){
+    AppDataBase db = AppDataBase.getInstance(context);
 
 
-    return getClientePFByFK(ClientePFDataModel.TABELA, idFK);
+    return db.getClientePFByFK(ClientePFDataModel.TABELA, idFK);
 }
 }

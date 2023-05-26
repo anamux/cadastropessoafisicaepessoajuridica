@@ -4,24 +4,35 @@ package com.anamuxfeldt.cadastroclientescomdb.controller;
 import android.content.ContentValues;
 import android.content.Context;
 
-import androidx.annotation.Nullable;
-
 import com.anamuxfeldt.cadastroclientescomdb.database.AppDataBase;
 import com.anamuxfeldt.cadastroclientescomdb.database.ClienteDataModel;
-import com.anamuxfeldt.cadastroclientescomdb.database.ClientePFDataModel;
 import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
 
 import java.util.List;
 
-public class ClienteController extends AppDataBase {
+public class ClienteController{
+    private AppDataBase db;
     public static final String TABELA = ClienteDataModel.TABELA;
     private ContentValues dados;
 
-    public ClienteController(@Nullable Context context) {
-        super(context);
+    public ClienteController(Context context) {
+        db = AppDataBase.getInstance(context);
     }
 
-    public boolean alterar(Cliente obj){
+    public boolean incluir(Context context, Cliente obj){
+        dados = new ContentValues();
+
+        dados.put(ClienteDataModel.PRIMEIRO_NOME, obj.getPrimeiroNome());
+        dados.put(ClienteDataModel.SOBRENOME, obj.getSobrenome());
+        dados.put(ClienteDataModel.EMAIL, obj.getEmail());
+        dados.put(ClienteDataModel.SENHA, obj.getSenha());
+        dados.put(ClienteDataModel.PESSOAFISICA, obj.isPessoaFisica());
+
+        AppDataBase db = AppDataBase.getInstance(context);
+
+        return db.insert(TABELA, dados);
+    }
+   /* public boolean alterar(Cliente obj){
         dados = new ContentValues();
 
         dados.put(ClienteDataModel.ID, obj.getId());
@@ -35,28 +46,23 @@ public class ClienteController extends AppDataBase {
     }
     public boolean deletar(Cliente obj){
         return delete(TABELA, obj.getId());
-    }
-    public boolean incluir(Cliente obj){
-        dados = new ContentValues();
+    }*/
 
-        dados.put(ClienteDataModel.PRIMEIRO_NOME, obj.getPrimeiroNome());
-        dados.put(ClienteDataModel.SOBRENOME, obj.getSobrenome());
-        dados.put(ClienteDataModel.EMAIL, obj.getEmail());
-        dados.put(ClienteDataModel.SENHA, obj.getSenha());
-        dados.put(ClienteDataModel.PESSOAFISICA, obj.isPessoaFisica());
+    public List<Cliente> listar(Context context){
 
-        return insert(TABELA, dados);
-    }
-    public List<Cliente> listar(){
-
-        return listClientes(TABELA);
+        AppDataBase db = AppDataBase.getInstance(context);
+        return db.listClientes(TABELA);
     }
 
-    public int getUltimoID(){
-        return  getLastPK(TABELA);
+    public int getUltimoID(Context context){
+        AppDataBase db = AppDataBase.getInstance(context);
+
+        return  db.getLastPK(TABELA);
     }
 
-    public Cliente getClienteById(Cliente obj){
-       return getClienteById(ClienteDataModel.TABELA, obj);
+    public Cliente getClienteById(Context context, Cliente obj){
+        AppDataBase db = AppDataBase.getInstance(context);
+
+       return db.getClienteById(ClienteDataModel.TABELA, obj);
     }
 }

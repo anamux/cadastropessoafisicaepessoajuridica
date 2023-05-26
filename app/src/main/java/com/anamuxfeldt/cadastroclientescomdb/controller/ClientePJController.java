@@ -14,15 +14,16 @@ import com.anamuxfeldt.cadastroclientescomdb.model.ClientePJ;
 
 import java.util.List;
 
-public class ClientePJController extends AppDataBase {
+public class ClientePJController {
+    private AppDataBase db;
     public static final String TABELA = ClientePJDataModel.TABELA;
     private ContentValues dados;
 
-    public ClientePJController(@Nullable Context context) {
-        super(context);
+    public ClientePJController(Context context) {
+        db = AppDataBase.getInstance(context);
     }
 
-    public boolean alterar(ClientePJ obj){
+  /*  public boolean alterar(ClientePJ obj){
         dados = new ContentValues();
 
         dados.put(ClientePJDataModel.ID, obj.getId());
@@ -39,8 +40,8 @@ public class ClientePJController extends AppDataBase {
     }
     public boolean deletar(ClientePJ obj){
         return delete(TABELA, obj.getId());
-    }
-    public boolean incluir(ClientePJ obj){
+    }*/
+    public boolean incluir(Context context, ClientePJ obj){
         dados = new ContentValues();
 
         dados.put(ClientePJDataModel.FK, obj.getClientePFID());
@@ -50,20 +51,23 @@ public class ClientePJController extends AppDataBase {
         dados.put(ClientePJDataModel.SIMPLES_NACIONAL, obj.isSimplesNacional());
         dados.put(ClientePJDataModel.MEI, obj.isMei());
 
-        return insert(TABELA, dados);
+        AppDataBase db = AppDataBase.getInstance(context);
+        return db.insert(TABELA, dados);
     }
-    public List<ClientePJ> listar(){
+    public List<ClientePJ> listar(Context context){
 
-        return listClientesPJ(TABELA);
+        AppDataBase db = AppDataBase.getInstance(context);
+        return db.listClientesPJ(TABELA);
     }
 
-    public int getUltimoID(){
-        return  getLastPK(TABELA);
+    public int getUltimoID(Context context){
+        AppDataBase db = AppDataBase.getInstance(context);
+        return  db.getLastPK(TABELA);
     }
-    public ClientePJ getClientePJByFK(int idFK){
+    public ClientePJ getClientePJByFK(Context context, int idFK){
 
-
-        return getClientePJByFK(ClientePJDataModel.TABELA, idFK);
+        AppDataBase db = AppDataBase.getInstance(context);
+        return db.getClientePJByFK(ClientePJDataModel.TABELA, idFK);
     }
 
 }
