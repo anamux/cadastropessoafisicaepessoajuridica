@@ -77,24 +77,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void atualizarMeusDados(View view) {
-        if (cliente.isPessoaFisica()) {
-            cliente.setPrimeiroNome("Ana");
-            cliente.setSobrenome("Muxfeldt");
-            //salvarSharedPreferences();
-
-            Log.i(LOG_APP, "atualizarMeusDados: ***Alterando dados***");
-            Log.i(LOG_APP, "Primeiro Nome: " + cliente.getPrimeiroNome());
-            Log.i(LOG_APP, "Sobrenome: " + cliente.getSobrenome());
-            Log.i(LOG_APP, "***Alterando dados PF***");
-            Log.i(LOG_APP, "Nome Completo: " + clientePF.getSobrenome());
-
-        } else {
-            clientePJ.setCnpj("00111222000100");
-
-            Log.i(LOG_APP, "***Alterando dados PJ***");
-            Log.i(LOG_APP, "CNPJ: " + clientePJ.getCnpj());
-
-        }
+        Intent intent = new Intent(MainActivity.this, AtualizarDadosActivity.class);
+        startActivity(intent);
     }
 
     public void excluirMinhaConta(View view) {

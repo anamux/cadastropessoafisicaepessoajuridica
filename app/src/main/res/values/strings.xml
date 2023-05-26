@@ -47,7 +47,8 @@
     <string name="acessar">ACESSAR</string>
     <string name="versao">Versão</string>
     <string name="voc_novo_por_aqui">Você é novo por aqui?</string>
-
+    <string name="editar">Editar</string>
+    <string name="salvar">Salvar</string>
 
 
 </resources>
