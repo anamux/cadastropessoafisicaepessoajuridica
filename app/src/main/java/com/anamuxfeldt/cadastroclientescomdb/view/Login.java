@@ -141,7 +141,15 @@ public class Login extends AppCompatActivity {
 
     private boolean validarDadosUsuario() {
 
-        return true;
+        boolean retorno = false;
+
+        String senhaDigitada = binding.editSenha.getText().toString();
+        String senhaMD5 = cliente.getSenha();
+
+        if(senhaMD5.equals(Cliente.gerarMD5Hash(senhaDigitada))){
+            retorno = true;
+        }
+        return retorno;
     }
 
     private boolean validarFormulario() {

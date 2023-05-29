@@ -2,6 +2,8 @@ package com.anamuxfeldt.cadastroclientescomdb.database;
 
 import android.util.Log;
 
+import com.anamuxfeldt.cadastroclientescomdb.view.MainActivity;
+
 public class ClientePFDataModel {
 
     public static final String TABELA = "clientePF";
@@ -27,7 +29,8 @@ public class ClientePFDataModel {
         query += "FOREIGN KEY("+FK+") REFERENCES cliente (id) ";
 
         query += ")";
-        Log.d("ClientePFDataModel", "gerarTabela: " +query);
+        Log.d(MainActivity.LOG_APP, "gerarTabela: "+query);
+        //Log.d("ClientePFDataModel", "gerarTabela: " +query);
         return query;
     }
 }

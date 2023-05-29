@@ -143,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Obrigado, " + cliente.getPrimeiroNome(
                         ) + " volte sempre.", Toast.LENGTH_SHORT).show();
                         dialogInterface.dismiss();
+                        finish();
                     }
                 })
                 .setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
@@ -154,6 +155,6 @@ public class MainActivity extends AppCompatActivity {
                 });
         builder.create();
         builder.show();
-        finish();
+
     }
 }

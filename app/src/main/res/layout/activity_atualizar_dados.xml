@@ -211,6 +211,7 @@
                             android:layout_margin="16dp"
                             android:enabled="false"
                             android:text="@string/salvar"
+                            android:onClick="salvarCardCliente"
                             android:textAppearance="@android:style/TextAppearance.Holo.Large" />
                     </LinearLayout>
 

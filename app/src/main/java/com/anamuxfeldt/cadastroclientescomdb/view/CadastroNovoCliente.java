@@ -44,7 +44,7 @@ public class CadastroNovoCliente extends AppCompatActivity {
                     cliente.setPrimeiroNome(binding.editPrimeiroNome.getText().toString());
                     cliente.setSobrenome(binding.editSobrenome.getText().toString());
                     cliente.setEmail(binding.editEmail.getText().toString());
-                    cliente.setSenha(binding.editSenha.getText().toString());
+                    cliente.setSenha(Cliente.gerarMD5Hash(binding.editSenha.getText().toString()));
                     cliente.setPessoaFisica(isPessoaFisica);
 
                     clienteController.incluir(getApplicationContext(),cliente);
@@ -149,7 +149,7 @@ public class CadastroNovoCliente extends AppCompatActivity {
         dados.putString("primeiroNome", cliente.getPrimeiroNome());
         dados.putString("sobreNome",cliente.getSobrenome());
         dados.putString("email", binding.editEmail.getText().toString());
-        dados.putString("senha", binding.editSenha.getText().toString());
+        dados.putString("senha", Cliente.gerarMD5Hash(binding.editSenha.getText().toString()));
         dados.putBoolean("pessoaFisica", cliente.isPessoaFisica());
         dados.putInt("clienteID", clienteID);
         dados.apply();

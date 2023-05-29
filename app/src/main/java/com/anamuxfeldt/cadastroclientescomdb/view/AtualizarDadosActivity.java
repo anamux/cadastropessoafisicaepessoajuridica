@@ -6,7 +6,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.Toast;
 
 import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
 import com.anamuxfeldt.cadastroclientescomdb.controller.ClientePFController;
@@ -103,6 +105,58 @@ public class AtualizarDadosActivity extends AppCompatActivity {
 
         binding.editPrimeiroNome.setEnabled(true);
         binding.editSobrenome.setEnabled(true);
+        binding.editEmail.setEnabled(true);
+        binding.editSenha.setEnabled(true);
+    }
+
+    /**
+     * Método que salva as alterações do Cliente
+     * @param view
+     */
+    public void salvarCardCliente(View view) {
+
+       if(validarDadosCliente()){
+
+       }
+    }
+    private boolean validarDadosCliente() {
+        boolean retorno = true;
+        if (TextUtils.isEmpty(binding.editPrimeiroNome.getText().toString())) {
+            binding.editPrimeiroNome.setError("*");
+            binding.editPrimeiroNome.requestFocus();
+            retorno = false;
+        }
+        if (TextUtils.isEmpty(binding.editSobrenome.getText().toString())) {
+            binding.editSobrenome.setError("*");
+            binding.editSobrenome.requestFocus();
+            retorno = false;
+        }
+        if (TextUtils.isEmpty(binding.editEmail.getText().toString())) {
+            binding.editEmail.setError("*");
+            binding.editEmail.requestFocus();
+            retorno = false;
+        }
+        if (TextUtils.isEmpty((binding.editSenha.getText().toString()))) {
+            binding.editSenha.setError("*");
+            binding.editSenha.requestFocus();
+            retorno = false;
+        }
+        /*if (TextUtils.isEmpty((binding.editConfirmaSenha.getText().toString()))) {
+            binding.editConfirmaSenha.setError("*");
+            binding.editConfirmaSenha.requestFocus();
+            retorno = false;
+        }
+        if (!validarSenha()) {
+            Toast.makeText(getApplicationContext(), "As senhas digitadas não conferem...",
+                    Toast.LENGTH_LONG).show();
+        }
+
+        if (!binding.ckPoliticaEPrivacidade.isChecked()) {
+            binding.ckPoliticaEPrivacidade.setError("Obrigatório");
+            retorno = false;
+        }*/
+
+        return retorno;
     }
 
     /**
@@ -114,6 +168,9 @@ public class AtualizarDadosActivity extends AppCompatActivity {
     public void editarClientePJ(View view) {
         binding.btnEditarPJ.setEnabled(false);
         binding.btnSalvarPJ.setEnabled(true);
+
+        binding.editRazaoSocial.setEnabled(true);
+
     }
 
     public void voltar(View view) {
@@ -127,4 +184,6 @@ public class AtualizarDadosActivity extends AppCompatActivity {
         isPessoaFisica = preferences.getBoolean("pessoaFisica", true);
         clienteID = preferences.getInt("clienteID", 0);
     }
+
+
 }
