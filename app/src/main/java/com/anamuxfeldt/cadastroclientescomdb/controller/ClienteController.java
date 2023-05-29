@@ -32,7 +32,7 @@ public class ClienteController{
 
         return db.insert(TABELA, dados);
     }
-   /* public boolean alterar(Cliente obj){
+    public boolean alterar(Context context, Cliente obj){
         dados = new ContentValues();
 
         dados.put(ClienteDataModel.ID, obj.getId());
@@ -42,11 +42,14 @@ public class ClienteController{
         dados.put(ClienteDataModel.SENHA, obj.getSenha());
         dados.put(ClienteDataModel.PESSOAFISICA, obj.isPessoaFisica());
 
-        return update(TABELA, dados);
+        AppDataBase db = AppDataBase.getInstance(context);
+        return db.update(TABELA, dados);
     }
-    public boolean deletar(Cliente obj){
-        return delete(TABELA, obj.getId());
-    }*/
+    public boolean deletar(Context context, Cliente obj){
+
+        AppDataBase db = AppDataBase.getInstance(context);
+        return db.delete(TABELA, obj.getId());
+    }
 
     public List<Cliente> listar(Context context){
 

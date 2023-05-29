@@ -24,20 +24,21 @@ public class ClientePFController{
     }
 
 
-   /* public boolean alterar(ClientePF obj){
+    public boolean alterar(Context context, ClientePF obj){
         dados = new ContentValues();
 
         dados.put(ClientePFDataModel.ID, obj.getId());
         dados.put(ClientePFDataModel.CPF, obj.getCpf());
 
+        AppDataBase db = AppDataBase.getInstance(context);
 
 
-
-        return update(TABELA, dados);
+        return db.update(TABELA, dados);
     }
-    public boolean deletar(ClientePF obj){
-        return delete(TABELA, obj.getId());
-    }*/
+    public boolean deletar(Context context, ClientePF obj){
+        AppDataBase db = AppDataBase.getInstance(context);
+        return db.delete(TABELA, obj.getId());
+    }
     public boolean incluir(Context context, ClientePF obj){
         dados = new ContentValues();
 

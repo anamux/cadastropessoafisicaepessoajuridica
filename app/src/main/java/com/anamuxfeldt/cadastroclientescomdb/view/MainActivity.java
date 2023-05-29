@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
+import com.anamuxfeldt.cadastroclientescomdb.controller.ClientePFController;
+import com.anamuxfeldt.cadastroclientescomdb.controller.ClientePJController;
 import com.anamuxfeldt.cadastroclientescomdb.databinding.ActivityMainBinding;
 import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
 import com.anamuxfeldt.cadastroclientescomdb.model.ClientePF;
@@ -25,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     ClientePF clientePF;
     ClientePJ clientePJ;
     ClienteController clienteController;
+    ClientePFController clientePFController;
+    ClientePJController clientePJController;
     private SharedPreferences preferences;
     public static final String LOG_APP = "CLIENTE_LOG";
     List<Cliente> clientes;
@@ -41,9 +45,13 @@ public class MainActivity extends AppCompatActivity {
         clientePJ = new ClientePJ();
 
         restaurarSharedPreferences();
-        // buscarListadeClientes();
 
         binding.bemVindo.setText("Olá " + cliente.getPrimeiroNome());
+
+
+        clienteController = new ClienteController(this);
+        clientePFController = new ClientePFController(this);
+        clientePJController = new ClientePJController(this);
 
 
     }
@@ -53,8 +61,9 @@ public class MainActivity extends AppCompatActivity {
         preferences = getSharedPreferences(SplashActivity.PREF_APP, MODE_PRIVATE);
 
         cliente.setPrimeiroNome(preferences.getString("primeiroNome", "Nulo"));
-        cliente.setSobrenome(preferences.getString("sobrenome", "Nulo"));
+        cliente.setSobrenome(preferences.getString("sobreNome", "Nulo"));
         cliente.setPessoaFisica(preferences.getBoolean("pessoaFisica", true));
+        cliente.setId(preferences.getInt("clienteID", -1));
 
         clientePF.setEmail(preferences.getString("emailCliente", "Nulo"));
         clientePF.setSenha(preferences.getString("senha", "Nulo"));
@@ -66,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         clientePJ.setDataAbertura(preferences.getString("dataAbertura", "nulo"));
         clientePJ.setSimplesNacional(preferences.getBoolean("simplesNacional", false));
         clientePJ.setMei(preferences.getBoolean("mei", false));
+
 
     }
 
@@ -88,12 +98,16 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("SIM", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
+
+
+                                cliente.setClientePF(clientePFController.getClientePFByFK(MainActivity.this,cliente.getId()));
+                                clientePFController.deletar(MainActivity.this, cliente.getClientePF());
+                                clienteController.deletar(MainActivity.this, cliente);
+                                //cliente.setClientePJ();
                                 Toast.makeText(MainActivity.this, cliente.getPrimeiroNome(
                                 ) + " sua conta será excluída", Toast.LENGTH_SHORT).show();
                                 dialogInterface.dismiss();
-                                cliente = new Cliente();
-                                clientePF = new ClientePF();
-                                clientePJ = new ClientePJ();
+
 
                                 salvarSharedPreferences();
                                 finish();

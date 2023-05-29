@@ -23,7 +23,7 @@ public class ClientePJController {
         db = AppDataBase.getInstance(context);
     }
 
-  /*  public boolean alterar(ClientePJ obj){
+    public boolean alterar(Context context, ClientePJ obj){
         dados = new ContentValues();
 
         dados.put(ClientePJDataModel.ID, obj.getId());
@@ -34,13 +34,14 @@ public class ClientePJController {
         dados.put(ClientePJDataModel.SIMPLES_NACIONAL, obj.isSimplesNacional());
         dados.put(ClientePJDataModel.DATA_ABERTURA, obj.getDataAbertura());
 
+        AppDataBase db = AppDataBase.getInstance(context);
 
-
-        return update(TABELA, dados);
+        return db.update(TABELA, dados);
     }
-    public boolean deletar(ClientePJ obj){
-        return delete(TABELA, obj.getId());
-    }*/
+    public boolean deletar(Context context, ClientePJ obj){
+        AppDataBase db = AppDataBase.getInstance(context);
+        return db.delete(TABELA, obj.getId());
+    }
     public boolean incluir(Context context, ClientePJ obj){
         dados = new ContentValues();
 
