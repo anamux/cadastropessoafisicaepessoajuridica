@@ -101,11 +101,19 @@ public class MainActivity extends AppCompatActivity {
 
 
                                 cliente.setClientePF(clientePFController.getClientePFByFK(MainActivity.this,cliente.getId()));
+
+                                if (!cliente.isPessoaFisica()) {
+
+
+
+                                cliente.setClientePJ(clientePJController.getClientePJByFK(MainActivity.this,cliente.getClientePF().getId()));
+                                clientePJController.deletar(MainActivity.this, cliente.getClientePJ());
+                                }
                                 clientePFController.deletar(MainActivity.this, cliente.getClientePF());
                                 clienteController.deletar(MainActivity.this, cliente);
-                                //cliente.setClientePJ();
+
                                 Toast.makeText(MainActivity.this, cliente.getPrimeiroNome(
-                                ) + " sua conta será excluída", Toast.LENGTH_SHORT).show();
+                                ) + " sua conta foi excluída com sucesso", Toast.LENGTH_SHORT).show();
                                 dialogInterface.dismiss();
 
 
