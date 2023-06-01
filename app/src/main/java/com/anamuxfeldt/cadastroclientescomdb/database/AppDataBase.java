@@ -10,6 +10,9 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.anamuxfeldt.cadastroclientescomdb.controller.ClienteController;
+import com.anamuxfeldt.cadastroclientescomdb.controller.ClientePFController;
+import com.anamuxfeldt.cadastroclientescomdb.controller.ClientePJController;
 import com.anamuxfeldt.cadastroclientescomdb.model.Cliente;
 import com.anamuxfeldt.cadastroclientescomdb.model.ClientePF;
 import com.anamuxfeldt.cadastroclientescomdb.model.ClientePJ;
@@ -24,7 +27,6 @@ import javax.security.auth.login.LoginException;
 public class AppDataBase extends SQLiteOpenHelper {
     private static final String DB_NAME = "clienteDB.sqlite";
     private static final int DB_VERSION = 1;
-    Cursor cursor;
     Context context;
 
     SQLiteDatabase db;
@@ -143,14 +145,19 @@ public class AppDataBase extends SQLiteOpenHelper {
     public List<Cliente> listClientes(String tabela) {
         List<Cliente> list = new ArrayList<>();
         Cliente cliente;
-        String sql = "SELECT * FROM " + tabela;
-        try {
+        ClientePFController controllerPF;
+        ClientePJController clientePJController;
 
+        String sql = "SELECT * FROM " + tabela;
+        Cursor cursor = null;
+        try {
             cursor = db.rawQuery(sql, null);
             if (cursor.moveToFirst()) {
                 do {
-
                     cliente = new Cliente();
+                    controllerPF = new ClientePFController(context.getApplicationContext());
+                    clientePJController = new ClientePJController(context.getApplicationContext());
+
 
                     cliente.setId(cursor.getInt(cursor.getColumnIndexOrThrow(ClienteDataModel.ID)));
                     cliente.setPrimeiroNome(cursor.getString(cursor.getColumnIndexOrThrow(ClienteDataModel.PRIMEIRO_NOME)));
@@ -159,14 +166,31 @@ public class AppDataBase extends SQLiteOpenHelper {
                     cliente.setSenha(cursor.getString(cursor.getColumnIndexOrThrow(ClienteDataModel.SENHA)));
                     cliente.setPessoaFisica(cursor.getInt(cursor.getColumnIndexOrThrow(ClienteDataModel.PESSOAFISICA)) == 1);
 
+                    cliente.setClientePF(controllerPF.getClientePFByFK(context.getApplicationContext(), cliente.getId()));
+
+                    if (!cliente.isPessoaFisica())
+                        cliente.setClientePJ(clientePJController.getClientePJByFK(context.getApplicationContext(),cliente.getClientePF().getId()));
+
+
+
+                    Log.d(MainActivity.LOG_APP, "ID do cliente: " + cliente.getId());
+                        Log.d(MainActivity.LOG_APP, "É pessoa física? " + cliente.isPessoaFisica());
+
+
+
                     list.add(cliente);
                 } while (cursor.moveToNext());
                 Log.e(MainActivity.LOG_APP, tabela + " lista gerada");
             }
 
+
         } catch (SQLException e) {
             Log.e(MainActivity.LOG_APP, "Erro ao listar dados " + tabela);
             Log.e(MainActivity.LOG_APP, "Erro: " + e.getMessage());
+        }finally {
+            if(cursor != null){
+                cursor.close();
+            }
         }
         return list;
     }
@@ -174,6 +198,7 @@ public class AppDataBase extends SQLiteOpenHelper {
         List<ClientePF> list = new ArrayList<>();
         ClientePF clientePF;
         String sql = "SELECT * FROM " + tabela;
+        Cursor cursor = null;
         try {
 
             cursor = db.rawQuery(sql, null);
@@ -202,6 +227,7 @@ public class AppDataBase extends SQLiteOpenHelper {
         List<ClientePJ> list = new ArrayList<>();
         ClientePJ clientePJ;
         String sql = "SELECT * FROM " + tabela;
+        Cursor cursor = null;
         try {
 
             cursor = db.rawQuery(sql, null);
@@ -237,6 +263,7 @@ public class AppDataBase extends SQLiteOpenHelper {
 
 
         String sql = "SELECT seq FROM sqlite_sequence WHERE name= '" + tabela + "'";
+        Cursor cursor = null;
         try {
 
             Log.e(MainActivity.LOG_APP, "SQL Raw: " + sql);
@@ -259,6 +286,7 @@ public class AppDataBase extends SQLiteOpenHelper {
 
         Cliente cliente = new Cliente();;
         String sql = "SELECT * FROM "+tabela+" WHERE id = "+obj.getId();
+        Cursor cursor = null;
         try{
             cursor=db.rawQuery(sql, null);
             if (cursor.moveToNext()){
@@ -281,6 +309,7 @@ public class AppDataBase extends SQLiteOpenHelper {
 
         ClientePF clientePF = new ClientePF();;
         String sql = "SELECT * FROM " +tabela+ " WHERE "+ClientePFDataModel.FK+" = " +idFK;
+        Cursor cursor = null;
         try{
             cursor=db.rawQuery(sql, null);
             if (cursor.moveToNext()){
@@ -301,8 +330,9 @@ public class AppDataBase extends SQLiteOpenHelper {
     }
     public ClientePJ getClientePJByFK(String tabela, int idFK ){
 
-        ClientePJ clientePJ = new ClientePJ();;
+        ClientePJ clientePJ = new ClientePJ();
         String sql = "SELECT * FROM " +tabela+ " WHERE "+ClientePJDataModel.FK+" = " +idFK;
+        Cursor cursor = null;
         try{
             cursor=db.rawQuery(sql, null);
             if (cursor.moveToNext()){

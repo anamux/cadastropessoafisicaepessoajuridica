@@ -74,6 +74,7 @@ public class AtualizarDadosActivity extends AppCompatActivity {
                 binding.editRazaoSocial.setText(cliente.getClientePJ().getRazaoSocial());
                 binding.editCnpj.setText(cliente.getClientePJ().getCnpj());
                 binding.ckMei.setChecked(cliente.getClientePJ().isMei());
+                binding.editAbertura.setText(cliente.getClientePJ().getDataAbertura());
                 binding.ckSimplesNacional.setChecked(cliente.getClientePJ().isSimplesNacional());
             }
         } else {

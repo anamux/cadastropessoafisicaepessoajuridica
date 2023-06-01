@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,12 +43,21 @@ public class ClienteAdapter extends RecyclerView.Adapter<ClienteAdapter.ViewHold
 
         Cliente objLinha= aClientes.get(position);
 
-        TextView txtPrimeiroNome = holder.binding.rvPrimeiroNome;
-        txtPrimeiroNome.setText(objLinha.getPrimeiroNome());
+        TextView rvPrimeiroNome = holder.binding.rvPrimeiroNome;
+        TextView rvEmail = holder.binding.rvEmail;
+        rvPrimeiroNome.setText(objLinha.getPrimeiroNome());
+        rvEmail.setText(objLinha.getEmail());
 
-        Button rvIsPessoaFisica  = holder.binding.rvIsPessoaFisica;
-        rvIsPessoaFisica.setText(objLinha.isPessoaFisica()?"CPF" : "CNPJ");
-    }
+        CheckBox ckPessoaFisica  = holder.binding.ckPessoaFisica;
+
+        try{
+
+
+        ckPessoaFisica.setText(objLinha.isPessoaFisica()?"CPF "+objLinha.getClientePF().getCpf() : "CNPJ "+objLinha.getClientePJ().getCnpj());
+        }catch (Exception e){
+            ckPessoaFisica.setText(objLinha.isPessoaFisica()?"CPF " : "CNPJ ");
+        }
+        }
 
     @Override
     public int getItemCount() {

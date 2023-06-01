@@ -143,19 +143,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void consultarClientes(View view) {
-        binding.btnConsultarClientes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ConsultarClientes.class);
-                startActivity(intent);
 
-            }
-        });
-
+        Intent intent = new Intent(MainActivity.this, ConsultarClientes.class);
+        startActivity(intent);
 
     }
-
-    public void sairDoAplicativo(View view) {
+        public void sairDoAplicativo(View view) {
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(MainActivity.this)
                 .setTitle("SAIR DO APLICATIVO")
                 .setMessage("Deseja sair mesmo do aplicativo?")

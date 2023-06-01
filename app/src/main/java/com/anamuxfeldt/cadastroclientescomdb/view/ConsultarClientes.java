@@ -19,7 +19,6 @@ public class ConsultarClientes extends AppCompatActivity {
     private ActivityConsultarClientesBinding binding;
     List<Cliente> clientes;
     ClienteAdapter adapter;
-    Cliente obj;
     ClienteController controller;
 
     @Override
@@ -31,14 +30,6 @@ public class ConsultarClientes extends AppCompatActivity {
         controller = new ClienteController(getApplicationContext());
 
         clientes = controller.listar(getApplicationContext());
-       /* for (int i = 0; i <50 ; i++) {
-            obj = new Cliente();
-            obj.setPrimeiroNome("Cliente "+i);
-            obj.setPessoaFisica(i %2 == 0);
-
-            clientes.add(obj);
-
-        }*/
 
         adapter = new ClienteAdapter(clientes, getApplicationContext());
 
